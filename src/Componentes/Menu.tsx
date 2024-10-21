@@ -1,4 +1,4 @@
-import { Box, SvgIcon, Checkbox } from "@mui/material";
+import { Box, Checkbox } from "@mui/material";
 import ItemMenu from "./ItemMenu";
 
 import { GoGoal } from "react-icons/go";
@@ -14,69 +14,27 @@ export default function Menu() {
         padding: 1,
       }}
     >
-      <ItemMenu
-        icon={
-          <SvgIcon>
-            <GoGoal />
-          </SvgIcon>
-        }
-        name="Objetivo da avaliação"
-      >
+      <ItemMenu icon={<GoGoal />} name="Objetivo da avaliação">
         <Checkbox />
         <Checkbox />
       </ItemMenu>
-      <ItemMenu
-        icon={
-          <SvgIcon>
-            <GoGoal />
-          </SvgIcon>
-        }
-        name="Objetivo da avaliação"
-      >
+      <ItemMenu icon={<GoGoal />} name="Objetivo da avaliação">
         <Checkbox />
         <Checkbox />
       </ItemMenu>
-      <ItemMenu
-        icon={
-          <SvgIcon>
-            <GoGoal />
-          </SvgIcon>
-        }
-        name="Objetivo da avaliação"
-      >
+      <ItemMenu icon={<GoGoal />} name="Objetivo da avaliação">
         <Checkbox />
         <Checkbox />
       </ItemMenu>
-      <ItemMenu
-        icon={
-          <SvgIcon>
-            <GoGoal />
-          </SvgIcon>
-        }
-        name="Objetivo da avaliação"
-      >
+      <ItemMenu icon={<GoGoal />} name="Objetivo da avaliação">
         <Checkbox />
         <Checkbox />
       </ItemMenu>
-      <ItemMenu
-        icon={
-          <SvgIcon>
-            <GoGoal />
-          </SvgIcon>
-        }
-        name="Objetivo da avaliação"
-      >
+      <ItemMenu icon={<GoGoal />} name="Objetivo da avaliação">
         <Checkbox />
         <Checkbox />
       </ItemMenu>
-      <ItemMenu
-        icon={
-          <SvgIcon>
-            <GoGoal />
-          </SvgIcon>
-        }
-        name="Objetivo da avaliação"
-      >
+      <ItemMenu icon={<GoGoal />} name="Objetivo da avaliação">
         <Checkbox />
         <Checkbox />
       </ItemMenu>

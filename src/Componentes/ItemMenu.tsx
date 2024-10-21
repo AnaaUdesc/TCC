@@ -1,4 +1,4 @@
-import { Box, Collapse, Typography } from "@mui/material";
+import { Box, Collapse, SvgIcon, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
@@ -33,10 +33,18 @@ export default function ItemMenu({ name, icon, children }: ItemMenuProps) {
         }}
       >
         <Box sx={{ display: "flex", gap: 1 }}>
-          {icon}
+          <SvgIcon color="secondary">{icon}</SvgIcon>
           <Typography>{name}</Typography>
         </Box>
-        {open ? <IoIosArrowUp /> : <IoIosArrowDown />}
+        {open ? (
+          <SvgIcon color="secondary" fontSize="small">
+            <IoIosArrowUp />{" "}
+          </SvgIcon>
+        ) : (
+          <SvgIcon color="secondary" fontSize="small">
+            <IoIosArrowDown />{" "}
+          </SvgIcon>
+        )}
       </Box>
       <Collapse in={open}>{children}</Collapse>
     </>
