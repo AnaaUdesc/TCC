@@ -11,9 +11,23 @@ export default function HomePage() {
         flexDirection: "column",
       }}
     >
-      <Container sx={{ flexGrow: 1 }}>
+      <Container
+        sx={{
+          flexGrow: 1,
+          display: "flex", // Para que o conteúdo dentro seja flexível
+          flexDirection: "column",
+        }}
+      >
         <Header />
-        <Box>asdasd</Box>
+        <Box
+          sx={{
+            border: 1,
+            borderRadius: 2,
+            borderColor: "#86ADB5",
+            flexGrow: 1,
+            marginBottom: -2,
+          }}
+        ></Box>
       </Container>
       <Footer />
     </Box>
