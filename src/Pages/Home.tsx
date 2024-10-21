@@ -1,6 +1,7 @@
 import { Box, Container } from "@mui/material";
 import Header from "../Componentes/header";
 import Footer from "../Componentes/Footer";
+import Menu from "../Componentes/Menu";
 
 export default function HomePage() {
   return (
@@ -26,8 +27,14 @@ export default function HomePage() {
             borderColor: "#86ADB5",
             flexGrow: 1,
             marginBottom: -2,
+            display: "flex", // Para que o conteúdo dentro seja flexível
+            flexDirection: "column",
+            paddingX: 12,
+            paddingY: 4,
           }}
-        ></Box>
+        >
+          <Menu />
+        </Box>
       </Container>
       <Footer />
     </Box>
