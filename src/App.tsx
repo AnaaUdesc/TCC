@@ -1,5 +1,5 @@
 import ContatoPage from "./Pages/Contato";
-import { createTheme, ThemeProvider } from "@mui/material";
+import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import themeOptions from "./theme";
 import HomePage from "./Pages/Home";
 import {
@@ -23,6 +23,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <RouterProvider router={router} />
+      <CssBaseline />
     </ThemeProvider>
   );
 }
