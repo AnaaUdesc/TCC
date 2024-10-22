@@ -46,7 +46,9 @@ export default function ItemMenu({ name, icon, children }: ItemMenuProps) {
           </SvgIcon>
         )}
       </Box>
-      <Collapse in={open}>{children}</Collapse>
+      <Collapse sx={{ paddingX: 4 }} in={open}>
+        {children}
+      </Collapse>
     </>
   );
 }
