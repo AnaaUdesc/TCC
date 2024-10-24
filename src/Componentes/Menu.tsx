@@ -1,38 +1,39 @@
 import {
+  AttachMoney,
+  CalendarMonth,
+  Groups,
+  PersonalVideo,
+  PieChart,
+  VideoChat,
+} from "@mui/icons-material";
+import {
   Box,
-  Button,
   Checkbox,
   Divider,
   FormControl,
   FormControlLabel,
   FormGroup,
   FormLabel,
-  IconButton,
   Radio,
   RadioGroup,
   Tooltip,
   Typography,
 } from "@mui/material";
-import ItemMenu from "./ItemMenu";
+import { useState } from "react";
 import { CgRead } from "react-icons/cg";
 import { GoGoal } from "react-icons/go";
-import {
-  AttachMoney,
-  CalendarMonth,
-  Close,
-  Groups,
-  MenuBook,
-  PersonalVideo,
-  PieChart,
-  VideoChat,
-} from "@mui/icons-material";
-import { useState } from "react";
+import ItemMenu from "./ItemMenu";
 
 export default function Menu() {
   const [specialistRadios, setSpecialistRadios] = useState("");
+  const [userParticipationRadios, setUserParticipationRadios] = useState("");
 
   const handleChangeSpecialistRadios = (value: string) => {
     setSpecialistRadios(value);
+  };
+
+  const handleChangeUserParticipationRadios = (value: string) => {
+    setUserParticipationRadios(value);
   };
 
   return (
@@ -131,7 +132,18 @@ export default function Menu() {
                 />
               }
               label={
-                <Typography sx={{ fontWeight: 300 }}>Ergonomia</Typography>
+                <Tooltip
+                  arrow
+                  placement="right"
+                  title={
+                    <Typography>
+                      Adaptabilidade do sistema a tarefas e ambientes para que
+                      sejam confortáveis e eficientes para os usuários.
+                    </Typography>
+                  }
+                >
+                  <Typography sx={{ fontWeight: 300 }}>Ergonomia</Typography>
+                </Tooltip>
               }
             />
             <FormControlLabel
@@ -155,46 +167,6 @@ export default function Menu() {
                 >
                   <Typography sx={{ fontWeight: 300 }}>
                     Qualidade/Conformidade
-                  </Typography>
-                </Tooltip>
-              }
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  size="small"
-                  color="secondary"
-                  sx={{ color: "secondary.main" }}
-                />
-              }
-              label={
-                <Tooltip
-                  arrow
-                  placement="right"
-                  title={<Typography>Preciso descrever algo aqui</Typography>}
-                >
-                  <Typography sx={{ fontWeight: 300 }}>
-                    Comunicabilidade
-                  </Typography>
-                </Tooltip>
-              }
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  size="small"
-                  color="secondary"
-                  sx={{ color: "secondary.main" }}
-                />
-              }
-              label={
-                <Tooltip
-                  arrow
-                  placement="right"
-                  title={<Typography>Preciso descrever algo aqui</Typography>}
-                >
-                  <Typography sx={{ fontWeight: 300 }}>
-                    Metacomunicação
                   </Typography>
                 </Tooltip>
               }
@@ -244,6 +216,34 @@ export default function Menu() {
                 >
                   <Typography sx={{ fontWeight: 300 }}>
                     Validar informações
+                  </Typography>
+                </Tooltip>
+              }
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  size="small"
+                  color="secondary"
+                  sx={{ color: "secondary.main" }}
+                />
+              }
+              label={
+                <Tooltip
+                  arrow
+                  placement="right"
+                  title={
+                    <Typography>
+                      Avaliam a qualidade da recepção da metacomunicação do
+                      designer com o usuário. Metacomunicação pode ser
+                      compreendida como a mensagem passada do designer para os
+                      usuários sobre a comunicação usuário–sistema por meio de
+                      artefatos da interface.
+                    </Typography>
+                  }
+                >
+                  <Typography sx={{ fontWeight: 300 }}>
+                    Comunicabilidade
                   </Typography>
                 </Tooltip>
               }
@@ -460,7 +460,6 @@ export default function Menu() {
                 sx={{
                   fontWeight: 550,
                   color: "#000",
-                  marginBottom: 1,
                   marginTop: 1,
                 }}
               >
@@ -470,7 +469,7 @@ export default function Menu() {
                 aria-labelledby="demo-radio-buttons-group-label"
                 defaultValue=""
                 name="radio-buttons-group"
-                sx={{ paddingX: 2 }}
+                sx={{ paddingX: 2, marginBottom: 2 }}
               >
                 <FormControlLabel
                   value="sim"
@@ -479,6 +478,12 @@ export default function Menu() {
                       size="small"
                       color="secondary"
                       checked={specialistRadios === "sim"}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        if (specialistRadios === "sim") {
+                          setSpecialistRadios("");
+                        }
+                      }}
                     />
                   }
                   label="Sim"
@@ -490,17 +495,17 @@ export default function Menu() {
                       checked={specialistRadios === "nao"}
                       size="small"
                       color="secondary"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        if (specialistRadios === "nao") {
+                          setSpecialistRadios("");
+                        }
+                      }}
                     />
                   }
                   label="Não"
                 />
               </RadioGroup>
-              <Button
-                onClick={() => handleChangeSpecialistRadios("")}
-                endIcon={<Close />}
-              >
-                Limpar opções
-              </Button>
             </FormControl>
           </FormGroup>
           {specialistRadios === "sim" && (
@@ -512,7 +517,7 @@ export default function Menu() {
                     fontWeight: 550,
                     color: "#000",
                     marginBottom: 1,
-                    marginTop: 4,
+                    marginTop: 2,
                   }}
                 >
                   Quantos especialistas disponíveis?
@@ -658,14 +663,18 @@ export default function Menu() {
             </>
           }
         >
-          <FormGroup sx={{ marginBottom: 4 }}>
+          <FormGroup
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            onChange={(e: any) =>
+              handleChangeUserParticipationRadios(e.target.value as string)
+            }
+          >
             <FormControl>
               <FormLabel
                 id="demo-radio-buttons-group-label"
                 sx={{
                   fontWeight: 550,
                   color: "#000",
-                  marginBottom: 1,
                   marginTop: 1,
                 }}
               >
@@ -675,65 +684,88 @@ export default function Menu() {
                 aria-labelledby="demo-radio-buttons-group-label"
                 defaultValue=""
                 name="radio-buttons-group"
-                sx={{ paddingX: 2 }}
+                sx={{ paddingX: 2, marginBottom: 2 }}
               >
                 <FormControlLabel
                   value="sim"
-                  control={<Radio size="small" color="secondary" />}
+                  control={
+                    <Radio
+                      size="small"
+                      color="secondary"
+                      checked={userParticipationRadios === "sim"}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        if (userParticipationRadios === "sim") {
+                          setUserParticipationRadios("");
+                        }
+                      }}
+                    />
+                  }
                   label="Sim"
                 />
                 <FormControlLabel
                   value="nao"
-                  control={<Radio size="small" color="secondary" />}
+                  control={
+                    <Radio
+                      checked={userParticipationRadios === "nao"}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        if (userParticipationRadios === "nao") {
+                          setUserParticipationRadios("");
+                        }
+                      }}
+                      size="small"
+                      color="secondary"
+                    />
+                  }
                   label="Não"
                 />
-                <FormControlLabel
-                  value="nenhum"
-                  control={<Radio size="small" color="secondary" />}
-                  label="Limpar opções"
-                />
               </RadioGroup>
             </FormControl>
-            <FormControl>
-              <FormLabel
-                id="demo-radio-buttons-group-label"
-                sx={{
-                  fontWeight: 550,
-                  color: "#000",
-                  marginBottom: 1,
-                  marginTop: 4,
-                }}
-              >
-                Quantos usuários disponíveis?
-              </FormLabel>
-              <RadioGroup
-                aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue="1-5"
-                name="radio-buttons-group"
-                sx={{ paddingX: 2 }}
-              >
-                <FormControlLabel
-                  value="1-5"
-                  control={<Radio size="small" color="secondary" />}
-                  label="1 a 5"
-                />
-                <FormControlLabel
-                  value="5-10"
-                  control={<Radio size="small" color="secondary" />}
-                  label="5 a 10"
-                />
-                <FormControlLabel
-                  value="10-20"
-                  control={<Radio size="small" color="secondary" />}
-                  label="10 a 20"
-                />
-                <FormControlLabel
-                  value="20+"
-                  control={<Radio size="small" color="secondary" />}
-                  label="20 ou mais"
-                />
-              </RadioGroup>
-            </FormControl>
+          </FormGroup>
+          <FormGroup>
+            {userParticipationRadios === "sim" && (
+              <FormControl>
+                <FormLabel
+                  id="demo-radio-buttons-group-label"
+                  sx={{
+                    fontWeight: 550,
+                    color: "#000",
+                    marginBottom: 1,
+                    marginTop: 2,
+                  }}
+                >
+                  Quantos usuários disponíveis?
+                </FormLabel>
+                <RadioGroup
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  defaultValue="1-5"
+                  name="radio-buttons-group"
+                  sx={{ paddingX: 2, marginBottom: 2 }}
+                >
+                  <FormControlLabel
+                    value="1-5"
+                    control={<Radio size="small" color="secondary" />}
+                    label="1 a 5"
+                  />
+                  <FormControlLabel
+                    value="5-10"
+                    control={<Radio size="small" color="secondary" />}
+                    label="5 a 10"
+                  />
+                  <FormControlLabel
+                    value="10-20"
+                    control={<Radio size="small" color="secondary" />}
+                    label="10 a 20"
+                  />
+                  <FormControlLabel
+                    value="20+"
+                    control={<Radio size="small" color="secondary" />}
+                    label="20 ou mais"
+                  />
+                </RadioGroup>
+              </FormControl>
+            )}
           </FormGroup>
         </ItemMenu>
         <Divider sx={{ borderColor: "#E3E3E3", marginX: 2 }} />
