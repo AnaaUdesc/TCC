@@ -1,15 +1,22 @@
-import { Box, Collapse, SvgIcon, Typography } from "@mui/material";
+import { Box, Collapse, SvgIcon, Tooltip, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
+import HelpIcon from "@mui/icons-material/Help";
 
 interface ItemMenuProps {
   name: string;
   icon: React.ReactNode;
   children: React.ReactNode;
+  tooltipTile?: React.ReactNode;
 }
 
-export default function ItemMenu({ name, icon, children }: ItemMenuProps) {
+export default function ItemMenu({
+  name,
+  icon,
+  children,
+  tooltipTile,
+}: ItemMenuProps) {
   const [open, setOpen] = useState(false);
 
   function setCollapse() {
@@ -22,14 +29,15 @@ export default function ItemMenu({ name, icon, children }: ItemMenuProps) {
         onClick={setCollapse}
         sx={{
           ":hover": {
-            backgroundColor: "background.default",
+            backgroundColor: "#E7EFF0",
           },
           cursor: "pointer",
           display: "flex",
           borderRadius: 2,
           alignItems: "center",
           justifyContent: "space-between",
-          padding: 2,
+          padding: 1,
+          margin: 1,
         }}
       >
         <Box sx={{ display: "flex", gap: 1 }}>
@@ -46,8 +54,31 @@ export default function ItemMenu({ name, icon, children }: ItemMenuProps) {
           </SvgIcon>
         )}
       </Box>
+
       <Collapse sx={{ paddingX: 4 }} in={open}>
-        {children}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          {tooltipTile && (
+            <Tooltip title={tooltipTile} arrow placement="left">
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  cursor: "pointer",
+                  color: "#cfcfcf",
+                }}
+              >
+                <HelpIcon sx={{ margin: 1, marginBottom: 1 }} />
+                <Typography>Saiba mais</Typography>
+              </Box>
+            </Tooltip>
+          )}
+          <Box>{children}</Box>
+        </Box>
       </Collapse>
     </>
   );
