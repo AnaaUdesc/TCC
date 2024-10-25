@@ -1,9 +1,8 @@
 import { Box, Container } from "@mui/material";
-import Header from "../Componentes/Header";
-import Footer from "../Componentes/Footer";
-import Menu from "../Componentes/Menu";
 import Card from "../Componentes/Card";
-import React from "react";
+import Footer from "../Componentes/Footer";
+import Header from "../Componentes/Header";
+import Menu from "../Componentes/Menu";
 import { methods } from "../db/methods";
 
 export default function HomePage() {
@@ -49,13 +48,7 @@ export default function HomePage() {
             }}
           >
             {methods.map((method) => (
-              <Card
-                title={method.title}
-                classificationIcons={method.classificationIcons}
-                description={method.description}
-                image={method.image}
-                matchTotal={0}
-              />
+              <Card {...method} matchTotal={0} />
             ))}
           </Box>
         </Box>

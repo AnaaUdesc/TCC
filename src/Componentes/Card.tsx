@@ -1,8 +1,16 @@
-import { Box, Button, Divider, Typography } from "@mui/material";
+import { Close } from "@mui/icons-material";
+import {
+  Box,
+  Dialog,
+  Divider,
+  IconButton,
+  Link,
+  Typography,
+} from "@mui/material";
+import { useState } from "react";
 import { MethodProps } from "../db/methods";
 
 // Importando a imagem
-import React from "react";
 
 interface CardProps extends MethodProps {
   matchTotal: number;
@@ -14,43 +22,172 @@ export default function Card({
   title,
   classificationIcons,
   matchTotal,
+  attentionPoints,
+  fullDescription,
+  goodPractices,
+  id,
+  more,
+  exemples,
+  relatedMethods,
 }: CardProps) {
+  const [open, setOpen] = useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <Box
-      sx={{
-        backgroundColor: "#ffff",
-        borderRadius: 2,
-        display: "flex",
-        padding: 2,
-      }}
-    >
+    <>
       <Box
         sx={{
-          backgroundImage: `url(${image})`,
-          width: 161,
-          height: 261,
-          minWidth: 161,
-          minHeight: 261,
+          backgroundColor: "#ffff",
           borderRadius: 2,
-          backgroundSize: "cover", // Para cobrir o Box com a imagem
-        }}
-      />
-      <Box
-        sx={{
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-around",
-          paddingX: 2,
+          padding: 2,
         }}
       >
-        <Typography sx={{ marginBottom: -3 }} variant="h5">
-          {title}
-        </Typography>
-        <Typography>{description}</Typography>
-        <Button>Ver detalhes</Button>
+        <Box
+          sx={{
+            backgroundImage: `url(${image})`,
+            width: 161,
+            height: 261,
+            minWidth: 161,
+            minHeight: 261,
+            borderRadius: 2,
+            backgroundSize: "cover", // Para cobrir o Box com a imagem
+          }}
+        />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-around",
+            paddingX: 2,
+          }}
+        >
+          <Box sx={{ display: "flex", gap: 1, marginBottom: -3 }}>
+            <Typography variant="h5" noWrap fontWeight={600}>
+              {title}
+            </Typography>
+            <Box sx={{ display: "flex", gap: 1 }}>
+              {classificationIcons.map((icon, index) => (
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderRadius: 50,
+                    backgroundColor: "#86ADB5",
+                    width: 24,
+                    height: 24,
+                    p: 2,
+                  }}
+                  key={index}
+                >
+                  {icon}
+                </Box>
+              ))}
+            </Box>
+          </Box>
+          <Typography
+            sx={{ color: "#7A7A7A", fontStyle: "italic", fontWeight: 300 }}
+          >
+            {description}
+          </Typography>
+          <Link
+            onClick={() => setOpen(true)}
+            color="secondary"
+            sx={{ cursor: "pointer" }}
+          >
+            Ver detalhes
+          </Link>
+        </Box>
+        <Divider orientation="vertical" flexItem />
+        <Box>Porcentagens</Box>
       </Box>
-      <Divider orientation="vertical" flexItem />
-      <Box>Porcentagens</Box>
-    </Box>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        maxWidth="xl"
+        PaperProps={{
+          sx: {
+            borderRadius: 2,
+          },
+        }}
+      >
+        <Box sx={{ position: "relative" }}>
+          <IconButton
+            onClick={handleClose}
+            size="small"
+            sx={{
+              position: "absolute",
+              right: 10,
+              top: 10,
+
+              backgroundColor: "#000",
+              opacity: 0.65,
+              transition: "all 0.2s",
+
+              ":hover": {
+                backgroundColor: "#000",
+                opacity: 0.8,
+              },
+            }}
+          >
+            <Close
+              sx={{
+                color: "#fff",
+              }}
+            />
+          </IconButton>
+          <Box
+            sx={{
+              backgroundImage: `url(${image})`,
+              width: "100%",
+              minWidth: "100px",
+              minHeight: "300px",
+              height: "auto",
+              borderRadius: 2,
+              backgroundSize: "cover", // Para cobrir o Box com a imagem
+            }}
+          />
+          <Box sx={{ padding: 2 }}>
+            <Box sx={{ display: "flex", gap: 1 }}>
+              <Typography variant="h5" noWrap fontWeight={600}>
+                {title}
+              </Typography>
+              <Box sx={{ display: "flex", gap: 1 }}>
+                {classificationIcons.map((icon, index) => (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderRadius: 50,
+                      backgroundColor: "#86ADB5",
+                      width: 24,
+                      height: 24,
+                      p: 2,
+                    }}
+                    key={index}
+                  >
+                    {icon}
+                  </Box>
+                ))}
+              </Box>
+            </Box>
+            {fullDescription}
+            <Typography variant="h6" fontWeight={600} sx={{ marginTop: 2 }}>
+              Boas Práticas e Dicas
+            </Typography>
+            <Box>
+              {goodPractices.map((practice, index) => (
+                <Typography key={index}>{practice}</Typography>
+              ))}
+            </Box>
+          </Box>
+        </Box>
+      </Dialog>
+    </>
   );
 }
