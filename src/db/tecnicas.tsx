@@ -2,10 +2,9 @@ import { Visibility } from "@mui/icons-material";
 import { Tooltip, Typography } from "@mui/material";
 import teste_de_usabilidade from "../assets/teste_de_usabilidade.jpg"; // Importando a imagem diretamente
 
-export interface MethodProps {
+export interface TecnicaProps {
   id: string;
   title: string;
-  classificationIcons: React.ReactNode[];
   description: string;
   image: string;
   fullDescription: React.ReactNode;
@@ -13,30 +12,14 @@ export interface MethodProps {
   attentionPoints: string[];
   more: string;
   exemples?: string[];
-  relatedMethods?: string[];
-  requirementsANDReference?: string[];
-  unRequirementsANDReference?: string[];
-  requirementsORReference?: string[];
-  unRequirementsORReference?: string[];
 }
 
-export const methods: MethodProps[] = [
+export const methods: TecnicaProps[] = [
   {
-    id: "teste_de_usabilidade",
-    title: "Teste de Usabilidade",
-    classificationIcons: [
-      <Tooltip title="Método" arrow placement="top">
-        <Typography variant="h6" color="#ffff" fontWeight={700}>
-          M
-        </Typography>
-      </Tooltip>,
-
-      <Tooltip title="Observação" arrow placement="top">
-        <Visibility sx={{ color: "#ffff" }} />
-      </Tooltip>,
-    ],
+    id: "pensar_em_voz_alta",
+    title: "Pensar em Voz Alta",
     description:
-      "Avaliar a qualidade de interação do usuário com o sistema, medir impactos, identificar desconfortos observando o uso do produto.",
+      "Utilizada para compreender o pensamento do usuário, onde ele verbaliza suas ações e pensamentos enquanto utiliza o sistema. Isso elimina a necessidade de interpretação pelo avaliador, pois o usuário expressa diretamente o que está pensando.",
     image: teste_de_usabilidade,
     fullDescription: (
       <Typography variant="body1">
@@ -66,21 +49,5 @@ export const methods: MethodProps[] = [
       "Estas infromaçoes estrão em tópicos, esse é o topico 1",
     ],
     more: "https://www.google.com",
-    requirementsANDReference: [
-      "objetivos_da_avaliacao_usabilidade",
-      "objetivos_da_avaliacao_acessibilidade",
-    ],
-    unRequirementsANDReference: [
-      "objetivos_da_avaliacao_ergonomia",
-      "objetivos_da_avaliacao_qualidade_conformidade",
-      "objetivos_da_avaliacao_comparacao",
-      "objetivos_da_avaliacao_validar_informacoes",
-      "objetivos_da_avaliacao_comunicabilidade",
-    ],
-    requirementsORReference: [
-      "orcamento_relativo_medio",
-      "orcamento_relativo_alto",
-    ],
-    unRequirementsORReference: ["orcamento_relativo_baixo"],
   },
 ];
