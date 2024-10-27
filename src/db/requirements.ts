@@ -36,6 +36,24 @@ export const requirements: RequirementsProps[] = [
     ],
     type: "OR",
   },
+  {
+    id: "participacao_do_usuario",
+    values: [
+      { id: "participacao_do_usuario_sim", value: "Sim" },
+      { id: "participacao_do_usuario_nao", value: "Não" },
+    ],
+    type: "AND",
+  },
+  {
+    id: "quantidade_de_usuarios",
+    values: [
+      { id: "quantidade_de_usuarios_1_5", value: "1 a 5" },
+      { id: "quantidade_de_usuarios_5_10", value: "5 a 10" },
+      { id: "quantidade_de_usuarios_10_20", value: "10 a 20" },
+      { id: "quantidade_de_usuarios_20_mais", value: "20 ou mais" },
+    ],
+    type: "OR",
+  },
 ];
 
 // resultado da primeira iteração:

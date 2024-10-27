@@ -69,6 +69,7 @@ export const methods: MethodProps[] = [
     requirementsANDReference: [
       "objetivos_da_avaliacao_usabilidade",
       "objetivos_da_avaliacao_acessibilidade",
+      "participacao_do_usuario_sim",
     ],
     unRequirementsANDReference: [
       "objetivos_da_avaliacao_ergonomia",
@@ -76,11 +77,18 @@ export const methods: MethodProps[] = [
       "objetivos_da_avaliacao_comparacao",
       "objetivos_da_avaliacao_validar_informacoes",
       "objetivos_da_avaliacao_comunicabilidade",
+      "participacao_do_usuario_nao",
     ],
     requirementsORReference: [
       "orcamento_relativo_medio",
       "orcamento_relativo_alto",
+      "quantidade_de_usuarios_1_5",
     ],
-    unRequirementsORReference: ["orcamento_relativo_baixo"],
+    unRequirementsORReference: [
+      "orcamento_relativo_baixo",
+      "quantidade_de_usuarios_5_10",
+      "quantidade_de_usuarios_10_20",
+      "quantidade_de_usuarios_20_mais",
+    ],
   },
 ];
