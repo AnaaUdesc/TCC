@@ -271,38 +271,44 @@ export default function Menu() {
           name="Orçamento Relativo"
         >
           <FormGroup sx={{ marginBottom: 4 }}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  size="small"
-                  color="secondary"
-                  sx={{ color: "secondary.main" }}
-                />
-              }
-              label={<Typography sx={{ fontWeight: 300 }}>Baixo</Typography>}
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  size="small"
-                  color="secondary"
-                  sx={{ color: "secondary.main" }}
-                />
-              }
-              label={<Typography sx={{ fontWeight: 300 }}>Médio</Typography>}
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  size="small"
-                  color="secondary"
-                  sx={{ color: "secondary.main" }}
-                />
-              }
-              label={<Typography sx={{ fontWeight: 300 }}>Alto</Typography>}
-            />
+            <RadioGroup name="orcamentoRelativo" defaultValue="baixo">
+              <FormControlLabel
+                control={
+                  <Radio
+                    size="small"
+                    color="secondary"
+                    sx={{ color: "secondary.main" }}
+                  />
+                }
+                value="baixo"
+                label={<Typography sx={{ fontWeight: 300 }}>Baixo</Typography>}
+              />
+              <FormControlLabel
+                control={
+                  <Radio
+                    size="small"
+                    color="secondary"
+                    sx={{ color: "secondary.main" }}
+                  />
+                }
+                value="medio"
+                label={<Typography sx={{ fontWeight: 300 }}>Médio</Typography>}
+              />
+              <FormControlLabel
+                control={
+                  <Radio
+                    size="small"
+                    color="secondary"
+                    sx={{ color: "secondary.main" }}
+                  />
+                }
+                value="alto"
+                label={<Typography sx={{ fontWeight: 300 }}>Alto</Typography>}
+              />
+            </RadioGroup>
           </FormGroup>
         </ItemMenu>
+
         <Divider sx={{ borderColor: "#E3E3E3", marginX: 2 }} />
         <ItemMenu
           icon={<CalendarMonth />}
@@ -325,40 +331,55 @@ export default function Menu() {
           }
         >
           <FormGroup sx={{ marginBottom: 4 }}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  size="small"
-                  color="secondary"
-                  sx={{ color: "secondary.main" }}
-                />
-              }
-              label={<Typography sx={{ fontWeight: 300 }}>Baixo</Typography>}
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  size="small"
-                  color="secondary"
-                  sx={{ color: "secondary.main" }}
-                />
-              }
-              label={<Typography sx={{ fontWeight: 300 }}>Médio</Typography>}
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  size="small"
-                  color="secondary"
-                  sx={{ color: "secondary.main" }}
-                />
-              }
-              label={<Typography sx={{ fontWeight: 300 }}>Alto</Typography>}
-            />
+            <RadioGroup name="tempo" defaultValue="baixo">
+              <FormControlLabel
+                control={
+                  <Radio
+                    size="small"
+                    color="secondary"
+                    sx={{ color: "secondary.main" }}
+                  />
+                }
+                value="baixo"
+                label={<Typography sx={{ fontWeight: 300 }}>Baixo</Typography>}
+              />
+              <FormControlLabel
+                control={
+                  <Radio
+                    size="small"
+                    color="secondary"
+                    sx={{ color: "secondary.main" }}
+                  />
+                }
+                value="medio"
+                label={<Typography sx={{ fontWeight: 300 }}>Médio</Typography>}
+              />
+              <FormControlLabel
+                control={
+                  <Radio
+                    size="small"
+                    color="secondary"
+                    sx={{ color: "secondary.main" }}
+                  />
+                }
+                value="alto"
+                label={<Typography sx={{ fontWeight: 300 }}>Alto</Typography>}
+              />
+            </RadioGroup>
           </FormGroup>
         </ItemMenu>
+
         <Divider sx={{ borderColor: "#E3E3E3", marginX: 2 }} />
-        <ItemMenu icon={<PieChart />} name="Tipo de dado coletado">
+        <ItemMenu
+          icon={<PieChart />}
+          name="Tipo de dado coletado"
+          tooltipTile={
+            <Typography>
+              Refere-se à natureza dos dados finais obtidos por meio da
+              aplicação do método.
+            </Typography>
+          }
+        >
           <FormGroup sx={{ marginBottom: 4 }}>
             <FormControlLabel
               control={
@@ -407,7 +428,7 @@ export default function Menu() {
                   title={
                     <Typography>
                       <b>Dados Quantitativos</b>: Referem-se a dados uteis para
-                      responder perguntas do tipo <br />
+                      responder perguntas do tipo: <br />
                       <br />'
                       <b>
                         <u>Quantos </u>
@@ -555,101 +576,107 @@ export default function Menu() {
           tooltipTile={
             <>
               <Typography>
-                Refere-se ao grau de fidelidade do sistema atual em relação sua
-                versão final prevista.
+                Refere-se ao grau de fidelidade do sistema atual em relação à
+                sua versão final prevista.
               </Typography>
             </>
           }
         >
           <FormGroup sx={{ marginBottom: 4 }}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  size="small"
-                  color="secondary"
-                  sx={{ color: "secondary.main" }}
-                />
-              }
-              label={
-                <Tooltip
-                  arrow
-                  placement="right"
-                  title={
-                    <Typography>
-                      <br />
-                      <b>Fidelidade Baixa</b>: protótipos não funcionais.
-                      <br />
-                      <br />
-                      Exemplos: wireframes, protótipos em papel, protótipos
-                      digitais estáticos, etc.
-                      <br />
-                      <br />
-                    </Typography>
-                  }
-                >
-                  <Typography sx={{ fontWeight: 300 }}>Baixa</Typography>
-                </Tooltip>
-              }
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  size="small"
-                  color="secondary"
-                  sx={{ color: "secondary.main" }}
-                />
-              }
-              label={
-                <Tooltip
-                  arrow
-                  placement="right"
-                  title={
-                    <Typography>
-                      <br />
-                      <b>Fidelidade Média</b>: protótipos digitais com
-                      funcionalidades limitadas. <br />
-                      <br /> Exemplos: protótipos minimamente navegáveis, sejam
-                      eles em implementados em código ou ferramentas, como
-                      Figma.
-                      <br />
-                      <br />
-                    </Typography>
-                  }
-                >
-                  <Typography sx={{ fontWeight: 300 }}>Média</Typography>
-                </Tooltip>
-              }
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  size="small"
-                  color="secondary"
-                  sx={{ color: "secondary.main" }}
-                />
-              }
-              label={
-                <Tooltip
-                  arrow
-                  placement="right"
-                  title={
-                    <Typography>
-                      <br />
-                      <b>Fidelidade Alta</b>: sistema com todas ou quase todas
-                      as funcionalidades previstas implementadas. <br />
-                      <br /> Exemplos: MVP (Produto Mínimo Viável) ou o próprio
-                      sistema final.
-                      <br />
-                      <br />
-                    </Typography>
-                  }
-                >
-                  <Typography sx={{ fontWeight: 300 }}>Alta</Typography>
-                </Tooltip>
-              }
-            />
+            <RadioGroup name="nivelDeFidelidade" defaultValue="baixa">
+              <FormControlLabel
+                control={
+                  <Radio
+                    size="small"
+                    color="secondary"
+                    sx={{ color: "secondary.main" }}
+                  />
+                }
+                value="baixa"
+                label={
+                  <Tooltip
+                    arrow
+                    placement="right"
+                    title={
+                      <Typography>
+                        <br />
+                        <b>Fidelidade Baixa</b>: protótipos não funcionais.
+                        <br />
+                        <br />
+                        Exemplos: wireframes, protótipos em papel, protótipos
+                        digitais estáticos, etc.
+                        <br />
+                        <br />
+                      </Typography>
+                    }
+                  >
+                    <Typography sx={{ fontWeight: 300 }}>Baixa</Typography>
+                  </Tooltip>
+                }
+              />
+              <FormControlLabel
+                control={
+                  <Radio
+                    size="small"
+                    color="secondary"
+                    sx={{ color: "secondary.main" }}
+                  />
+                }
+                value="media"
+                label={
+                  <Tooltip
+                    arrow
+                    placement="right"
+                    title={
+                      <Typography>
+                        <br />
+                        <b>Fidelidade Média</b>: protótipos digitais com
+                        funcionalidades limitadas. <br />
+                        <br /> Exemplos: protótipos minimamente navegáveis,
+                        sejam eles implementados em código ou ferramentas como
+                        Figma.
+                        <br />
+                        <br />
+                      </Typography>
+                    }
+                  >
+                    <Typography sx={{ fontWeight: 300 }}>Média</Typography>
+                  </Tooltip>
+                }
+              />
+              <FormControlLabel
+                control={
+                  <Radio
+                    size="small"
+                    color="secondary"
+                    sx={{ color: "secondary.main" }}
+                  />
+                }
+                value="alta"
+                label={
+                  <Tooltip
+                    arrow
+                    placement="right"
+                    title={
+                      <Typography>
+                        <br />
+                        <b>Fidelidade Alta</b>: sistema com todas ou quase todas
+                        as funcionalidades previstas implementadas. <br />
+                        <br /> Exemplos: MVP (Produto Mínimo Viável) ou o
+                        próprio sistema final.
+                        <br />
+                        <br />
+                      </Typography>
+                    }
+                  >
+                    <Typography sx={{ fontWeight: 300 }}>Alta</Typography>
+                  </Tooltip>
+                }
+              />
+            </RadioGroup>
           </FormGroup>
         </ItemMenu>
+
         <Divider sx={{ borderColor: "#E3E3E3", marginX: 2 }} />
         <ItemMenu
           icon={<Groups />}
@@ -769,7 +796,27 @@ export default function Menu() {
           </FormGroup>
         </ItemMenu>
         <Divider sx={{ borderColor: "#E3E3E3", marginX: 2 }} />
-        <ItemMenu icon={<VideoChat />} name="Modalidade da Avaliação">
+        <ItemMenu
+          icon={<VideoChat />}
+          name="Modalidade da Avaliação"
+          tooltipTile={
+            <>
+              <Typography>
+                Refere-se ao formato da avaliação, podendo ser:
+                <ul>
+                  <li>
+                    <b>Remota</b>: realizada à distância, sem a presença física
+                    do avaliador e/ou usuário.
+                  </li>
+                  <li>
+                    <b>Presencial</b>: realizada com a presença física do
+                    avaliador e/ou usuário.
+                  </li>
+                </ul>
+              </Typography>
+            </>
+          }
+        >
           <FormGroup sx={{ marginBottom: 4 }}>
             <FormControlLabel
               control={
