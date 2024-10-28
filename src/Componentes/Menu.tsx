@@ -37,8 +37,12 @@ export default function Menu() {
     setUserParticipationRadios(value);
   };
 
-  const { getRequirementLength, handleCheckboxChange, handleRadioChange } =
-    useGlobalContext();
+  const {
+    getRequirementLength,
+    handleCheckboxChange,
+    handleRadioChange,
+    handleClearRequirement,
+  } = useGlobalContext();
 
   return (
     <>
@@ -323,6 +327,7 @@ export default function Menu() {
           }
           icon={<AttachMoney />}
           name="Orçamento Relativo"
+          requirementsLength={getRequirementLength("orcamento_relativo")}
         >
           <FormGroup sx={{ marginBottom: 4 }}>
             <RadioGroup
@@ -388,6 +393,7 @@ export default function Menu() {
               </Typography>
             </>
           }
+          requirementsLength={getRequirementLength("tempo")}
         >
           <FormGroup sx={{ marginBottom: 4 }}>
             <RadioGroup
@@ -444,6 +450,7 @@ export default function Menu() {
               aplicação do método.
             </Typography>
           }
+          requirementsLength={getRequirementLength("tipo_de_dado_coletado")}
         >
           <FormGroup sx={{ marginBottom: 4 }}>
             <FormControlLabel
@@ -547,11 +554,14 @@ export default function Menu() {
               </Typography>
             </>
           }
+          requirementsLength={getRequirementLength(
+            "participacao_do_especialista"
+          )}
         >
           <FormGroup
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              handleChangeSpecialistRadios(e.target.value as string)
-            }
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              handleChangeSpecialistRadios(e.target.value as string);
+            }}
           >
             <FormControl>
               <FormLabel
@@ -584,6 +594,10 @@ export default function Menu() {
                         event.stopPropagation();
                         if (specialistRadios === "sim") {
                           setSpecialistRadios("");
+                          handleClearRequirement([
+                            "participacao_do_especialista",
+                            "quantidade_de_especialistas",
+                          ]);
                         }
                       }}
                     />
@@ -599,8 +613,14 @@ export default function Menu() {
                       color="secondary"
                       onClick={(event) => {
                         event.stopPropagation();
+                        handleClearRequirement(["quantidade_de_especialistas"]);
+
                         if (specialistRadios === "nao") {
                           setSpecialistRadios("");
+                          handleClearRequirement([
+                            "participacao_do_especialista",
+                            "quantidade_de_especialistas",
+                          ]);
                         }
                       }}
                     />
@@ -665,6 +685,9 @@ export default function Menu() {
               </Typography>
             </>
           }
+          requirementsLength={getRequirementLength(
+            "nivel_de_fidelidade_do_sistema"
+          )}
         >
           <FormGroup sx={{ marginBottom: 4 }}>
             <RadioGroup
@@ -779,6 +802,7 @@ export default function Menu() {
               </Typography>
             </>
           }
+          requirementsLength={getRequirementLength("participacao_do_usuario")}
         >
           <FormGroup
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -816,6 +840,10 @@ export default function Menu() {
                         event.stopPropagation();
                         if (userParticipationRadios === "sim") {
                           setUserParticipationRadios("");
+                          handleClearRequirement([
+                            "participacao_do_usuario",
+                            "quantidade_de_usuarios",
+                          ]);
                         }
                       }}
                     />
@@ -829,8 +857,14 @@ export default function Menu() {
                       checked={userParticipationRadios === "nao"}
                       onClick={(event) => {
                         event.stopPropagation();
+                        handleClearRequirement(["quantidade_de_usuarios"]);
+
                         if (userParticipationRadios === "nao") {
                           setUserParticipationRadios("");
+                          handleClearRequirement([
+                            "participacao_do_usuario",
+                            "quantidade_de_usuarios",
+                          ]);
                         }
                       }}
                       size="small"
@@ -911,6 +945,7 @@ export default function Menu() {
               </Typography>
             </>
           }
+          requirementsLength={getRequirementLength("modalidade_da_avaliacao")}
         >
           <FormGroup sx={{ marginBottom: 4 }}>
             <FormControlLabel

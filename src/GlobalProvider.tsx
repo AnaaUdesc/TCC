@@ -30,6 +30,7 @@ interface GlobalContextData {
     e: React.ChangeEvent<HTMLInputElement>,
     requirementId: string
   ) => void;
+  handleClearRequirement: (requirementIds: string[]) => void;
 }
 
 // Provedor do contexto que engloba os componentes filhos
@@ -129,6 +130,16 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     return foundRequirement?.selectedValues.length ?? 0;
   };
 
+  const handleClearRequirement = (requirementIds: string[]) => {
+    setRequirements((prevRequirements) => {
+      const currentRequirements = prevRequirements ?? [];
+
+      return currentRequirements.filter(
+        (req) => !requirementIds.includes(req.id)
+      );
+    });
+  };
+
   return (
     <GlobalContext.Provider
       value={{
@@ -137,6 +148,7 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
         handleCheckboxChange,
         getRequirementLength,
         handleRadioChange,
+        handleClearRequirement,
       }}
     >
       {children}

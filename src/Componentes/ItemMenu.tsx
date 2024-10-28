@@ -10,7 +10,6 @@ import React, { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import HelpIcon from "@mui/icons-material/Help";
-import { IoIosArrowDropup } from "react-icons/io";
 
 interface ItemMenuProps {
   name: string;
