@@ -30,9 +30,9 @@ export const requirements: RequirementsProps[] = [
   {
     id: "orcamento_relativo",
     values: [
-      { id: "orcamento_relativo_alto", value: "Alto" },
-      { id: "orcamento_relativo_medio", value: "Médio" },
-      { id: "orcamento_relativo_baixo", value: "Baixo" },
+      { id: "orcamento_relativo_alto", value: "alto" },
+      { id: "orcamento_relativo_medio", value: "medio" },
+      { id: "orcamento_relativo_baixo", value: "baixo" },
     ],
     type: "OR",
   },

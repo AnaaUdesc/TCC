@@ -37,7 +37,8 @@ export default function Menu() {
     setUserParticipationRadios(value);
   };
 
-  const { getRequirementLength, handleCheckboxChange } = useGlobalContext();
+  const { getRequirementLength, handleCheckboxChange, handleRadioChange } =
+    useGlobalContext();
 
   return (
     <>
@@ -324,7 +325,13 @@ export default function Menu() {
           name="Orçamento Relativo"
         >
           <FormGroup sx={{ marginBottom: 4 }}>
-            <RadioGroup name="orcamentoRelativo" defaultValue="">
+            <RadioGroup
+              onChange={(e) => {
+                handleRadioChange(e, "orcamento_relativo");
+              }}
+              name="orcamento_relativo"
+              defaultValue=""
+            >
               <FormControlLabel
                 control={
                   <Radio
