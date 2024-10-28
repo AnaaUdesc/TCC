@@ -390,7 +390,13 @@ export default function Menu() {
           }
         >
           <FormGroup sx={{ marginBottom: 4 }}>
-            <RadioGroup name="tempo" defaultValue="">
+            <RadioGroup
+              onChange={(e) => {
+                handleRadioChange(e, "tempo");
+              }}
+              name="tempo"
+              defaultValue=""
+            >
               <FormControlLabel
                 control={
                   <Radio
@@ -446,6 +452,13 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
+                  onChange={(e) => {
+                    handleCheckboxChange(
+                      e,
+                      "tipo_de_dado_coletado",
+                      "Qualitativo"
+                    );
+                  }}
                 />
               }
               label={
@@ -478,6 +491,13 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
+                  onChange={(e) => {
+                    handleCheckboxChange(
+                      e,
+                      "tipo_de_dado_coletado",
+                      "Quantitativo"
+                    );
+                  }}
                 />
               }
               label={
@@ -529,8 +549,7 @@ export default function Menu() {
           }
         >
           <FormGroup
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            onChange={(e: any) =>
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               handleChangeSpecialistRadios(e.target.value as string)
             }
           >
@@ -550,6 +569,9 @@ export default function Menu() {
                 defaultValue=""
                 name="radio-buttons-group"
                 sx={{ paddingX: 2, marginBottom: 2 }}
+                onChange={(e) => {
+                  handleRadioChange(e, "participacao_do_especialista");
+                }}
               >
                 <FormControlLabel
                   value="sim"
@@ -604,9 +626,12 @@ export default function Menu() {
                 </FormLabel>
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
-                  defaultValue="1"
+                  // defaultValue="1"
                   name="radio-buttons-group"
                   sx={{ paddingX: 2 }}
+                  onChange={(e) => {
+                    handleRadioChange(e, "quantidade_de_especialistas");
+                  }}
                 >
                   <FormControlLabel
                     value="1"
@@ -642,7 +667,13 @@ export default function Menu() {
           }
         >
           <FormGroup sx={{ marginBottom: 4 }}>
-            <RadioGroup name="nivelDeFidelidade" defaultValue="">
+            <RadioGroup
+              onChange={(e) => {
+                handleRadioChange(e, "nivel_de_fidelidade_do_sistema");
+              }}
+              name="nivelDeFidelidade"
+              defaultValue=""
+            >
               <FormControlLabel
                 control={
                   <Radio
@@ -750,10 +781,9 @@ export default function Menu() {
           }
         >
           <FormGroup
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            onChange={(e: any) =>
-              handleChangeUserParticipationRadios(e.target.value as string)
-            }
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              handleChangeUserParticipationRadios(e.target.value as string);
+            }}
           >
             <FormControl>
               <FormLabel
@@ -771,6 +801,9 @@ export default function Menu() {
                 defaultValue=""
                 name="radio-buttons-group"
                 sx={{ paddingX: 2, marginBottom: 2 }}
+                onChange={(e) => {
+                  handleRadioChange(e, "participacao_do_usuario");
+                }}
               >
                 <FormControlLabel
                   value="sim"
@@ -825,9 +858,12 @@ export default function Menu() {
                 </FormLabel>
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
-                  defaultValue="1-5"
+                  // defaultValue="1-5"
                   name="radio-buttons-group"
                   sx={{ paddingX: 2, marginBottom: 2 }}
+                  onChange={(e) => {
+                    handleRadioChange(e, "quantidade_de_usuarios");
+                  }}
                 >
                   <FormControlLabel
                     value="1-5"
@@ -883,6 +919,13 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
+                  onChange={(e) => {
+                    handleCheckboxChange(
+                      e,
+                      "modalidade_da_avaliacao",
+                      "Remota"
+                    );
+                  }}
                 />
               }
               label={<Typography sx={{ fontWeight: 300 }}>Remota</Typography>}
@@ -893,6 +936,13 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
+                  onChange={(e) => {
+                    handleCheckboxChange(
+                      e,
+                      "modalidade_da_avaliacao",
+                      "Presencial"
+                    );
+                  }}
                 />
               }
               label={
