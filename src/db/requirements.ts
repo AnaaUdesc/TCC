@@ -39,9 +39,9 @@ export const requirements: RequirementsProps[] = [
   {
     id: "tempo",
     values: [
-      { id: "tempo_alto", value: "Alto" },
-      { id: "tempo_medio", value: "Médio" },
-      { id: "tempo_baixo", value: "Baixo" },
+      { id: "tempo_alto", value: "alto" },
+      { id: "tempo_medio", value: "medio" },
+      { id: "tempo_baixo", value: "baixo" },
     ],
     type: "OR",
   },
@@ -56,8 +56,8 @@ export const requirements: RequirementsProps[] = [
   {
     id: "participacao_do_especilista",
     values: [
-      { id: "participacao_do_especialista_sim", value: "Sim" },
-      { id: "participacao_do_especialista_nao", value: "Não" },
+      { id: "participacao_do_especialista_sim", value: "sim" },
+      { id: "participacao_do_especialista_nao", value: "nao" },
     ],
     type: "AND",
   },
@@ -65,17 +65,17 @@ export const requirements: RequirementsProps[] = [
     id: "quantidade_de_especilistas",
     values: [
       { id: "quantidade_de_especialistas_1", value: "1" },
-      { id: "quantidade_de_especialistas_2_4", value: "2 a 4" },
-      { id: "quantidade_de_especialistas_5_mais", value: "5 ou mais" },
+      { id: "quantidade_de_especialistas_2_4", value: "2_4" },
+      { id: "quantidade_de_especialistas_5_mais", value: "5+" },
     ],
     type: "OR",
   },
   {
     id: "nivel_de_fidelidade_do_sistema",
     values: [
-      { id: "fidelidade_alta", value: "Alta" },
-      { id: "fidelidade_media", value: "Média" },
-      { id: "fidelidade_baixa", value: "Baixa" },
+      { id: "fidelidade_alta", value: "alta" },
+      { id: "fidelidade_media", value: "media" },
+      { id: "fidelidade_baixa", value: "baixa" },
     ],
     type: "OR",
   },
@@ -90,10 +90,10 @@ export const requirements: RequirementsProps[] = [
   {
     id: "quantidade_de_usuarios",
     values: [
-      { id: "quantidade_de_usuarios_1_5", value: "1 a 5" },
-      { id: "quantidade_de_usuarios_5_10", value: "5 a 10" },
-      { id: "quantidade_de_usuarios_10_20", value: "10 a 20" },
-      { id: "quantidade_de_usuarios_20_mais", value: "20 ou mais" },
+      { id: "quantidade_de_usuarios_1_5", value: "1-5" },
+      { id: "quantidade_de_usuarios_5_10", value: "5-10" },
+      { id: "quantidade_de_usuarios_10_20", value: "10-20" },
+      { id: "quantidade_de_usuarios_20_mais", value: "20+" },
     ],
     type: "OR",
   },
