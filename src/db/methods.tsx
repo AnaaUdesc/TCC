@@ -16,10 +16,11 @@ export interface MethodProps {
   more: string;
   exemples?: string[];
   relatedMethods?: string[];
-  requirementsANDReference?: string[];
-  unRequirementsANDReference?: string[];
-  requirementsORReference?: string[];
-  unRequirementsORReference?: string[];
+  needANDReference?: string[];
+  cantANDReference?: string[];
+  needORReference?: string[];
+  unNeedORReference?: string[];
+  cantORReference?: string[];
 }
 
 export const methods: MethodProps[] = [
@@ -68,14 +69,13 @@ export const methods: MethodProps[] = [
       "Estas infromaçoes estrão em tópicos, esse é o topico 1",
     ],
     more: "https://www.google.com",
-
-    requirementsANDReference: [
+    needANDReference: [
       "objetivos_da_avaliacao_usabilidade",
       "objetivos_da_avaliacao_acessibilidade",
       "tipo_de_dado_coletado_qualitativo",
       "participacao_do_usuario_sim",
     ],
-    unRequirementsANDReference: [
+    cantANDReference: [
       "objetivos_da_avaliacao_ergonomia",
       "objetivos_da_avaliacao_qualidade_conformidade",
       "objetivos_da_avaliacao_comparacao",
@@ -84,20 +84,20 @@ export const methods: MethodProps[] = [
       "tipo_de_dado_coletado_quantitativo",
       "participacao_do_usuario_nao",
     ],
-    requirementsORReference: [
+    needORReference: [
       "orcamento_relativo_medio",
       "tempo_baixo",
       "quantidade_de_usuarios_1_5",
     ],
-    unRequirementsORReference: [
-      "orcamento_relativo_baixo",
-      "orcamento_relativo_alto",
+    unNeedORReference: [
       "tempo_medio",
       "tempo_alto",
+      "orcamento_relativo_alto",
       "quantidade_de_usuarios_5_10",
       "quantidade_de_usuarios_10_20",
       "quantidade_de_usuarios_20_mais",
     ],
+    cantORReference: ["orcamento_relativo_baixo"],
   },
 
   {
@@ -145,36 +145,34 @@ export const methods: MethodProps[] = [
       "Estas infromaçoes estrão em tópicos, esse é o topico 1",
     ],
     more: "https://www.google.com",
-    requirementsANDReference: [
+    needANDReference: [
       "objetivos_da_avaliacao_usabilidade",
       "objetivos_da_avaliacao_ergonomia",
       "objetivos_da_avaliacao_qualidade_conformidade",
       "tipo_de_dado_coletado_qualitativo",
       "participacao_do_especialista_sim",
-      "participacao_do_usuario_nao",
     ],
-    unRequirementsANDReference: [
+    cantANDReference: [
       "objetivos_da_avaliacao_acessibilidade",
       "objetivos_da_avaliacao_comparacao",
       "objetivos_da_avaliacao_validar_informacoes",
       "objetivos_da_avaliacao_comunicabilidade",
       "tipo_de_dado_coletado_quantitativo",
       "participacao_do_especialista_nao",
-      "participacao_do_usuario_sim",
     ],
-    requirementsORReference: [
+    needORReference: [
       "orcamento_relativo_baixo",
       "tempo_baixo",
       "quantidade_de_especialistas_2_4",
     ],
-    unRequirementsORReference: [
+    unNeedORReference: [
       "orcamento_relativo_medio",
       "orcamento_relativo_alto",
       "tempo_medio",
       "tempo_alto",
-      "quantidade_de_especialistas_1",
       "quantidade_de_especialistas_5_mais",
     ],
+    cantORReference: ["quantidade_de_especialistas_1"],
   },
   {
     id: "grupos_focais",
@@ -221,7 +219,7 @@ export const methods: MethodProps[] = [
       "Estas infromaçoes estrão em tópicos, esse é o topico 1",
     ],
     more: "https://www.google.com",
-    requirementsANDReference: [
+    needANDReference: [
       "objetivos_da_avaliacao_usabilidade",
       "objetivos_da_avaliacao_ergonomia",
       "objetivos_da_avaliacao_comparacao",
@@ -229,7 +227,7 @@ export const methods: MethodProps[] = [
       "participacao_do_usuario_sim",
       "modalidade_presencial",
     ],
-    unRequirementsANDReference: [
+    cantANDReference: [
       "objetivos_da_avaliacao_acessibilidade",
       "objetivos_da_avaliacao_qualidade_conformidade",
       "objetivos_da_avaliacao_validar_informacoes",
@@ -238,19 +236,19 @@ export const methods: MethodProps[] = [
       "participacao_do_usuario_nao",
       "modalidade_remota",
     ],
-    requirementsORReference: [
+    needORReference: [
       "orcamento_relativo_baixo",
       "tempo_baixo",
       "quantidade_de_usuarios_5_10",
     ],
-    unRequirementsORReference: [
+    unNeedORReference: [
       "orcamento_relativo_medio",
       "orcamento_relativo_alto",
       "tempo_medio",
       "tempo_alto",
-      "quantidade_de_usuarios_1_5",
       "quantidade_de_usuarios_10_20",
       "quantidade_de_usuarios_20_mais",
     ],
+    cantORReference: ["quantidade_de_usuarios_1_5"],
   },
 ];

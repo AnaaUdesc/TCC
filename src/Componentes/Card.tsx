@@ -1,4 +1,4 @@
-import { Close } from "@mui/icons-material";
+import { Close, Share } from "@mui/icons-material";
 import {
   Box,
   Dialog,
@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { MethodProps } from "../db/methods";
+import { useGlobalContext } from "../GlobalProvider";
 
 // Importando a imagem
 
@@ -103,7 +104,17 @@ export default function Card({
           </Link>
         </Box>
         <Divider orientation="vertical" flexItem />
-        <Box>Porcentagens</Box>
+        <Box>
+          <Box>
+            <Typography variant="h6" fontWeight={600}>
+              0%
+            </Typography>
+          </Box>
+          <Box>
+            <Box>User</Box>
+            <Box>Objetivos</Box>
+          </Box>
+        </Box>
       </Box>
       <Dialog
         open={open}
@@ -145,38 +156,58 @@ export default function Card({
               backgroundImage: `url(${image})`,
               width: "100%",
               minWidth: "100px",
-              minHeight: "300px",
+              minHeight: "600px",
               height: "auto",
               borderRadius: 2,
+              backgroundPosition: "center", // Para centralizar a imagem
               backgroundSize: "cover", // Para cobrir o Box com a imagem
             }}
           />
-          <Box sx={{ padding: 2 }}>
-            <Box sx={{ display: "flex", gap: 1 }}>
-              <Typography variant="h5" noWrap fontWeight={600}>
-                {title}
-              </Typography>
+          <Box sx={{ padding: 6 }}>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
               <Box sx={{ display: "flex", gap: 1 }}>
-                {classificationIcons.map((icon, index) => (
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      borderRadius: 50,
-                      backgroundColor: "#86ADB5",
-                      width: 24,
-                      height: 24,
-                      p: 2,
-                    }}
-                    key={index}
-                  >
-                    {icon}
-                  </Box>
-                ))}
+                <Typography
+                  variant="h4"
+                  noWrap
+                  fontWeight={600}
+                  sx={{ marginBottom: 4 }}
+                >
+                  {title}
+                </Typography>
+
+                <Box sx={{ display: "flex", gap: 1, margin: 1 }}>
+                  {classificationIcons.map((icon, index) => (
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        borderRadius: 50,
+                        backgroundColor: "#86ADB5",
+                        width: 24,
+                        height: 24,
+                        p: 2,
+                      }}
+                      key={index}
+                    >
+                      {icon}
+                    </Box>
+                  ))}
+                </Box>
               </Box>
+              <IconButton>
+                <Share fontSize="large" style={{ color: "gray", margin: 6 }} />
+              </IconButton>
             </Box>
-            {fullDescription}
+            <Typography sx={{ marginTop: 1, marginBottom: 6 }}>
+              {fullDescription}
+            </Typography>
             <Typography variant="h6" fontWeight={600} sx={{ marginTop: 2 }}>
               Boas Práticas e Dicas
             </Typography>

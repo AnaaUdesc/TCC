@@ -1,14 +1,23 @@
-import { Box, Collapse, SvgIcon, Tooltip, Typography } from "@mui/material";
+import {
+  Badge,
+  Box,
+  Collapse,
+  SvgIcon,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import React, { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import HelpIcon from "@mui/icons-material/Help";
+import { IoIosArrowDropup } from "react-icons/io";
 
 interface ItemMenuProps {
   name: string;
   icon: React.ReactNode;
   children: React.ReactNode;
   tooltipTile?: React.ReactNode;
+  requirementsLength?: number;
 }
 
 export default function ItemMenu({
@@ -16,12 +25,16 @@ export default function ItemMenu({
   icon,
   children,
   tooltipTile,
+  requirementsLength,
 }: ItemMenuProps) {
   const [open, setOpen] = useState(false);
 
   function setCollapse() {
     setOpen(!open);
   }
+
+  const hasRequirements =
+    (requirementsLength && requirementsLength > 0) || false;
 
   return (
     <>
@@ -42,15 +55,29 @@ export default function ItemMenu({
       >
         <Box sx={{ display: "flex", gap: 1 }}>
           <SvgIcon color="secondary">{icon}</SvgIcon>
-          <Typography>{name}</Typography>
+
+          <Typography>
+            {name}
+            {hasRequirements && (
+              <Badge
+                sx={{
+                  ml: 1,
+                  mb: 2,
+                }}
+                color="secondary"
+                variant="dot"
+                badgeContent={1}
+              />
+            )}
+          </Typography>
         </Box>
         {open ? (
           <SvgIcon color="secondary" fontSize="small">
-            <IoIosArrowUp />{" "}
+            <IoIosArrowUp />
           </SvgIcon>
         ) : (
           <SvgIcon color="secondary" fontSize="small">
-            <IoIosArrowDown />{" "}
+            <IoIosArrowDown />
           </SvgIcon>
         )}
       </Box>

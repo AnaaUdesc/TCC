@@ -8,6 +8,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
+import { GlobalProvider } from "./GlobalProvider";
 const theme = createTheme(themeOptions);
 
 const router = createBrowserRouter(
@@ -21,10 +22,12 @@ const router = createBrowserRouter(
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <RouterProvider router={router} />
-      <CssBaseline />
-    </ThemeProvider>
+    <GlobalProvider>
+      <ThemeProvider theme={theme}>
+        <RouterProvider router={router} />
+        <CssBaseline />
+      </ThemeProvider>
+    </GlobalProvider>
   );
 }
 

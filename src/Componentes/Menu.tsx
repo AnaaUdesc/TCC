@@ -23,6 +23,7 @@ import { useState } from "react";
 import { CgRead } from "react-icons/cg";
 import { GoGoal } from "react-icons/go";
 import ItemMenu from "./ItemMenu";
+import { useGlobalContext } from "../GlobalProvider";
 
 export default function Menu() {
   const [specialistRadios, setSpecialistRadios] = useState("");
@@ -35,6 +36,8 @@ export default function Menu() {
   const handleChangeUserParticipationRadios = (value: string) => {
     setUserParticipationRadios(value);
   };
+
+  const { getRequirementLength, handleCheckboxChange } = useGlobalContext();
 
   return (
     <>
@@ -58,6 +61,7 @@ export default function Menu() {
         </Typography>
         <ItemMenu
           icon={<GoGoal />}
+          requirementsLength={getRequirementLength("objetivos_da_avaliacao")}
           name="Objetivo da avaliação"
           tooltipTile={
             <>
@@ -75,6 +79,13 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
+                  onChange={(e) => {
+                    handleCheckboxChange(
+                      e,
+                      "objetivos_da_avaliacao",
+                      "Usabilidade"
+                    );
+                  }}
                 />
               }
               label={
@@ -105,6 +116,13 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
+                  onChange={(e) => {
+                    handleCheckboxChange(
+                      e,
+                      "objetivos_da_avaliacao",
+                      "Acessibilidade"
+                    );
+                  }}
                 />
               }
               label={
@@ -129,6 +147,13 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
+                  onChange={(e) => {
+                    handleCheckboxChange(
+                      e,
+                      "objetivos_da_avaliacao",
+                      "Ergonomia"
+                    );
+                  }}
                 />
               }
               label={
@@ -152,6 +177,13 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
+                  onChange={(e) => {
+                    handleCheckboxChange(
+                      e,
+                      "objetivos_da_avaliacao",
+                      "Qualidade/Conformidade"
+                    );
+                  }}
                 />
               }
               label={
@@ -177,6 +209,13 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
+                  onChange={(e) => {
+                    handleCheckboxChange(
+                      e,
+                      "objetivos_da_avaliacao",
+                      "Comparação"
+                    );
+                  }}
                 />
               }
               label={
@@ -201,6 +240,13 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
+                  onChange={(e) => {
+                    handleCheckboxChange(
+                      e,
+                      "objetivos_da_avaliacao",
+                      "Validar Informações"
+                    );
+                  }}
                 />
               }
               label={
@@ -226,6 +272,13 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
+                  onChange={(e) => {
+                    handleCheckboxChange(
+                      e,
+                      "objetivos_da_avaliacao",
+                      "Comunicabilidade"
+                    );
+                  }}
                 />
               }
               label={
