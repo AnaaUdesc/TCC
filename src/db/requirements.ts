@@ -8,9 +8,18 @@ export const requirements: RequirementsProps[] = [
   {
     id: "objetivos_da_avaliacao",
     values: [
-      { id: "objetivos_da_avaliacao_usabilidade", value: "Usabilidade" },
-      { id: "objetivos_da_avaliacao_acessibilidade", value: "Acessibilidade" },
-      { id: "objetivos_da_avaliacao_ergonomia", value: "Ergonomia" },
+      {
+        id: "objetivos_da_avaliacao_usabilidade",
+        value: "objetivos_da_avaliacao_usabilidade",
+      },
+      {
+        id: "objetivos_da_avaliacao_acessibilidade",
+        value: "objetivos_da_avaliacao_acessibilidade",
+      },
+      {
+        id: "objetivos_da_avaliacao_ergonomia",
+        value: "objetivos_da_avaliacao_ergonomia",
+      },
       {
         id: "objetivos_da_avaliacao_qualidade_conformidade",
         value: "Qualidade/Conformidade",
@@ -48,8 +57,8 @@ export const requirements: RequirementsProps[] = [
   {
     id: "tipo_de_dado_coletado",
     values: [
-      { id: "qualitativo", value: "Qualitativo" },
-      { id: "quantitativo", value: "Quantitativo" },
+      { id: "tipo_de_dado_coletado_qualitativo", value: "Qualitativo" },
+      { id: "tipo_de_dado_coletado_quantitativo", value: "Quantitativo" },
     ],
     type: "AND",
   },

@@ -1,13 +1,11 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
+import { methods } from "./db/methods";
+import { requirements as requirementsDB } from "./db/requirements";
 
-// Interface para o valor do contexto
-
-// Tipagem para as props do provider
 interface GlobalProviderProps {
   children: ReactNode;
 }
 
-// Cria o contexto com a interface tipada
 const GlobalContext = createContext<GlobalContextData | undefined>(undefined);
 
 interface RequirementProps {
@@ -16,10 +14,6 @@ interface RequirementProps {
 }
 
 interface GlobalContextData {
-  requirements: RequirementProps[] | null;
-  setRequirements: React.Dispatch<
-    React.SetStateAction<RequirementProps[] | null>
-  >;
   handleCheckboxChange: (
     e: React.ChangeEvent<HTMLInputElement>,
     requirementId: string,
@@ -31,15 +25,14 @@ interface GlobalContextData {
     requirementId: string
   ) => void;
   handleClearRequirement: (requirementIds: string[]) => void;
+  handleCalculateScoreByMethod: (method: string) => void;
 }
 
 // Provedor do contexto que engloba os componentes filhos
 export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
-  const [requirements, setRequirements] = useState<RequirementProps[] | null>(
-    null
-  );
-
-  console.log("requirements", requirements);
+  const [selectedRequirements, setSelectedRequirements] = useState<
+    RequirementProps[] | null
+  >(null);
 
   const handleCheckboxChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -48,7 +41,7 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
   ) => {
     const isChecked = e.target.checked;
 
-    setRequirements((prevRequirements) => {
+    setSelectedRequirements((prevRequirements) => {
       const currentRequirements = prevRequirements ?? [];
 
       const foundRequirement = currentRequirements.find(
@@ -97,7 +90,7 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
   ) => {
     const newValue = e.target.value;
 
-    setRequirements((prevRequirements) => {
+    setSelectedRequirements((prevRequirements) => {
       const currentRequirements = prevRequirements ?? [];
 
       const foundRequirement = currentRequirements.find(
@@ -123,7 +116,7 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
   };
 
   const getRequirementLength = (requirementId: string) => {
-    const foundRequirement = requirements?.find(
+    const foundRequirement = selectedRequirements?.find(
       (req) => req.id === requirementId
     );
 
@@ -131,7 +124,7 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
   };
 
   const handleClearRequirement = (requirementIds: string[]) => {
-    setRequirements((prevRequirements) => {
+    setSelectedRequirements((prevRequirements) => {
       const currentRequirements = prevRequirements ?? [];
 
       return currentRequirements.filter(
@@ -140,15 +133,135 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     });
   };
 
+  const handleGetParentRequirementIds = (methodId: string) => {
+    const method = methods.find((method) => method.id === methodId);
+
+    if (!method) {
+      console.error(`Método com ID ${methodId} não encontrado.`);
+      return [];
+    }
+
+    const methodRequirementValues = [
+      ...(method.needANDReference || []),
+      ...(method.cantANDReference || []),
+      ...(method.needORReference || []),
+      ...(method.unNeedORReference || []),
+      ...(method.cantORReference || []),
+    ];
+
+    const parentRequirementIds = requirementsDB
+      .filter((requirement) =>
+        requirement.values.some((value) =>
+          methodRequirementValues.includes(value.id)
+        )
+      )
+      .map((requirement) => requirement.id);
+
+    return parentRequirementIds;
+  };
+
+  const handleCalculateQuantityOfParents = (parentIds: string[]) => {
+    let quantity = parentIds.length;
+
+    if (
+      parentIds.includes("participacao_do_usuario") &&
+      parentIds.includes("quantidade_de_usuarios")
+    ) {
+      quantity--;
+    }
+
+    if (
+      parentIds.includes("participacao_do_especilista") &&
+      parentIds.includes("quantidade_de_especilistas")
+    ) {
+      quantity--;
+    }
+
+    return quantity;
+  };
+
+  const handleCalculateScoreByMethod = (methodId: string) => {
+    const parentIds = handleGetParentRequirementIds(methodId);
+    const method = methods.find((method) => method.id === methodId);
+
+    const filteredSelectedRequirements = selectedRequirements?.filter((req) =>
+      parentIds.includes(req.id)
+    );
+
+    // console.log("filteredSelectedRequirements", filteredSelectedRequirements);
+
+    const quantityOfParentIds = handleCalculateQuantityOfParents(parentIds);
+
+    console.log("quantityOfParentIds ", quantityOfParentIds);
+
+    const scoreByMethod: {
+      [key: string]: {
+        score: number;
+        scoreGeneral: number;
+      };
+    } = {
+      ...parentIds.reduce(
+        (
+          acc: { [key: string]: { score: number; scoreGeneral: number } },
+          id
+        ) => {
+          acc[id] = {
+            score: 0,
+            scoreGeneral: 0,
+          };
+          return acc;
+        },
+        {}
+      ),
+    };
+
+    filteredSelectedRequirements?.forEach((requirement) => {
+      const requirementByDb = requirementsDB.find(
+        (req) => req.id === requirement.id
+      );
+
+      if (requirementByDb?.type === "AND") {
+        const needANDReference = method?.needANDReference?.find(
+          (req) => req.requirement === requirement.id
+        );
+
+        const selectedValues = requirement.selectedValues;
+        const needANDReferenceLength = needANDReference?.values.length ?? 0;
+
+        const bigger =
+          selectedValues.length >= needANDReferenceLength
+            ? selectedValues.length
+            : needANDReferenceLength;
+
+        const percentage = 100 / bigger;
+
+        const matchedValues = needANDReference?.values.filter((value) =>
+          requirement.selectedValues.includes(value)
+        );
+
+        if (matchedValues) {
+          scoreByMethod[requirement.id].score =
+            matchedValues.length * percentage;
+
+          scoreByMethod[requirement.id].scoreGeneral =
+            ((100 / quantityOfParentIds) *
+              (matchedValues.length * percentage)) /
+            100;
+        }
+      }
+    });
+
+    console.log("scoreByMethod", scoreByMethod);
+  };
+
   return (
     <GlobalContext.Provider
       value={{
-        requirements,
-        setRequirements,
         handleCheckboxChange,
         getRequirementLength,
         handleRadioChange,
         handleClearRequirement,
+        handleCalculateScoreByMethod,
       }}
     >
       {children}

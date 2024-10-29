@@ -7,15 +7,13 @@ import {
   Link,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MethodProps } from "../db/methods";
 import { useGlobalContext } from "../GlobalProvider";
 
 // Importando a imagem
 
-interface CardProps extends MethodProps {
-  matchTotal: number;
-}
+interface CardProps extends MethodProps {}
 
 export default function Card({
   description,
@@ -33,9 +31,15 @@ export default function Card({
 }: CardProps) {
   const [open, setOpen] = useState(false);
 
+  const { handleCalculateScoreByMethod, requirements } = useGlobalContext();
+
   const handleClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    handleCalculateScoreByMethod(id);
+  }, [handleCalculateScoreByMethod, id, requirements]);
 
   return (
     <>

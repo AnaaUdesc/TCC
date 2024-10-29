@@ -4,7 +4,6 @@ import Footer from "../Componentes/Footer";
 import Header from "../Componentes/Header";
 import Menu from "../Componentes/Menu";
 import { methods } from "../db/methods";
-import { calculateTotalMatch } from "../utils/calculate";
 
 export default function HomePage() {
   return (
@@ -49,7 +48,7 @@ export default function HomePage() {
             }}
           >
             {methods.map((method) => (
-              <Card {...method} matchTotal={calculateTotalMatch(method.id)} />
+              <Card key={method.id} {...method} />
             ))}
           </Box>
         </Box>
