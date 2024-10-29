@@ -125,7 +125,7 @@ export default function Card({
       <Dialog
         open={open}
         onClose={handleClose}
-        maxWidth="xl"
+        maxWidth="none"
         PaperProps={{
           sx: {
             borderRadius: 2,
@@ -220,6 +220,20 @@ export default function Card({
             >
               {fullDescription}
             </Typography>
+            <Typography
+              variant="h5"
+              fontWeight={600}
+              sx={{ marginTop: 2, marginBottom: 2 }}
+            >
+              Exemplo de Utilização
+            </Typography>
+            <Box sx={{ marginBottom: 7 }}>
+              {exemples?.map((exemple, index) => (
+                <Typography sx={{ marginBottom: 1 }} key={index}>
+                  {exemple}
+                </Typography>
+              ))}
+            </Box>
             <Typography
               variant="h5"
               fontWeight={600}
