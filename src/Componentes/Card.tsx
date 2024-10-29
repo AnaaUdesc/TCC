@@ -7,7 +7,7 @@ import {
   Link,
   Typography,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { MethodProps } from "../db/methods";
 import { useGlobalContext } from "../GlobalProvider";
 
@@ -30,16 +30,18 @@ export default function Card({
   relatedMethods,
 }: CardProps) {
   const [open, setOpen] = useState(false);
+  const [score, setScore] = useState(0);
 
-  const { handleCalculateScoreByMethod, requirements } = useGlobalContext();
+  const { handleCalculateScoreByMethod } = useGlobalContext();
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  useEffect(() => {
-    handleCalculateScoreByMethod(id);
-  }, [handleCalculateScoreByMethod, id, requirements]);
+  const result = useMemo(
+    () => handleCalculateScoreByMethod(id),
+    [handleCalculateScoreByMethod, id]
+  );
 
   return (
     <>
@@ -111,7 +113,7 @@ export default function Card({
         <Box>
           <Box>
             <Typography variant="h6" fontWeight={600}>
-              0%
+              {Math.round(Number(result.scoreGeral))}%
             </Typography>
           </Box>
           <Box>

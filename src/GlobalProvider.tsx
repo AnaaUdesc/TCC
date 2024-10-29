@@ -25,7 +25,9 @@ interface GlobalContextData {
     requirementId: string
   ) => void;
   handleClearRequirement: (requirementIds: string[]) => void;
-  handleCalculateScoreByMethod: (method: string) => void;
+  handleCalculateScoreByMethod: (method: string) => {
+    scoreGeral: number;
+  };
 }
 
 // Provedor do contexto que engloba os componentes filhos
@@ -253,6 +255,9 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
               scoreByMethod[requirement.id].scoreRepresentativo =
                 100 / quantityOfParentIds;
             }
+
+            scoreByMethod["participacao_do_usuario"].score = 0;
+            scoreByMethod["participacao_do_usuario"].scoreRepresentativo = 0;
           } else if (requirementByDb?.id === "participacao_do_especilista") {
             const needORReference = method?.needORReference?.find(
               (req) => req.requirement === "quantidade_de_especilistas"
@@ -277,6 +282,11 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
               scoreByMethod[requirement.id].scoreRepresentativo =
                 100 / quantityOfParentIds;
             }
+
+            scoreByMethod["participacao_do_especilista"].score = 0;
+            scoreByMethod[
+              "participacao_do_especilista"
+            ].scoreRepresentativo = 0;
           }
         }
       } else {
@@ -330,7 +340,13 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
       }
     });
 
-    console.log("scoreByMethod", scoreByMethod);
+    return {
+      ...scoreByMethod,
+      scoreGeral: Object.values(scoreByMethod).reduce(
+        (acc, score) => acc + score.scoreRepresentativo,
+        0
+      ),
+    };
   };
 
   return (
