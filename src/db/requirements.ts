@@ -54,15 +54,15 @@ export const requirements: RequirementsProps[] = [
     type: "AND",
   },
   {
-    id: "participacao_do_especilista",
+    id: "participacao_do_especialista",
     values: [
-      { id: "participacao_do_especialista_sim", value: "sim" },
-      { id: "participacao_do_especialista_nao", value: "nao" },
+      { id: "participacao_do_especialista_sim", value: "Sim" },
+      { id: "participacao_do_especialista_nao", value: "Não" },
     ],
     type: "AND",
   },
   {
-    id: "quantidade_de_especilistas",
+    id: "quantidade_de_especialistas",
     values: [
       { id: "quantidade_de_especialistas_1", value: "1" },
       { id: "quantidade_de_especialistas_2_4", value: "2_4" },

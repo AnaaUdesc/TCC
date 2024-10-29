@@ -162,8 +162,8 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     }
 
     if (
-      parentIds.includes("participacao_do_especilista") &&
-      parentIds.includes("quantidade_de_especilistas")
+      parentIds.includes("participacao_do_especialista") &&
+      parentIds.includes("quantidade_de_especialistas")
     ) {
       quantity--;
     }
@@ -210,11 +210,13 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
         (req) => req.id === requirement.id
       );
 
+      console.log(requirementByDb, requirement);
+
       const selectedValues = requirement.selectedValues;
 
       if (
         requirementByDb?.id === "participacao_do_usuario" ||
-        requirementByDb?.id === "participacao_do_especilista"
+        requirementByDb?.id === "participacao_do_especialista"
       ) {
         const needANDReference = method?.needANDReference?.find(
           (req) => req.requirement === requirement.id
@@ -258,13 +260,14 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
 
             scoreByMethod["participacao_do_usuario"].score = 0;
             scoreByMethod["participacao_do_usuario"].scoreRepresentativo = 0;
-          } else if (requirementByDb?.id === "participacao_do_especilista") {
+          } else if (requirementByDb?.id === "participacao_do_especialista") {
+            console.log("participacao_do_especialista");
             const needORReference = method?.needORReference?.find(
-              (req) => req.requirement === "quantidade_de_especilistas"
+              (req) => req.requirement === "quantidade_de_especialistas"
             );
 
             const unNeedORReference = method?.unNeedORReference?.find(
-              (req) => req.requirement === "quantidade_de_especilistas"
+              (req) => req.requirement === "quantidade_de_especialistas"
             );
 
             const possibleCorrectResponses = needORReference?.values.concat(
@@ -273,7 +276,7 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
 
             const newSelectedValues =
               selectedRequirements?.find(
-                (req) => req.id === "quantidade_de_especilistas"
+                (req) => req.id === "quantidade_de_especialistas"
               )?.selectedValues || [];
 
             if (possibleCorrectResponses?.includes(newSelectedValues[0])) {
@@ -283,9 +286,9 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
                 100 / quantityOfParentIds;
             }
 
-            scoreByMethod["participacao_do_especilista"].score = 0;
+            scoreByMethod["participacao_do_especialista"].score = 0;
             scoreByMethod[
-              "participacao_do_especilista"
+              "participacao_do_especialista"
             ].scoreRepresentativo = 0;
           }
         }
