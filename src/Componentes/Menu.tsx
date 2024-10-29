@@ -28,6 +28,9 @@ import { useGlobalContext } from "../GlobalProvider";
 export default function Menu() {
   const [specialistRadios, setSpecialistRadios] = useState("");
   const [userParticipationRadios, setUserParticipationRadios] = useState("");
+  const [nivelDeFidelidade, setNivelDeFidelidade] = useState("");
+  const [orcamentoRelativo, setOrcamentoRelativo] = useState("");
+  const [tempo, setTempo] = useState("");
 
   const handleChangeSpecialistRadios = (value: string) => {
     setSpecialistRadios(value);
@@ -35,6 +38,18 @@ export default function Menu() {
 
   const handleChangeUserParticipationRadios = (value: string) => {
     setUserParticipationRadios(value);
+  };
+
+  const handleChangeNivelDeFidelidade = (value: string) => {
+    setNivelDeFidelidade(value);
+  };
+
+  const handleChangeOrcamentoRelativo = (value: string) => {
+    setOrcamentoRelativo(value);
+  };
+
+  const handleChangeTempo = (value: string) => {
+    setTempo(value);
   };
 
   const {
@@ -329,7 +344,12 @@ export default function Menu() {
           name="Orçamento Relativo"
           requirementsLength={getRequirementLength("orcamento_relativo")}
         >
-          <FormGroup sx={{ marginBottom: 4 }}>
+          <FormGroup
+            sx={{ marginBottom: 4 }}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              handleChangeOrcamentoRelativo(e.target.value as string);
+            }}
+          >
             <RadioGroup
               onChange={(e) => {
                 handleRadioChange(e, "orcamento_relativo");
@@ -343,6 +363,14 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
+                    checked={orcamentoRelativo === "baixo"}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      if (orcamentoRelativo === "baixo") {
+                        setOrcamentoRelativo("");
+                        handleClearRequirement(["orcamento_relativo"]);
+                      }
+                    }}
                   />
                 }
                 value="baixo"
@@ -354,6 +382,14 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
+                    checked={orcamentoRelativo === "medio"}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      if (orcamentoRelativo === "medio") {
+                        setOrcamentoRelativo("");
+                        handleClearRequirement(["orcamento_relativo"]);
+                      }
+                    }}
                   />
                 }
                 value="medio"
@@ -365,6 +401,14 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
+                    checked={orcamentoRelativo === "alto"}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      if (orcamentoRelativo === "alto") {
+                        setOrcamentoRelativo("");
+                        handleClearRequirement(["orcamento_relativo"]);
+                      }
+                    }}
                   />
                 }
                 value="alto"
@@ -395,7 +439,12 @@ export default function Menu() {
           }
           requirementsLength={getRequirementLength("tempo")}
         >
-          <FormGroup sx={{ marginBottom: 4 }}>
+          <FormGroup
+            sx={{ marginBottom: 4 }}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              handleChangeTempo(e.target.value as string);
+            }}
+          >
             <RadioGroup
               onChange={(e) => {
                 handleRadioChange(e, "tempo");
@@ -409,6 +458,14 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
+                    checked={tempo === "baixo"}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      if (tempo === "baixo") {
+                        setTempo("");
+                        handleClearRequirement(["tempo"]);
+                      }
+                    }}
                   />
                 }
                 value="baixo"
@@ -420,6 +477,14 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
+                    checked={tempo === "medio"}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      if (tempo === "medio") {
+                        setTempo("");
+                        handleClearRequirement(["tempo"]);
+                      }
+                    }}
                   />
                 }
                 value="medio"
@@ -431,6 +496,14 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
+                    checked={tempo === "alto"}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      if (tempo === "alto") {
+                        setTempo("");
+                        handleClearRequirement(["tempo"]);
+                      }
+                    }}
                   />
                 }
                 value="alto"
@@ -689,7 +762,12 @@ export default function Menu() {
             "nivel_de_fidelidade_do_sistema"
           )}
         >
-          <FormGroup sx={{ marginBottom: 4 }}>
+          <FormGroup
+            sx={{ marginBottom: 4 }}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              handleChangeNivelDeFidelidade(e.target.value as string);
+            }}
+          >
             <RadioGroup
               onChange={(e) => {
                 handleRadioChange(e, "nivel_de_fidelidade_do_sistema");
@@ -703,6 +781,16 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
+                    checked={nivelDeFidelidade === "baixa"}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      if (nivelDeFidelidade === "baixa") {
+                        setNivelDeFidelidade("");
+                        handleClearRequirement([
+                          "nivel_de_fidelidade_do_sistema",
+                        ]);
+                      }
+                    }}
                   />
                 }
                 value="baixa"
@@ -733,6 +821,16 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
+                    checked={nivelDeFidelidade === "media"}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      if (nivelDeFidelidade === "media") {
+                        setNivelDeFidelidade("");
+                        handleClearRequirement([
+                          "nivel_de_fidelidade_do_sistema",
+                        ]);
+                      }
+                    }}
                   />
                 }
                 value="media"
@@ -763,6 +861,16 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
+                    checked={nivelDeFidelidade === "alta"}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      if (nivelDeFidelidade === "alta") {
+                        setNivelDeFidelidade("");
+                        handleClearRequirement([
+                          "nivel_de_fidelidade_do_sistema",
+                        ]);
+                      }
+                    }}
                   />
                 }
                 value="alta"
