@@ -21,8 +21,14 @@ export interface MethodProps {
     values: string[];
   }[];
   cantANDReference?: string[];
-  needORReference?: string[];
-  unNeedORReference?: string[];
+  needORReference?: {
+    requirement: string;
+    values: string[];
+  }[];
+  unNeedORReference?: {
+    requirement: string;
+    values: string[];
+  }[];
   cantORReference?: string[];
 }
 
@@ -96,17 +102,36 @@ export const methods: MethodProps[] = [
       "participacao_do_usuario_nao",
     ],
     needORReference: [
-      "orcamento_relativo_medio",
-      "tempo_baixo",
-      "quantidade_de_usuarios_1_5",
+      {
+        requirement: "orcamento_relativo",
+        values: ["medio"],
+      },
+      {
+        requirement: "tempo",
+        values: ["baixo"],
+      },
+      {
+        requirement: "quantidade_de_usuarios",
+        values: ["quantidade_de_usuarios_1_5"],
+      },
     ],
     unNeedORReference: [
-      "tempo_medio",
-      "tempo_alto",
-      "orcamento_relativo_alto",
-      "quantidade_de_usuarios_5_10",
-      "quantidade_de_usuarios_10_20",
-      "quantidade_de_usuarios_20_mais",
+      {
+        requirement: "orcamento_relativo",
+        values: ["alto"],
+      },
+      {
+        requirement: "tempo",
+        values: ["medio", "alto"],
+      },
+      {
+        requirement: "quantidade_de_usuarios",
+        values: [
+          "quantidade_de_usuarios_5_10",
+          "quantidade_de_usuarios_10_20",
+          "quantidade_de_usuarios_20_mais",
+        ],
+      },
     ],
     cantORReference: ["orcamento_relativo_baixo"],
   },

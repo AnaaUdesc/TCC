@@ -184,15 +184,13 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     const parentIds = handleGetParentRequirementIds(methodId);
     const method = methods.find((method) => method.id === methodId);
 
+    console.log("selectedRequirements", selectedRequirements);
+
     const filteredSelectedRequirements = selectedRequirements?.filter((req) =>
       parentIds.includes(req.id)
     );
 
-    // console.log("filteredSelectedRequirements", filteredSelectedRequirements);
-
     const quantityOfParentIds = handleCalculateQuantityOfParents(parentIds);
-
-    console.log("quantityOfParentIds ", quantityOfParentIds);
 
     const scoreByMethod: {
       [key: string]: {
@@ -249,9 +247,9 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
             100;
         }
       }
+      if (requirementByDb?.type === "OR") {
+      }
     });
-
-    console.log("scoreByMethod", scoreByMethod);
   };
 
   return (
