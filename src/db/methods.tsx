@@ -88,7 +88,7 @@ export const methods: MethodProps[] = [
       },
       {
         requirement: "participacao_do_usuario",
-        values: ["participacao_do_usuario_sim"],
+        values: ["sim"],
       },
     ],
     needORReference: [
@@ -102,7 +102,7 @@ export const methods: MethodProps[] = [
       },
       {
         requirement: "quantidade_de_usuarios",
-        values: ["quantidade_de_usuarios_1_5"],
+        values: ["5-10"],
       },
     ],
     unNeedORReference: [
@@ -116,11 +116,7 @@ export const methods: MethodProps[] = [
       },
       {
         requirement: "quantidade_de_usuarios",
-        values: [
-          "quantidade_de_usuarios_5_10",
-          "quantidade_de_usuarios_10_20",
-          "quantidade_de_usuarios_20_mais",
-        ],
+        values: ["10-20", "20+"],
       },
     ],
   },

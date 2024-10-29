@@ -210,51 +210,122 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
 
       const selectedValues = requirement.selectedValues;
 
-      if (requirementByDb?.type === "AND") {
+      if (
+        requirementByDb?.id === "participacao_do_usuario" ||
+        requirementByDb?.id === "participacao_do_especilista"
+      ) {
         const needANDReference = method?.needANDReference?.find(
           (req) => req.requirement === requirement.id
         );
 
-        const needANDReferenceLength = needANDReference?.values.length ?? 0;
-
-        const bigger =
-          selectedValues.length >= needANDReferenceLength
-            ? selectedValues.length
-            : needANDReferenceLength;
-
-        const percentage = 100 / bigger;
-
-        const matchedValues = needANDReference?.values.filter((value) =>
-          requirement.selectedValues.includes(value)
-        );
-
-        if (matchedValues) {
-          scoreByMethod[requirement.id].score =
-            matchedValues.length * percentage;
-
-          scoreByMethod[requirement.id].scoreRepresentativo =
-            ((100 / quantityOfParentIds) *
-              (matchedValues.length * percentage)) /
-            100;
-        }
-      }
-      if (requirementByDb?.type === "OR") {
-        const needORReference = method?.needORReference?.find(
-          (req) => req.requirement === requirement.id
-        );
-        const unNeedORReference = method?.unNeedORReference?.find(
-          (req) => req.requirement === requirement.id
-        );
-
-        const possibleCorrectResponses = needORReference?.values.concat(
-          unNeedORReference?.values || []
-        );
-
-        if (possibleCorrectResponses?.includes(selectedValues[0])) {
+        if (
+          needANDReference?.values.includes("nao") &&
+          selectedValues[0] === "nao"
+        ) {
           scoreByMethod[requirement.id].score = 100;
-
           scoreByMethod[requirement.id].scoreRepresentativo =
             100 / quantityOfParentIds;
+        } else if (
+          needANDReference?.values.includes("sim") &&
+          selectedValues[0] === "sim"
+        ) {
+          if (requirementByDb?.id === "participacao_do_usuario") {
+            const needORReference = method?.needORReference?.find(
+              (req) => req.requirement === "quantidade_de_usuarios"
+            );
+
+            const unNeedORReference = method?.unNeedORReference?.find(
+              (req) => req.requirement === "quantidade_de_usuarios"
+            );
+
+            const possibleCorrectResponses = needORReference?.values.concat(
+              unNeedORReference?.values || []
+            );
+
+            const newSelectedValues =
+              selectedRequirements?.find(
+                (req) => req.id === "quantidade_de_usuarios"
+              )?.selectedValues || [];
+
+            if (possibleCorrectResponses?.includes(newSelectedValues[0])) {
+              scoreByMethod[requirement.id].score = 100;
+
+              scoreByMethod[requirement.id].scoreRepresentativo =
+                100 / quantityOfParentIds;
+            }
+          } else if (requirementByDb?.id === "participacao_do_especilista") {
+            const needORReference = method?.needORReference?.find(
+              (req) => req.requirement === "quantidade_de_especilistas"
+            );
+
+            const unNeedORReference = method?.unNeedORReference?.find(
+              (req) => req.requirement === "quantidade_de_especilistas"
+            );
+
+            const possibleCorrectResponses = needORReference?.values.concat(
+              unNeedORReference?.values || []
+            );
+
+            const newSelectedValues =
+              selectedRequirements?.find(
+                (req) => req.id === "quantidade_de_especilistas"
+              )?.selectedValues || [];
+
+            if (possibleCorrectResponses?.includes(newSelectedValues[0])) {
+              scoreByMethod[requirement.id].score = 100;
+
+              scoreByMethod[requirement.id].scoreRepresentativo =
+                100 / quantityOfParentIds;
+            }
+          }
+        }
+      } else {
+        if (requirementByDb?.type === "AND") {
+          const needANDReference = method?.needANDReference?.find(
+            (req) => req.requirement === requirement.id
+          );
+
+          const needANDReferenceLength = needANDReference?.values.length ?? 0;
+
+          const bigger =
+            selectedValues.length >= needANDReferenceLength
+              ? selectedValues.length
+              : needANDReferenceLength;
+
+          const percentage = 100 / bigger;
+
+          const matchedValues = needANDReference?.values.filter((value) =>
+            requirement.selectedValues.includes(value)
+          );
+
+          if (matchedValues) {
+            scoreByMethod[requirement.id].score =
+              matchedValues.length * percentage;
+
+            scoreByMethod[requirement.id].scoreRepresentativo =
+              ((100 / quantityOfParentIds) *
+                (matchedValues.length * percentage)) /
+              100;
+          }
+        }
+        if (requirementByDb?.type === "OR") {
+          const needORReference = method?.needORReference?.find(
+            (req) => req.requirement === requirement.id
+          );
+          const unNeedORReference = method?.unNeedORReference?.find(
+            (req) => req.requirement === requirement.id
+          );
+
+          const possibleCorrectResponses = needORReference?.values.concat(
+            unNeedORReference?.values || []
+          );
+
+          if (possibleCorrectResponses?.includes(selectedValues[0])) {
+            scoreByMethod[requirement.id].score = 100;
+
+            scoreByMethod[requirement.id].scoreRepresentativo =
+              100 / quantityOfParentIds;
+          }
         }
       }
     });
