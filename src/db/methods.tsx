@@ -75,14 +75,11 @@ export const methods: MethodProps[] = [
     needANDReference: [
       {
         requirement: "objetivos_da_avaliacao",
-        values: [
-          "objetivos_da_avaliacao_usabilidade",
-          "objetivos_da_avaliacao_acessibilidade",
-        ],
+        values: ["Usabilidade", "Acessibilidade"],
       },
       {
         requirement: "tipo_de_dado_coletado",
-        values: ["tipo_de_dado_coletado_qualitativo"],
+        values: ["Qualitativo"],
       },
       {
         requirement: "participacao_do_usuario",
