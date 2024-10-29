@@ -213,8 +213,9 @@ export default function Menu() {
                   placement="right"
                   title={
                     <Typography>
-                      Conformidade com algum padrão pré estabelecido. Como: W3C
-                      ou alguma documentação de requisitos.
+                      Conformidade com algum padrão pré estabelecido. Como: W3C,
+                      heurísticas de Nielsen ou alguma documentação de
+                      requisitos.
                     </Typography>
                   }
                 >

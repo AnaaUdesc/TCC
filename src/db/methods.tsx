@@ -6,6 +6,7 @@ import avaliacao_heuristica from "../assets/avaliacao_heuristica.jpg";
 import grupos_focais from "../assets/grupos_focais.jpg";
 import sus from "../assets/sus.jpg";
 import { CONSTANTES } from "../constantes";
+
 export interface MethodProps {
   id: string;
   title: string;
@@ -314,12 +315,15 @@ export const methods: MethodProps[] = [
       { requirement: "orcamento_relativo", values: ["baixo"] },
       { requirement: "tempo", values: ["baixo"] },
       { requirement: "nivel_de_fidelidade_do_sistema", values: ["alta"] },
-      { requirement: CONSTANTES.QUANTIDADE_DE_USUARIOS, values: ["10-20"] },
+      { requirement: CONSTANTES.QUANTIDADE_DE_USUARIOS, values: ["5-10"] },
     ],
     unNeedORReference: [
       { requirement: "orcamento_relativo", values: ["medio", "alto"] },
       { requirement: "tempo", values: ["medio", "alto"] },
-      { requirement: CONSTANTES.QUANTIDADE_DE_USUARIOS, values: ["20+"] },
+      {
+        requirement: CONSTANTES.QUANTIDADE_DE_USUARIOS,
+        values: ["10-20", "20+"],
+      },
     ],
   },
 ];
