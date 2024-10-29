@@ -29,7 +29,6 @@ export interface MethodProps {
     requirement: string;
     values: string[];
   }[];
-  cantORReference?: string[];
 }
 
 export const methods: MethodProps[] = [
@@ -92,15 +91,6 @@ export const methods: MethodProps[] = [
         values: ["participacao_do_usuario_sim"],
       },
     ],
-    cantANDReference: [
-      "objetivos_da_avaliacao_ergonomia",
-      "objetivos_da_avaliacao_qualidade_conformidade",
-      "objetivos_da_avaliacao_comparacao",
-      "objetivos_da_avaliacao_validar_informacoes",
-      "objetivos_da_avaliacao_comunicabilidade",
-      "tipo_de_dado_coletado_quantitativo",
-      "participacao_do_usuario_nao",
-    ],
     needORReference: [
       {
         requirement: "orcamento_relativo",
@@ -133,7 +123,6 @@ export const methods: MethodProps[] = [
         ],
       },
     ],
-    cantORReference: ["orcamento_relativo_baixo"],
   },
 
   // {

@@ -137,27 +137,16 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     const method = methods.find((method) => method.id === methodId);
 
     if (!method) {
-      console.error(`Método com ID ${methodId} não encontrado.`);
       return [];
     }
 
     const methodRequirementValues = [
-      ...(method.needANDReference || []),
-      ...(method.cantANDReference || []),
-      ...(method.needORReference || []),
-      ...(method.unNeedORReference || []),
-      ...(method.cantORReference || []),
-    ];
+      ...(method.needANDReference?.map((req) => req.requirement) || []),
+      ...(method.needORReference?.map((req) => req.requirement) || []),
+      ...(method.unNeedORReference?.map((req) => req.requirement) || []),
+    ].filter((value, index, self) => self.indexOf(value) === index);
 
-    const parentRequirementIds = requirementsDB
-      .filter((requirement) =>
-        requirement.values.some((value) =>
-          methodRequirementValues.includes(value.id)
-        )
-      )
-      .map((requirement) => requirement.id);
-
-    return parentRequirementIds;
+    return methodRequirementValues;
   };
 
   const handleCalculateQuantityOfParents = (parentIds: string[]) => {
@@ -182,9 +171,8 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
 
   const handleCalculateScoreByMethod = (methodId: string) => {
     const parentIds = handleGetParentRequirementIds(methodId);
-    const method = methods.find((method) => method.id === methodId);
 
-    console.log("selectedRequirements", selectedRequirements);
+    const method = methods.find((method) => method.id === methodId);
 
     const filteredSelectedRequirements = selectedRequirements?.filter((req) =>
       parentIds.includes(req.id)
@@ -218,12 +206,13 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
         (req) => req.id === requirement.id
       );
 
+      const selectedValues = requirement.selectedValues;
+
       if (requirementByDb?.type === "AND") {
         const needANDReference = method?.needANDReference?.find(
           (req) => req.requirement === requirement.id
         );
 
-        const selectedValues = requirement.selectedValues;
         const needANDReferenceLength = needANDReference?.values.length ?? 0;
 
         const bigger =
@@ -248,8 +237,11 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
         }
       }
       if (requirementByDb?.type === "OR") {
+        scoreByMethod["tempo"].score = 100;
       }
     });
+
+    console.log("scoreByMethod", scoreByMethod);
   };
 
   return (
