@@ -37,6 +37,49 @@ export const requirements: RequirementsProps[] = [
     type: "OR",
   },
   {
+    id: "tempo",
+    values: [
+      { id: "tempo_alto", value: "Alto" },
+      { id: "tempo_medio", value: "Médio" },
+      { id: "tempo_baixo", value: "Baixo" },
+    ],
+    type: "OR",
+  },
+  {
+    id: "tipo_de_dado_coletado",
+    values: [
+      { id: "qualitativo", value: "Qualitativo" },
+      { id: "quantitativo", value: "Quantitativo" },
+    ],
+    type: "AND",
+  },
+  {
+    id: "participacao_do_especilista",
+    values: [
+      { id: "participacao_do_especialista_sim", value: "Sim" },
+      { id: "participacao_do_especialista_nao", value: "Não" },
+    ],
+    type: "AND",
+  },
+  {
+    id: "quantidade_de_especilistas",
+    values: [
+      { id: "quantidade_de_especialistas_1", value: "1" },
+      { id: "quantidade_de_especialistas_2_4", value: "2 a 4" },
+      { id: "quantidade_de_especialistas_5_mais", value: "5 ou mais" },
+    ],
+    type: "OR",
+  },
+  {
+    id: "nivel_de_fidelidade_do_sistema",
+    values: [
+      { id: "fidelidade_alta", value: "Alta" },
+      { id: "fidelidade_media", value: "Média" },
+      { id: "fidelidade_baixa", value: "Baixa" },
+    ],
+    type: "OR",
+  },
+  {
     id: "participacao_do_usuario",
     values: [
       { id: "participacao_do_usuario_sim", value: "Sim" },
@@ -53,6 +96,14 @@ export const requirements: RequirementsProps[] = [
       { id: "quantidade_de_usuarios_20_mais", value: "20 ou mais" },
     ],
     type: "OR",
+  },
+  {
+    id: "modalidade_da_avaliacao",
+    values: [
+      { id: "modalidade_remota", value: "Remota" },
+      { id: "modalidade_presencial", value: "Presencial" },
+    ],
+    type: "AND",
   },
 ];
 

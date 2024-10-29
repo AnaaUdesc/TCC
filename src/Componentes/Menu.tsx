@@ -271,7 +271,7 @@ export default function Menu() {
           name="Orçamento Relativo"
         >
           <FormGroup sx={{ marginBottom: 4 }}>
-            <RadioGroup name="orcamentoRelativo" defaultValue="baixo">
+            <RadioGroup name="orcamentoRelativo" defaultValue="">
               <FormControlLabel
                 control={
                   <Radio
@@ -324,14 +324,13 @@ export default function Menu() {
                 </ul>
                 <br />
                 Esse tempo pode variar conforme o <u>tamanho</u> do sistema e de
-                acordo com o <u>método escolhido</u>, podendo levar de 2 dias a
-                2 meses e meio.
+                acordo com o <u>método escolhido</u>.
               </Typography>
             </>
           }
         >
           <FormGroup sx={{ marginBottom: 4 }}>
-            <RadioGroup name="tempo" defaultValue="baixo">
+            <RadioGroup name="tempo" defaultValue="">
               <FormControlLabel
                 control={
                   <Radio
@@ -583,7 +582,7 @@ export default function Menu() {
           }
         >
           <FormGroup sx={{ marginBottom: 4 }}>
-            <RadioGroup name="nivelDeFidelidade" defaultValue="baixa">
+            <RadioGroup name="nivelDeFidelidade" defaultValue="">
               <FormControlLabel
                 control={
                   <Radio
