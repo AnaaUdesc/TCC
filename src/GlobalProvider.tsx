@@ -183,17 +183,19 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     const scoreByMethod: {
       [key: string]: {
         score: number;
-        scoreGeneral: number;
+        scoreRepresentativo: number;
       };
     } = {
       ...parentIds.reduce(
         (
-          acc: { [key: string]: { score: number; scoreGeneral: number } },
+          acc: {
+            [key: string]: { score: number; scoreRepresentativo: number };
+          },
           id
         ) => {
           acc[id] = {
             score: 0,
-            scoreGeneral: 0,
+            scoreRepresentativo: 0,
           };
           return acc;
         },
@@ -230,14 +232,30 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
           scoreByMethod[requirement.id].score =
             matchedValues.length * percentage;
 
-          scoreByMethod[requirement.id].scoreGeneral =
+          scoreByMethod[requirement.id].scoreRepresentativo =
             ((100 / quantityOfParentIds) *
               (matchedValues.length * percentage)) /
             100;
         }
       }
       if (requirementByDb?.type === "OR") {
-        scoreByMethod["tempo"].score = 100;
+        const needORReference = method?.needORReference?.find(
+          (req) => req.requirement === requirement.id
+        );
+        const unNeedORReference = method?.unNeedORReference?.find(
+          (req) => req.requirement === requirement.id
+        );
+
+        const possibleCorrectResponses = needORReference?.values.concat(
+          unNeedORReference?.values || []
+        );
+
+        if (possibleCorrectResponses?.includes(selectedValues[0])) {
+          scoreByMethod[requirement.id].score = 100;
+
+          scoreByMethod[requirement.id].scoreRepresentativo =
+            100 / quantityOfParentIds;
+        }
       }
     });
 
