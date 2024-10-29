@@ -24,6 +24,7 @@ import { CgRead } from "react-icons/cg";
 import { GoGoal } from "react-icons/go";
 import ItemMenu from "./ItemMenu";
 import { useGlobalContext } from "../GlobalProvider";
+import { CONSTANTES } from "../constantes";
 
 export default function Menu() {
   const [specialistRadios, setSpecialistRadios] = useState("");
@@ -950,7 +951,7 @@ export default function Menu() {
                           setUserParticipationRadios("");
                           handleClearRequirement([
                             "participacao_do_usuario",
-                            "quantidade_de_usuarios",
+                            CONSTANTES.QUANTIDADE_DE_USUARIOS,
                           ]);
                         }
                       }}
@@ -965,13 +966,15 @@ export default function Menu() {
                       checked={userParticipationRadios === "nao"}
                       onClick={(event) => {
                         event.stopPropagation();
-                        handleClearRequirement(["quantidade_de_usuarios"]);
+                        handleClearRequirement([
+                          CONSTANTES.QUANTIDADE_DE_USUARIOS,
+                        ]);
 
                         if (userParticipationRadios === "nao") {
                           setUserParticipationRadios("");
                           handleClearRequirement([
                             "participacao_do_usuario",
-                            "quantidade_de_usuarios",
+                            CONSTANTES.QUANTIDADE_DE_USUARIOS,
                           ]);
                         }
                       }}
@@ -1004,7 +1007,7 @@ export default function Menu() {
                   name="radio-buttons-group"
                   sx={{ paddingX: 2, marginBottom: 2 }}
                   onChange={(e) => {
-                    handleRadioChange(e, "quantidade_de_usuarios");
+                    handleRadioChange(e, CONSTANTES.QUANTIDADE_DE_USUARIOS);
                   }}
                 >
                   <FormControlLabel

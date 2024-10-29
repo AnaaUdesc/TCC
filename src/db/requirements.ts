@@ -1,3 +1,5 @@
+import { CONSTANTES } from "../constantes";
+
 interface RequirementsProps {
   id: string;
   values: { id: string; value: string }[];
@@ -88,12 +90,12 @@ export const requirements: RequirementsProps[] = [
     type: "AND",
   },
   {
-    id: "quantidade_de_usuarios",
+    id: CONSTANTES.QUANTIDADE_DE_USUARIOS,
     values: [
-      { id: "quantidade_de_usuarios_1_5", value: "1-5" },
-      { id: "quantidade_de_usuarios_5_10", value: "5-10" },
-      { id: "quantidade_de_usuarios_10_20", value: "10-20" },
-      { id: "quantidade_de_usuarios_20_mais", value: "20+" },
+      { id: "CONSTANTES.QUANTIDADE_DE_USUARIOS_1_5", value: "1-5" },
+      { id: "CONSTANTES.QUANTIDADE_DE_USUARIOS_5_10", value: "5-10" },
+      { id: "CONSTANTES.QUANTIDADE_DE_USUARIOS_10_20", value: "10-20" },
+      { id: "CONSTANTES.QUANTIDADE_DE_USUARIOS_20_mais", value: "20+" },
     ],
     type: "OR",
   },

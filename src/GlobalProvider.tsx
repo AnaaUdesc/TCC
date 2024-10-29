@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import { methods } from "./db/methods";
 import { requirements as requirementsDB } from "./db/requirements";
+import { CONSTANTES } from "./constantes";
 
 interface GlobalProviderProps {
   children: ReactNode;
@@ -156,7 +157,7 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
 
     if (
       parentIds.includes("participacao_do_usuario") &&
-      parentIds.includes("quantidade_de_usuarios")
+      parentIds.includes(CONSTANTES.QUANTIDADE_DE_USUARIOS)
     ) {
       quantity--;
     }
@@ -235,11 +236,11 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
         ) {
           if (requirementByDb?.id === "participacao_do_usuario") {
             const needORReference = method?.needORReference?.find(
-              (req) => req.requirement === "quantidade_de_usuarios"
+              (req) => req.requirement === CONSTANTES.QUANTIDADE_DE_USUARIOS
             );
 
             const unNeedORReference = method?.unNeedORReference?.find(
-              (req) => req.requirement === "quantidade_de_usuarios"
+              (req) => req.requirement === CONSTANTES.QUANTIDADE_DE_USUARIOS
             );
 
             const possibleCorrectResponses = needORReference?.values.concat(
@@ -248,7 +249,7 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
 
             const newSelectedValues =
               selectedRequirements?.find(
-                (req) => req.id === "quantidade_de_usuarios"
+                (req) => req.id === CONSTANTES.QUANTIDADE_DE_USUARIOS
               )?.selectedValues || [];
 
             if (possibleCorrectResponses?.includes(newSelectedValues[0])) {

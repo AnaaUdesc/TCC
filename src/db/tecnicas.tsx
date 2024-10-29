@@ -1,5 +1,4 @@
-import { Visibility } from "@mui/icons-material";
-import { Tooltip, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import teste_de_usabilidade from "../assets/teste_de_usabilidade.jpg"; // Importando a imagem diretamente
 
 export interface TecnicaProps {
