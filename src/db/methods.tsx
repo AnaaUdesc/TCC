@@ -181,6 +181,7 @@ export const methods: MethodProps[] = [
       },
       { requirement: "tipo_de_dado_coletado", values: ["Qualitativo"] },
       { requirement: "participacao_do_especialista", values: ["sim"] },
+      { requirement: "participacao_do_usuario", values: ["Não"] },
     ],
     needORReference: [
       { requirement: "orcamento_relativo", values: ["baixo"] },

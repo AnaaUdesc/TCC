@@ -1,11 +1,23 @@
-import { Close, Share } from "@mui/icons-material";
+import {
+  AttachMoney,
+  CalendarMonth,
+  Close,
+  Groups,
+  Share,
+} from "@mui/icons-material";
+import { GoGoal } from "react-icons/go";
 import {
   Box,
   CircularProgress,
   Dialog,
   Divider,
   IconButton,
+  LinearProgress,
+  linearProgressClasses,
   Link,
+  styled,
+  SvgIcon,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { useEffect, useMemo, useState } from "react";
@@ -52,6 +64,24 @@ export default function Card({
     }
     return "#D3BF28";
   };
+
+  const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+    height: 10,
+    borderRadius: 5,
+    [`&.${linearProgressClasses.colorPrimary}`]: {
+      backgroundColor: theme.palette.grey[200],
+      ...theme.applyStyles("dark", {
+        backgroundColor: theme.palette.grey[800],
+      }),
+    },
+    [`& .${linearProgressClasses.bar}`]: {
+      borderRadius: 5,
+      backgroundColor: "#0D6070",
+      ...theme.applyStyles("dark", {
+        backgroundColor: "#0D6070",
+      }),
+    },
+  }));
 
   const getMethodOrTechniqueById = (id: string) => {
     const method = methods.find((method) => method.id === id);
@@ -126,9 +156,20 @@ export default function Card({
           </Link>
         </Box>
         <Divider orientation="vertical" flexItem />
-        <Box>
-          <Box>
-            <Box sx={{ position: "relative", display: "inline-flex" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Box sx={{ padding: 3 }}>
+            <Box
+              sx={{
+                position: "relative",
+                display: "inline-flex",
+              }}
+            >
               <CircularProgress
                 variant="determinate"
                 sx={{
@@ -176,9 +217,83 @@ export default function Card({
               {Math.round(Number(result.scoreGeral))}%
             </Typography> */}
           </Box>
-          <Box>
-            <Box>User</Box>
-            <Box>Objetivos</Box>
+          <Box sx={{ paddingX: 3 }}>
+            <Box sx={{ alignItems: "center", display: "flex", gap: 1 }}>
+              <Tooltip
+                title={"Orçamento Relativo"}
+                arrow
+                placement="left"
+                onClick={() => setOpen(true)}
+              >
+                <AttachMoney color="secondary" sx={{ cursor: "pointer" }} />
+              </Tooltip>
+              <BorderLinearProgress
+                variant="determinate"
+                value={50}
+                sx={{ width: 100 }}
+              />
+              {/* <Typography sx={{ fontStyle: "italic", color: "#bbbbbb" }}>
+                50%
+              </Typography> */}
+            </Box>
+            <Box sx={{ alignItems: "center", display: "flex", gap: 1 }}>
+              <Tooltip
+                title={"Tempo"}
+                arrow
+                placement="left"
+                onClick={() => setOpen(true)}
+              >
+                <CalendarMonth color="secondary" sx={{ cursor: "pointer" }} />
+              </Tooltip>
+              <BorderLinearProgress
+                variant="determinate"
+                value={50}
+                sx={{ width: 100 }}
+              />
+              {/* <Typography sx={{ fontStyle: "italic", color: "#bbbbbb" }}>
+                50%
+              </Typography> */}
+            </Box>{" "}
+            <Box sx={{ alignItems: "center", display: "flex", gap: 1 }}>
+              <Tooltip
+                title={"Participação de Usuário"}
+                arrow
+                placement="left"
+                onClick={() => setOpen(true)}
+              >
+                <Groups color="secondary" sx={{ cursor: "pointer" }} />
+              </Tooltip>
+              <BorderLinearProgress
+                variant="determinate"
+                value={50}
+                sx={{ width: 100 }}
+              />
+              {/* <Typography sx={{ fontStyle: "italic", color: "#bbbbbb" }}>
+                50%
+              </Typography> */}
+            </Box>{" "}
+            <Box sx={{ alignItems: "center", display: "flex", gap: 1 }}>
+              <Tooltip
+                title={"Objetivo da avaliação"}
+                arrow
+                placement="left"
+                onClick={() => setOpen(true)}
+              >
+                <SvgIcon
+                  color="secondary"
+                  component={GoGoal}
+                  sx={{ cursor: "pointer" }}
+                />
+              </Tooltip>
+              <BorderLinearProgress
+                variant="determinate"
+                value={50}
+                sx={{ width: 100 }}
+              />
+              {/* <Typography sx={{ fontStyle: "italic", color: "#bbbbbb" }}>
+                50%
+              </Typography> */}
+            </Box>
           </Box>
         </Box>
       </Box>
