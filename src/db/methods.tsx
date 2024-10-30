@@ -94,10 +94,6 @@ export const methods: MethodProps[] = [
         requirement: "tipo_de_dado_coletado",
         values: ["Qualitativo"],
       },
-      // {
-      //   requirement: "participacao_do_usuario",
-      //   values: ["sim"],
-      // },
     ],
     needORReference: [
       {
@@ -111,6 +107,10 @@ export const methods: MethodProps[] = [
       {
         requirement: CONSTANTES.QUANTIDADE_DE_USUARIOS,
         values: ["6-10"],
+      },
+      {
+        requirement: "quantidade_de_especialistas",
+        values: ["nenhum"],
       },
     ],
     unNeedORReference: [
@@ -180,13 +180,15 @@ export const methods: MethodProps[] = [
         values: ["Usabilidade", "Ergonomia", "Qualidade/Conformidade"],
       },
       { requirement: "tipo_de_dado_coletado", values: ["Qualitativo"] },
-      // { requirement: "participacao_do_especialista", values: ["sim"] },
-      // { requirement: "participacao_do_usuario", values: ["Não"] },
     ],
     needORReference: [
       { requirement: "orcamento_relativo", values: ["baixo"] },
       { requirement: "tempo", values: ["baixo"] },
       { requirement: "quantidade_de_especialistas", values: ["2_4"] },
+      {
+        requirement: "quantidade_de_usuarios",
+        values: ["nenhum"],
+      },
     ],
     unNeedORReference: [
       { requirement: "orcamento_relativo", values: ["medio", "alto"] },
@@ -245,7 +247,6 @@ export const methods: MethodProps[] = [
         values: ["Usabilidade", "Ergonomia", "Comparação"],
       },
       { requirement: "tipo_de_dado_coletado", values: ["Qualitativo"] },
-      // { requirement: "participacao_do_usuario", values: ["Sim"] },
       { requirement: "modalidade_da_avaliacao", values: ["Presencial"] },
     ],
     needORReference: [
@@ -315,7 +316,6 @@ export const methods: MethodProps[] = [
         requirement: "objetivos_da_avaliacao",
         values: ["Usabilidade"],
       },
-      // { requirement: "participacao_do_usuario", values: ["Sim"] },
     ],
     needORReference: [
       { requirement: "orcamento_relativo", values: ["baixo"] },

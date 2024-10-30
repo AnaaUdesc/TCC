@@ -1,17 +1,9 @@
-import {
-  AttachMoney,
-  CalendarMonth,
-  Close,
-  Groups,
-  Share,
-} from "@mui/icons-material";
+import { AttachMoney, CalendarMonth, Groups } from "@mui/icons-material";
 import { GoGoal } from "react-icons/go";
 import {
   Box,
   CircularProgress,
-  Dialog,
   Divider,
-  IconButton,
   LinearProgress,
   linearProgressClasses,
   Link,
@@ -20,9 +12,8 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import { MethodProps, methods } from "../db/methods";
-import { useGlobalContext } from "../GlobalProvider";
 import MethodDialog from "./MethodDialog";
 import { technics } from "../db/tecnicas";
 
@@ -37,11 +28,9 @@ export default function Card({
   image,
   title,
   classificationIcons,
-  matchTotal,
   attentionPoints,
   fullDescription,
   goodPractices,
-  id,
   more,
   exemples,
   relatedMethods,
@@ -49,8 +38,7 @@ export default function Card({
 }: CardProps) {
   const [open, setOpen] = useState(false);
   const [selectedMethodOrTechnique, setSelectedMethodOrTechnique] =
-    useState<any>(null);
-  const [score, setScore] = useState(0);
+    useState<MethodProps | null>(null);
 
   const handleClose = () => {
     setOpen(false);
@@ -83,10 +71,10 @@ export default function Card({
     },
   }));
 
-  const getMethodOrTechniqueById = (id: string) => {
+  const getMethodOrTechniqueById = (id: string): MethodProps => {
     const method = methods.find((method) => method.id === id);
     const technique = technics.find((technique) => technique.id === id);
-    return method || technique;
+    return (method || technique) as MethodProps;
   };
 
   return (

@@ -31,10 +31,6 @@ export default function Menu() {
   const [orcamentoRelativo, setOrcamentoRelativo] = useState("");
   const [tempo, setTempo] = useState("");
 
-  const handleChangeSpecialistRadios = (value: string) => {
-    setSpecialistRadios(value);
-  };
-
   const handleChangeNivelDeFidelidade = (value: string) => {
     setNivelDeFidelidade(value);
   };

@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import { methods } from "./db/methods";
 import { requirements as requirementsDB } from "./db/requirements";
-import { CONSTANTES } from "./constantes";
 
 interface GlobalProviderProps {
   children: ReactNode;
@@ -155,26 +154,6 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     return methodRequirementValues;
   };
 
-  const handleCalculateQuantityOfParents = (parentIds: string[]) => {
-    let quantity = parentIds.length;
-
-    if (
-      parentIds.includes("participacao_do_usuario") &&
-      parentIds.includes(CONSTANTES.QUANTIDADE_DE_USUARIOS)
-    ) {
-      quantity--;
-    }
-
-    if (
-      parentIds.includes("participacao_do_especialista") &&
-      parentIds.includes("quantidade_de_especialistas")
-    ) {
-      quantity--;
-    }
-
-    return quantity;
-  };
-
   const handleCalculateScoreByMethod = (methodId: string) => {
     const parentIds = handleGetParentRequirementIds(methodId);
 
@@ -184,7 +163,7 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
       parentIds.includes(req.id)
     );
 
-    const quantityOfParentIds = handleCalculateQuantityOfParents(parentIds);
+    const quantityOfParentIds = parentIds.length;
 
     const scoreByMethod: {
       [key: string]: {
@@ -216,118 +195,51 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
 
       const selectedValues = requirement.selectedValues;
 
-      if (
-        requirementByDb?.id === "participacao_do_usuario" ||
-        requirementByDb?.id === "participacao_do_especialista"
-      ) {
+      if (requirementByDb?.type === "AND") {
         const needANDReference = method?.needANDReference?.find(
           (req) => req.requirement === requirement.id
         );
 
-        if (
-          needANDReference?.values.includes("nao") &&
-          selectedValues[0] === "nao"
-        ) {
+        const needANDReferenceLength = needANDReference?.values.length ?? 0;
+
+        const bigger =
+          selectedValues.length >= needANDReferenceLength
+            ? selectedValues.length
+            : needANDReferenceLength;
+
+        const percentage = 100 / bigger;
+
+        const matchedValues = needANDReference?.values.filter((value) =>
+          requirement.selectedValues.includes(value)
+        );
+
+        if (matchedValues) {
+          scoreByMethod[requirement.id].score =
+            matchedValues.length * percentage;
+
+          scoreByMethod[requirement.id].scoreRepresentativo =
+            ((100 / quantityOfParentIds) *
+              (matchedValues.length * percentage)) /
+            100;
+        }
+      }
+      if (requirementByDb?.type === "OR") {
+        const needORReference = method?.needORReference?.find(
+          (req) => req.requirement === requirement.id
+        );
+        const unNeedORReference = method?.unNeedORReference?.find(
+          (req) => req.requirement === requirement.id
+        );
+
+        const possibleCorrectResponses = needORReference?.values.concat(
+          unNeedORReference?.values || []
+        );
+
+        if (possibleCorrectResponses?.includes(selectedValues[0])) {
           scoreByMethod[requirement.id].score = 100;
+
           scoreByMethod[requirement.id].scoreRepresentativo =
             100 / quantityOfParentIds;
-        } else if (
-          needANDReference?.values.includes("sim") &&
-          selectedValues[0] === "sim"
-        ) {
-          if (requirementByDb?.id === "participacao_do_usuario") {
-            //   const needORReference = method?.needORReference?.find(
-            //     (req) => req.requirement === CONSTANTES.QUANTIDADE_DE_USUARIOS
-            //   );
-            //   const unNeedORReference = method?.unNeedORReference?.find(
-            //     (req) => req.requirement === CONSTANTES.QUANTIDADE_DE_USUARIOS
-            //   );
-            //   const possibleCorrectResponses = needORReference?.values.concat(
-            //     unNeedORReference?.values || []
-            //   );
-            //   const newSelectedValues =
-            //     selectedRequirements?.find(
-            //       (req) => req.id === CONSTANTES.QUANTIDADE_DE_USUARIOS
-            //     )?.selectedValues || [];
-            //   if (possibleCorrectResponses?.includes(newSelectedValues[0])) {
-            //     scoreByMethod[requirement.id].score = 100;
-            //     scoreByMethod[requirement.id].scoreRepresentativo =
-            //       100 / quantityOfParentIds;
-            //   }
-            //   // scoreByMethod["participacao_do_usuario"].score = 0;
-            //   // scoreByMethod["participacao_do_usuario"].scoreRepresentativo = 0;
-            // } else if (requirementByDb?.id === "participacao_do_especialista") {
-            //   const needORReference = method?.needORReference?.find(
-            //     (req) => req.requirement === "quantidade_de_especialistas"
-            //   );
-            //   const unNeedORReference = method?.unNeedORReference?.find(
-            //     (req) => req.requirement === "quantidade_de_especialistas"
-            //   );
-            //   const possibleCorrectResponses = needORReference?.values.concat(
-            //     unNeedORReference?.values || []
-            //   );
-            //   const newSelectedValues =
-            //     selectedRequirements?.find(
-            //       (req) => req.id === "quantidade_de_especialistas"
-            //     )?.selectedValues || [];
-            //   if (possibleCorrectResponses?.includes(newSelectedValues[0])) {
-            //     scoreByMethod[requirement.id].score = 100;
-            //     scoreByMethod[requirement.id].scoreRepresentativo =
-            //       100 / quantityOfParentIds;
-            //   }
-            //   scoreByMethod["participacao_do_especialista"].score = 0;
-            //   scoreByMethod[
-            //     "participacao_do_especialista"
-            //   ].scoreRepresentativo = 0;
-          }
-        }
-      } else {
-        if (requirementByDb?.type === "AND") {
-          const needANDReference = method?.needANDReference?.find(
-            (req) => req.requirement === requirement.id
-          );
-
-          const needANDReferenceLength = needANDReference?.values.length ?? 0;
-
-          const bigger =
-            selectedValues.length >= needANDReferenceLength
-              ? selectedValues.length
-              : needANDReferenceLength;
-
-          const percentage = 100 / bigger;
-
-          const matchedValues = needANDReference?.values.filter((value) =>
-            requirement.selectedValues.includes(value)
-          );
-
-          if (matchedValues) {
-            scoreByMethod[requirement.id].score =
-              matchedValues.length * percentage;
-
-            scoreByMethod[requirement.id].scoreRepresentativo =
-              ((100 / quantityOfParentIds) *
-                (matchedValues.length * percentage)) /
-              100;
-          }
-        }
-        if (requirementByDb?.type === "OR") {
-          const needORReference = method?.needORReference?.find(
-            (req) => req.requirement === requirement.id
-          );
-          const unNeedORReference = method?.unNeedORReference?.find(
-            (req) => req.requirement === requirement.id
-          );
-
-          const possibleCorrectResponses = needORReference?.values.concat(
-            unNeedORReference?.values || []
-          );
-
-          if (possibleCorrectResponses?.includes(selectedValues[0])) {
-            scoreByMethod[requirement.id].score = 100;
-
-            scoreByMethod[requirement.id].scoreRepresentativo =
-              100 / quantityOfParentIds;
-          }
         }
       }
     });

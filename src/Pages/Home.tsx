@@ -11,7 +11,7 @@ import Card from "../Componentes/Card";
 import Footer from "../Componentes/Footer";
 import Header from "../Componentes/Header";
 import Menu from "../Componentes/Menu";
-import { methods } from "../db/methods";
+import { MethodProps, methods } from "../db/methods";
 import { Delete, Search, Share } from "@mui/icons-material";
 import { useMemo, useState } from "react";
 import { useGlobalContext } from "../GlobalProvider";
@@ -306,7 +306,9 @@ export default function HomePage() {
               {sortedResults.map((result) => (
                 <Card
                   key={result.methodId}
-                  {...methods.find((method) => method.id === result.methodId)}
+                  {...(methods.find(
+                    (method) => method.id === result.methodId
+                  ) as MethodProps)}
                   scoreGeral={result.scoreGeneral}
                 />
               ))}
