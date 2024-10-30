@@ -18,6 +18,7 @@ import { useGlobalContext } from "../GlobalProvider";
 
 export default function HomePage() {
   const [focused, setFocused] = useState(false);
+  const [search, setSearch] = useState("");
 
   const {
     handleCalculateScoreByMethod,
@@ -26,12 +27,21 @@ export default function HomePage() {
     handleUnselectRequirement,
   } = useGlobalContext();
 
+  const filteredMethods = useMemo(() => {
+    return methods.filter((method) => {
+      return (
+        method.title.toLowerCase().includes(search.toLowerCase()) ||
+        method.description.toLowerCase().includes(search.toLowerCase())
+      );
+    });
+  }, [search]);
+
   const result: {
     methodId: string;
     scoreGeneral: number;
   }[] = useMemo(
     () =>
-      methods.map((method) => {
+      filteredMethods.map((method) => {
         return {
           methodId: method.id,
           scoreGeneral: Math.round(
@@ -39,7 +49,7 @@ export default function HomePage() {
           ),
         };
       }),
-    [handleCalculateScoreByMethod]
+    [filteredMethods, handleCalculateScoreByMethod]
   );
 
   const requirementIdsToTransform = [
@@ -142,33 +152,36 @@ export default function HomePage() {
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
                 fullWidth
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
                 slotProps={{
-                  ...(!focused && {
-                    input: {
-                      sx: {
-                        borderRadius: 4,
-                        backgroundColor: "#Ffff",
-                      },
-                      startAdornment: (
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: 1,
-                          }}
-                        >
-                          <Search fontSize="medium" color="secondary" />
-                          <Typography
-                            variant="h6"
-                            fontWeight={600}
-                            fontStyle={"italic"}
+                  ...(!focused &&
+                    search === "" && {
+                      input: {
+                        sx: {
+                          borderRadius: 4,
+                          backgroundColor: "#Ffff",
+                        },
+                        startAdornment: (
+                          <Box
+                            sx={{
+                              display: "flex",
+                              alignItems: "center",
+                              gap: 1,
+                            }}
                           >
-                            Buscar
-                          </Typography>
-                        </Box>
-                      ),
-                    },
-                  }),
+                            <Search fontSize="medium" color="secondary" />
+                            <Typography
+                              variant="h6"
+                              fontWeight={600}
+                              fontStyle={"italic"}
+                            >
+                              Buscar
+                            </Typography>
+                          </Box>
+                        ),
+                      },
+                    }),
                 }}
               />
             </Box>
