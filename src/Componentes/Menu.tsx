@@ -27,18 +27,12 @@ import { useGlobalContext } from "../GlobalProvider";
 import { CONSTANTES } from "../constantes";
 
 export default function Menu() {
-  const [specialistRadios, setSpecialistRadios] = useState("");
-  const [userParticipationRadios, setUserParticipationRadios] = useState("");
   const [nivelDeFidelidade, setNivelDeFidelidade] = useState("");
   const [orcamentoRelativo, setOrcamentoRelativo] = useState("");
   const [tempo, setTempo] = useState("");
 
   const handleChangeSpecialistRadios = (value: string) => {
     setSpecialistRadios(value);
-  };
-
-  const handleChangeUserParticipationRadios = (value: string) => {
-    setUserParticipationRadios(value);
   };
 
   const handleChangeNivelDeFidelidade = (value: string) => {
@@ -630,123 +624,54 @@ export default function Menu() {
             </>
           }
           requirementsLength={getRequirementLength(
-            "participacao_do_especialista"
+            "quantidade_de_especialistas"
           )}
         >
-          <FormGroup
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              handleChangeSpecialistRadios(e.target.value as string);
-            }}
-          >
+          <FormGroup sx={{ marginBottom: 4 }}>
             <FormControl>
               <FormLabel
                 id="demo-radio-buttons-group-label"
                 sx={{
                   fontWeight: 550,
                   color: "#000",
-                  marginTop: 1,
+                  marginBottom: 1,
+                  marginTop: 2,
                 }}
               >
-                Há especialista disponível?
+                Quantos especialistas disponíveis?
               </FormLabel>
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue=""
+                // defaultValue="1"
                 name="radio-buttons-group"
-                sx={{ paddingX: 2, marginBottom: 2 }}
+                sx={{ paddingX: 2 }}
                 onChange={(e) => {
-                  handleRadioChange(e, "participacao_do_especialista");
+                  handleRadioChange(e, "quantidade_de_especialistas");
                 }}
               >
                 <FormControlLabel
-                  value="sim"
-                  control={
-                    <Radio
-                      size="small"
-                      color="secondary"
-                      checked={specialistRadios === "sim"}
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        if (specialistRadios === "sim") {
-                          setSpecialistRadios("");
-                          handleClearRequirement([
-                            "participacao_do_especialista",
-                            "quantidade_de_especialistas",
-                          ]);
-                        }
-                      }}
-                    />
-                  }
-                  label="Sim"
+                  value="nenhum"
+                  control={<Radio size="small" color="secondary" />}
+                  label="Nenhum"
                 />
                 <FormControlLabel
-                  value="nao"
-                  control={
-                    <Radio
-                      checked={specialistRadios === "nao"}
-                      size="small"
-                      color="secondary"
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        handleClearRequirement(["quantidade_de_especialistas"]);
-
-                        if (specialistRadios === "nao") {
-                          setSpecialistRadios("");
-                          handleClearRequirement([
-                            "participacao_do_especialista",
-                            "quantidade_de_especialistas",
-                          ]);
-                        }
-                      }}
-                    />
-                  }
-                  label="Não"
+                  value="1"
+                  control={<Radio size="small" color="secondary" />}
+                  label="1"
+                />
+                <FormControlLabel
+                  value="2_4"
+                  control={<Radio size="small" color="secondary" />}
+                  label="2 a 4"
+                />
+                <FormControlLabel
+                  value="5+"
+                  control={<Radio size="small" color="secondary" />}
+                  label="5 ou mais"
                 />
               </RadioGroup>
             </FormControl>
           </FormGroup>
-          {specialistRadios === "sim" && (
-            <FormGroup sx={{ marginBottom: 4 }}>
-              <FormControl>
-                <FormLabel
-                  id="demo-radio-buttons-group-label"
-                  sx={{
-                    fontWeight: 550,
-                    color: "#000",
-                    marginBottom: 1,
-                    marginTop: 2,
-                  }}
-                >
-                  Quantos especialistas disponíveis?
-                </FormLabel>
-                <RadioGroup
-                  aria-labelledby="demo-radio-buttons-group-label"
-                  // defaultValue="1"
-                  name="radio-buttons-group"
-                  sx={{ paddingX: 2 }}
-                  onChange={(e) => {
-                    handleRadioChange(e, "quantidade_de_especialistas");
-                  }}
-                >
-                  <FormControlLabel
-                    value="1"
-                    control={<Radio size="small" color="secondary" />}
-                    label="1"
-                  />
-                  <FormControlLabel
-                    value="2_4"
-                    control={<Radio size="small" color="secondary" />}
-                    label="2 a 4"
-                  />
-                  <FormControlLabel
-                    value="5+"
-                    control={<Radio size="small" color="secondary" />}
-                    label="5 ou mais"
-                  />
-                </RadioGroup>
-              </FormControl>
-            </FormGroup>
-          )}
         </ItemMenu>
         <Divider sx={{ borderColor: "#E3E3E3", marginX: 2 }} />
         <ItemMenu
@@ -912,128 +837,57 @@ export default function Menu() {
               </Typography>
             </>
           }
-          requirementsLength={getRequirementLength("participacao_do_usuario")}
+          requirementsLength={getRequirementLength("quantidade_de_usuarios")}
         >
-          <FormGroup
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              handleChangeUserParticipationRadios(e.target.value as string);
-            }}
-          >
+          <FormGroup>
             <FormControl>
               <FormLabel
                 id="demo-radio-buttons-group-label"
                 sx={{
                   fontWeight: 550,
                   color: "#000",
-                  marginTop: 1,
+                  marginBottom: 1,
+                  marginTop: 2,
                 }}
               >
-                Há usuários disponíveis?
+                Quantos usuários disponíveis?
               </FormLabel>
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue=""
+                // defaultValue="1-5"
                 name="radio-buttons-group"
                 sx={{ paddingX: 2, marginBottom: 2 }}
                 onChange={(e) => {
-                  handleRadioChange(e, "participacao_do_usuario");
+                  handleRadioChange(e, CONSTANTES.QUANTIDADE_DE_USUARIOS);
                 }}
               >
                 <FormControlLabel
-                  value="sim"
-                  control={
-                    <Radio
-                      size="small"
-                      color="secondary"
-                      checked={userParticipationRadios === "sim"}
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        if (userParticipationRadios === "sim") {
-                          setUserParticipationRadios("");
-                          handleClearRequirement([
-                            "participacao_do_usuario",
-                            CONSTANTES.QUANTIDADE_DE_USUARIOS,
-                          ]);
-                        }
-                      }}
-                    />
-                  }
-                  label="Sim"
+                  value="nenhum"
+                  control={<Radio size="small" color="secondary" />}
+                  label="Nenhum"
                 />
                 <FormControlLabel
-                  value="nao"
-                  control={
-                    <Radio
-                      checked={userParticipationRadios === "nao"}
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        handleClearRequirement([
-                          CONSTANTES.QUANTIDADE_DE_USUARIOS,
-                        ]);
-
-                        if (userParticipationRadios === "nao") {
-                          setUserParticipationRadios("");
-                          handleClearRequirement([
-                            "participacao_do_usuario",
-                            CONSTANTES.QUANTIDADE_DE_USUARIOS,
-                          ]);
-                        }
-                      }}
-                      size="small"
-                      color="secondary"
-                    />
-                  }
-                  label="Não"
+                  value="1-5"
+                  control={<Radio size="small" color="secondary" />}
+                  label="1 a 5"
+                />
+                <FormControlLabel
+                  value="6-10"
+                  control={<Radio size="small" color="secondary" />}
+                  label="6 a 10"
+                />
+                <FormControlLabel
+                  value="11-20"
+                  control={<Radio size="small" color="secondary" />}
+                  label="11 a 20"
+                />
+                <FormControlLabel
+                  value="21+"
+                  control={<Radio size="small" color="secondary" />}
+                  label="21 ou mais"
                 />
               </RadioGroup>
             </FormControl>
-          </FormGroup>
-          <FormGroup>
-            {userParticipationRadios === "sim" && (
-              <FormControl>
-                <FormLabel
-                  id="demo-radio-buttons-group-label"
-                  sx={{
-                    fontWeight: 550,
-                    color: "#000",
-                    marginBottom: 1,
-                    marginTop: 2,
-                  }}
-                >
-                  Quantos usuários disponíveis?
-                </FormLabel>
-                <RadioGroup
-                  aria-labelledby="demo-radio-buttons-group-label"
-                  // defaultValue="1-5"
-                  name="radio-buttons-group"
-                  sx={{ paddingX: 2, marginBottom: 2 }}
-                  onChange={(e) => {
-                    handleRadioChange(e, CONSTANTES.QUANTIDADE_DE_USUARIOS);
-                  }}
-                >
-                  <FormControlLabel
-                    value="1-5"
-                    control={<Radio size="small" color="secondary" />}
-                    label="1 a 5"
-                  />
-                  <FormControlLabel
-                    value="5-10"
-                    control={<Radio size="small" color="secondary" />}
-                    label="5 a 10"
-                  />
-                  <FormControlLabel
-                    value="10-20"
-                    control={<Radio size="small" color="secondary" />}
-                    label="10 a 20"
-                  />
-                  <FormControlLabel
-                    value="20+"
-                    control={<Radio size="small" color="secondary" />}
-                    label="20 ou mais"
-                  />
-                </RadioGroup>
-              </FormControl>
-            )}
           </FormGroup>
         </ItemMenu>
         <Divider sx={{ borderColor: "#E3E3E3", marginX: 2 }} />

@@ -56,9 +56,7 @@ export default function HomePage() {
     "orcamento_relativo",
     "tempo",
     "nivel_de_fidelidade_do_sistema",
-    "participacao_do_usuario",
     "quantidade_de_usuarios",
-    "participacao_do_especialista",
     "quantidade_de_especialistas",
   ];
 

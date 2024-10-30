@@ -236,61 +236,49 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
           selectedValues[0] === "sim"
         ) {
           if (requirementByDb?.id === "participacao_do_usuario") {
-            const needORReference = method?.needORReference?.find(
-              (req) => req.requirement === CONSTANTES.QUANTIDADE_DE_USUARIOS
-            );
-
-            const unNeedORReference = method?.unNeedORReference?.find(
-              (req) => req.requirement === CONSTANTES.QUANTIDADE_DE_USUARIOS
-            );
-
-            const possibleCorrectResponses = needORReference?.values.concat(
-              unNeedORReference?.values || []
-            );
-
-            const newSelectedValues =
-              selectedRequirements?.find(
-                (req) => req.id === CONSTANTES.QUANTIDADE_DE_USUARIOS
-              )?.selectedValues || [];
-
-            if (possibleCorrectResponses?.includes(newSelectedValues[0])) {
-              scoreByMethod[requirement.id].score = 100;
-
-              scoreByMethod[requirement.id].scoreRepresentativo =
-                100 / quantityOfParentIds;
-            }
-
-            scoreByMethod["participacao_do_usuario"].score = 0;
-            scoreByMethod["participacao_do_usuario"].scoreRepresentativo = 0;
-          } else if (requirementByDb?.id === "participacao_do_especialista") {
-            const needORReference = method?.needORReference?.find(
-              (req) => req.requirement === "quantidade_de_especialistas"
-            );
-
-            const unNeedORReference = method?.unNeedORReference?.find(
-              (req) => req.requirement === "quantidade_de_especialistas"
-            );
-
-            const possibleCorrectResponses = needORReference?.values.concat(
-              unNeedORReference?.values || []
-            );
-
-            const newSelectedValues =
-              selectedRequirements?.find(
-                (req) => req.id === "quantidade_de_especialistas"
-              )?.selectedValues || [];
-
-            if (possibleCorrectResponses?.includes(newSelectedValues[0])) {
-              scoreByMethod[requirement.id].score = 100;
-
-              scoreByMethod[requirement.id].scoreRepresentativo =
-                100 / quantityOfParentIds;
-            }
-
-            scoreByMethod["participacao_do_especialista"].score = 0;
-            scoreByMethod[
-              "participacao_do_especialista"
-            ].scoreRepresentativo = 0;
+            //   const needORReference = method?.needORReference?.find(
+            //     (req) => req.requirement === CONSTANTES.QUANTIDADE_DE_USUARIOS
+            //   );
+            //   const unNeedORReference = method?.unNeedORReference?.find(
+            //     (req) => req.requirement === CONSTANTES.QUANTIDADE_DE_USUARIOS
+            //   );
+            //   const possibleCorrectResponses = needORReference?.values.concat(
+            //     unNeedORReference?.values || []
+            //   );
+            //   const newSelectedValues =
+            //     selectedRequirements?.find(
+            //       (req) => req.id === CONSTANTES.QUANTIDADE_DE_USUARIOS
+            //     )?.selectedValues || [];
+            //   if (possibleCorrectResponses?.includes(newSelectedValues[0])) {
+            //     scoreByMethod[requirement.id].score = 100;
+            //     scoreByMethod[requirement.id].scoreRepresentativo =
+            //       100 / quantityOfParentIds;
+            //   }
+            //   // scoreByMethod["participacao_do_usuario"].score = 0;
+            //   // scoreByMethod["participacao_do_usuario"].scoreRepresentativo = 0;
+            // } else if (requirementByDb?.id === "participacao_do_especialista") {
+            //   const needORReference = method?.needORReference?.find(
+            //     (req) => req.requirement === "quantidade_de_especialistas"
+            //   );
+            //   const unNeedORReference = method?.unNeedORReference?.find(
+            //     (req) => req.requirement === "quantidade_de_especialistas"
+            //   );
+            //   const possibleCorrectResponses = needORReference?.values.concat(
+            //     unNeedORReference?.values || []
+            //   );
+            //   const newSelectedValues =
+            //     selectedRequirements?.find(
+            //       (req) => req.id === "quantidade_de_especialistas"
+            //     )?.selectedValues || [];
+            //   if (possibleCorrectResponses?.includes(newSelectedValues[0])) {
+            //     scoreByMethod[requirement.id].score = 100;
+            //     scoreByMethod[requirement.id].scoreRepresentativo =
+            //       100 / quantityOfParentIds;
+            //   }
+            //   scoreByMethod["participacao_do_especialista"].score = 0;
+            //   scoreByMethod[
+            //     "participacao_do_especialista"
+            //   ].scoreRepresentativo = 0;
           }
         }
       } else {

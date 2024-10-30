@@ -94,10 +94,10 @@ export const methods: MethodProps[] = [
         requirement: "tipo_de_dado_coletado",
         values: ["Qualitativo"],
       },
-      {
-        requirement: "participacao_do_usuario",
-        values: ["sim"],
-      },
+      // {
+      //   requirement: "participacao_do_usuario",
+      //   values: ["sim"],
+      // },
     ],
     needORReference: [
       {
@@ -110,7 +110,7 @@ export const methods: MethodProps[] = [
       },
       {
         requirement: CONSTANTES.QUANTIDADE_DE_USUARIOS,
-        values: ["5-10"],
+        values: ["6-10"],
       },
     ],
     unNeedORReference: [
@@ -124,7 +124,7 @@ export const methods: MethodProps[] = [
       },
       {
         requirement: CONSTANTES.QUANTIDADE_DE_USUARIOS,
-        values: ["10-20", "20+"],
+        values: ["11-20", "21+"],
       },
     ],
   },
@@ -180,8 +180,8 @@ export const methods: MethodProps[] = [
         values: ["Usabilidade", "Ergonomia", "Qualidade/Conformidade"],
       },
       { requirement: "tipo_de_dado_coletado", values: ["Qualitativo"] },
-      { requirement: "participacao_do_especialista", values: ["sim"] },
-      { requirement: "participacao_do_usuario", values: ["Não"] },
+      // { requirement: "participacao_do_especialista", values: ["sim"] },
+      // { requirement: "participacao_do_usuario", values: ["Não"] },
     ],
     needORReference: [
       { requirement: "orcamento_relativo", values: ["baixo"] },
@@ -245,20 +245,20 @@ export const methods: MethodProps[] = [
         values: ["Usabilidade", "Ergonomia", "Comparação"],
       },
       { requirement: "tipo_de_dado_coletado", values: ["Qualitativo"] },
-      { requirement: "participacao_do_usuario", values: ["Sim"] },
+      // { requirement: "participacao_do_usuario", values: ["Sim"] },
       { requirement: "modalidade_da_avaliacao", values: ["Presencial"] },
     ],
     needORReference: [
       { requirement: "orcamento_relativo", values: ["baixo"] },
       { requirement: "tempo", values: ["baixo"] },
-      { requirement: CONSTANTES.QUANTIDADE_DE_USUARIOS, values: ["5-10"] },
+      { requirement: CONSTANTES.QUANTIDADE_DE_USUARIOS, values: ["6-10"] },
     ],
     unNeedORReference: [
       { requirement: "orcamento_relativo", values: ["medio", "alto"] },
       { requirement: "tempo", values: ["medio", "alto"] },
       {
         requirement: CONSTANTES.QUANTIDADE_DE_USUARIOS,
-        values: ["10-20", "20+"],
+        values: ["11-20", "21+"],
       },
     ],
   },
@@ -315,20 +315,20 @@ export const methods: MethodProps[] = [
         requirement: "objetivos_da_avaliacao",
         values: ["Usabilidade"],
       },
-      { requirement: "participacao_do_usuario", values: ["Sim"] },
+      // { requirement: "participacao_do_usuario", values: ["Sim"] },
     ],
     needORReference: [
       { requirement: "orcamento_relativo", values: ["baixo"] },
       { requirement: "tempo", values: ["baixo"] },
       { requirement: "nivel_de_fidelidade_do_sistema", values: ["alta"] },
-      { requirement: CONSTANTES.QUANTIDADE_DE_USUARIOS, values: ["5-10"] },
+      { requirement: CONSTANTES.QUANTIDADE_DE_USUARIOS, values: ["6-10"] },
     ],
     unNeedORReference: [
       { requirement: "orcamento_relativo", values: ["medio", "alto"] },
       { requirement: "tempo", values: ["medio", "alto"] },
       {
         requirement: CONSTANTES.QUANTIDADE_DE_USUARIOS,
-        values: ["10-20", "20+"],
+        values: ["11-20", "21+"],
       },
     ],
   },

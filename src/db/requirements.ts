@@ -56,14 +56,6 @@ export const requirements: RequirementsProps[] = [
     type: "AND",
   },
   {
-    id: "participacao_do_especialista",
-    values: [
-      { id: "participacao_do_especialista_sim", value: "Sim" },
-      { id: "participacao_do_especialista_nao", value: "Não" },
-    ],
-    type: "AND",
-  },
-  {
     id: "quantidade_de_especialistas",
     values: [
       { id: "quantidade_de_especialistas_1", value: "1" },
@@ -82,20 +74,12 @@ export const requirements: RequirementsProps[] = [
     type: "OR",
   },
   {
-    id: "participacao_do_usuario",
-    values: [
-      { id: "participacao_do_usuario_sim", value: "Sim" },
-      { id: "participacao_do_usuario_nao", value: "Não" },
-    ],
-    type: "AND",
-  },
-  {
     id: CONSTANTES.QUANTIDADE_DE_USUARIOS,
     values: [
       { id: "CONSTANTES.QUANTIDADE_DE_USUARIOS_1_5", value: "1-5" },
-      { id: "CONSTANTES.QUANTIDADE_DE_USUARIOS_5_10", value: "5-10" },
-      { id: "CONSTANTES.QUANTIDADE_DE_USUARIOS_10_20", value: "10-20" },
-      { id: "CONSTANTES.QUANTIDADE_DE_USUARIOS_20_mais", value: "20+" },
+      { id: "CONSTANTES.QUANTIDADE_DE_USUARIOS_5_10", value: "6-10" },
+      { id: "CONSTANTES.QUANTIDADE_DE_USUARIOS_10_20", value: "11-20" },
+      { id: "CONSTANTES.QUANTIDADE_DE_USUARIOS_20_mais", value: "21+" },
     ],
     type: "OR",
   },
