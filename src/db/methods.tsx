@@ -80,8 +80,11 @@ export const methods: MethodProps[] = [
       "Estas infromaçoes estrão em tópicos, esse é o topico 1",
     ],
     more: ["https://www.google.com"],
-    relatedMethods: ["pensar_em_voz_alta"],
-
+    relatedMethods: [
+      "pensar_em_voz_alta",
+      "gravacao_e_analise",
+      "grupos_focais",
+    ],
     needANDReference: [
       {
         requirement: "objetivos_da_avaliacao",

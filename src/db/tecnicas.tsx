@@ -1,5 +1,6 @@
 import { Tooltip, Typography } from "@mui/material";
 import pensar_em_voz_alta from "../assets/pensar_em_voz_alta.jpg"; // Importando a imagem diretamente
+import gravacao_e_analise from "../assets/gravacao_e_analise.jpg"; // Importando a imagem diretamente
 
 export interface TecnicaProps {
   id: string;
@@ -8,18 +9,18 @@ export interface TecnicaProps {
   image: string;
   classificationIcons: React.ReactNode[];
   fullDescription: React.ReactNode;
-  goodPractices: string[];
-  attentionPoints: string[];
-  more: string;
+  goodPractices?: string[];
+  attentionPoints?: string[];
+  more?: string[];
   exemples?: string[];
 }
 
-export const methods: TecnicaProps[] = [
+export const technics: TecnicaProps[] = [
   {
     id: "pensar_em_voz_alta",
     title: "Pensar em Voz Alta",
     description:
-      "Utilizada para compreender o pensamento do usuário, onde ele verbaliza suas ações e pensamentos enquanto utiliza o sistema. Eliminando a necessidade de interpretação pelo avaliador, pois o usuário expressa diretamente o que está pensando.",
+      "Utilizada para compreender o pensamento do usuário, onde ele verbaliza suas ações e pensamentos enquanto interage com o sistema.",
     image: pensar_em_voz_alta,
     classificationIcons: [
       <Tooltip title="Técnica" arrow placement="top">
@@ -55,14 +56,14 @@ export const methods: TecnicaProps[] = [
       "Estas infromaçoes estrão em tópicos, esse é o topico 1",
       "Estas infromaçoes estrão em tópicos, esse é o topico 1",
     ],
-    more: "https://www.google.com",
+    more: ["https://www.google.com"],
   },
   {
     id: "gravacao_e_analise",
     title: "Gravação e Análise",
     description:
       "Registrar a interação do usuário, capturando suas ações por audio ou vídeo, garantindo que nenhum detalhe seja perdido, para análise posterior.",
-    image: pensar_em_voz_alta,
+    image: gravacao_e_analise,
     classificationIcons: [
       <Tooltip title="Técnica" arrow placement="top">
         <Typography variant="h6" color="#ffff" fontWeight={700}>
@@ -97,6 +98,6 @@ export const methods: TecnicaProps[] = [
       "Estas infromaçoes estrão em tópicos, esse é o topico 1",
       "Estas infromaçoes estrão em tópicos, esse é o topico 1",
     ],
-    more: "https://www.google.com",
+    more: ["https://www.google.com"],
   },
 ];
