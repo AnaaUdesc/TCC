@@ -29,12 +29,15 @@ interface GlobalContextData {
   handleCalculateScoreByMethod: (method: string) => {
     scoreGeral: number;
   };
+  selectedRequirements: RequirementProps[] | null | undefined;
+  handleResetSelectedRequirements: () => void;
+  handleUnselectRequirement: (requirementId: string) => void;
 }
 
 // Provedor do contexto que engloba os componentes filhos
 export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
   const [selectedRequirements, setSelectedRequirements] = useState<
-    RequirementProps[] | null
+    RequirementProps[] | null | undefined
   >(null);
 
   const handleCheckboxChange = (
@@ -211,8 +214,6 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
         (req) => req.id === requirement.id
       );
 
-      console.log(requirementByDb, requirement);
-
       const selectedValues = requirement.selectedValues;
 
       if (
@@ -262,7 +263,6 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
             scoreByMethod["participacao_do_usuario"].score = 0;
             scoreByMethod["participacao_do_usuario"].scoreRepresentativo = 0;
           } else if (requirementByDb?.id === "participacao_do_especialista") {
-            console.log("participacao_do_especialista");
             const needORReference = method?.needORReference?.find(
               (req) => req.requirement === "quantidade_de_especialistas"
             );
@@ -353,6 +353,38 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     };
   };
 
+  const handleResetSelectedRequirements = () => {
+    setSelectedRequirements(null);
+  };
+
+  const handleUnselectRequirement = (requirementId: string) => {
+    const foundedRequirement = selectedRequirements?.find(
+      (req) => req.id === requirementId
+    );
+
+    if (foundedRequirement) {
+      setSelectedRequirements((prevRequirements) => {
+        const currentRequirements = prevRequirements ?? [];
+
+        return currentRequirements.filter((req) => req.id !== requirementId);
+      });
+    } else {
+      setSelectedRequirements((prevRequirements) => {
+        return prevRequirements?.map((req) => {
+          if (req.selectedValues.includes(requirementId)) {
+            return {
+              ...req,
+              selectedValues: req.selectedValues.filter(
+                (value) => value !== requirementId
+              ),
+            };
+          }
+          return req;
+        });
+      });
+    }
+  };
+
   return (
     <GlobalContext.Provider
       value={{
@@ -361,6 +393,9 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
         handleRadioChange,
         handleClearRequirement,
         handleCalculateScoreByMethod,
+        selectedRequirements,
+        handleResetSelectedRequirements,
+        handleUnselectRequirement,
       }}
     >
       {children}

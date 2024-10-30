@@ -1,6 +1,7 @@
 import { Close, Share } from "@mui/icons-material";
 import {
   Box,
+  CircularProgress,
   Dialog,
   Divider,
   IconButton,
@@ -13,7 +14,9 @@ import { useGlobalContext } from "../GlobalProvider";
 
 // Importando a imagem
 
-interface CardProps extends MethodProps {}
+interface CardProps extends MethodProps {
+  scoreGeral: number;
+}
 
 export default function Card({
   description,
@@ -28,20 +31,23 @@ export default function Card({
   more,
   exemples,
   relatedMethods,
+  scoreGeral,
 }: CardProps) {
   const [open, setOpen] = useState(false);
   const [score, setScore] = useState(0);
-
-  const { handleCalculateScoreByMethod } = useGlobalContext();
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  const result = useMemo(
-    () => handleCalculateScoreByMethod(id),
-    [handleCalculateScoreByMethod, id]
-  );
+  const getColorByScore = () => {
+    if (scoreGeral >= 75) {
+      return "#056700";
+    } else if (scoreGeral <= 15) {
+      return "#BE0000";
+    }
+    return "#D3BF28";
+  };
 
   return (
     <>
@@ -112,9 +118,53 @@ export default function Card({
         <Divider orientation="vertical" flexItem />
         <Box>
           <Box>
-            <Typography variant="h6" fontWeight={600}>
+            <Box sx={{ position: "relative", display: "inline-flex" }}>
+              <CircularProgress
+                variant="determinate"
+                sx={{
+                  color: "#d9d9d9",
+                }}
+                size={100}
+                thickness={5}
+                value={100}
+              />
+              <CircularProgress
+                variant="determinate"
+                sx={{
+                  color: getColorByScore(),
+                  position: "absolute",
+                  left: 0,
+                }}
+                size={100}
+                thickness={5}
+                value={scoreGeral}
+              />
+
+              <Box
+                sx={{
+                  top: 0,
+                  left: 0,
+                  bottom: 0,
+                  right: 0,
+                  position: "absolute",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography
+                  variant="h5"
+                  component="div"
+                  sx={{ fontWeight: 600 }}
+                >
+                  {scoreGeral}%
+                </Typography>
+              </Box>
+            </Box>
+
+            {/* <Typography variant="h6" fontWeight={600}>
               {Math.round(Number(result.scoreGeral))}%
-            </Typography>
+            </Typography> */}
           </Box>
           <Box>
             <Box>User</Box>
@@ -125,7 +175,7 @@ export default function Card({
       <Dialog
         open={open}
         onClose={handleClose}
-        maxWidth="none"
+        // maxWidth="none"
         PaperProps={{
           sx: {
             borderRadius: 2,

@@ -13,10 +13,81 @@ import Header from "../Componentes/Header";
 import Menu from "../Componentes/Menu";
 import { methods } from "../db/methods";
 import { Delete, Search, Share } from "@mui/icons-material";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useGlobalContext } from "../GlobalProvider";
 
 export default function HomePage() {
   const [focused, setFocused] = useState(false);
+
+  const {
+    handleCalculateScoreByMethod,
+    selectedRequirements,
+    handleResetSelectedRequirements,
+    handleUnselectRequirement,
+  } = useGlobalContext();
+
+  const result: {
+    methodId: string;
+    scoreGeneral: number;
+  }[] = useMemo(
+    () =>
+      methods.map((method) => {
+        return {
+          methodId: method.id,
+          scoreGeneral: Math.round(
+            Number(handleCalculateScoreByMethod(method.id).scoreGeral)
+          ),
+        };
+      }),
+    [handleCalculateScoreByMethod]
+  );
+
+  const requirementIdsToTransform = [
+    "orcamento_relativo",
+    "tempo",
+    "nivel_de_fidelidade_do_sistema",
+    "participacao_do_usuario",
+    "quantidade_de_usuarios",
+    "participacao_do_especialista",
+    "quantidade_de_especialistas",
+  ];
+
+  const sortedResults = result
+    .sort((a, b) => {
+      return a.scoreGeneral - b.scoreGeneral;
+    })
+    .reverse();
+
+  const newSelectedRequirements: {
+    id: string;
+    newName: string;
+  }[] = [];
+
+  selectedRequirements?.map((requirement) => {
+    if (requirementIdsToTransform.includes(requirement.id)) {
+      requirement.selectedValues.map((selectedValue) => {
+        const id = requirement.id.split("_");
+
+        newSelectedRequirements.push({
+          id: requirement.id,
+          newName:
+            id
+              .map((value) => value.charAt(0).toUpperCase() + value.slice(1))
+              .join(" ") +
+            ": " +
+            selectedValue.charAt(0).toUpperCase() +
+            selectedValue.slice(1),
+        });
+      });
+    } else {
+      requirement.selectedValues.map((selectedValue) => {
+        newSelectedRequirements.push({
+          id: selectedValue,
+          newName: selectedValue,
+        });
+      });
+    }
+  });
 
   return (
     <Box
@@ -115,7 +186,7 @@ export default function HomePage() {
                     fontStyle: "italic",
                   }}
                 >
-                  X
+                  {sortedResults.length ?? 0}
                 </Typography>
                 <Typography
                   sx={{
@@ -132,71 +203,87 @@ export default function HomePage() {
                 </IconButton>
               </Box>
             </Box>
-            <Box
-              sx={{
-                border: 0.8,
-                borderRadius: 1.7,
-                padding: 2,
-                paddingTop: 1,
-                width: "100%",
-                borderColor: "rgba(13, 96, 112, 0.5)",
-              }}
-            >
+            {selectedRequirements && selectedRequirements.length > 0 && (
               <Box
                 sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
+                  border: 0.8,
+                  borderRadius: 1.7,
+                  padding: 2,
+                  paddingTop: 1,
+                  width: "100%",
+                  borderColor: "rgba(13, 96, 112, 0.5)",
                 }}
               >
-                <Typography
-                  sx={{ fontWeight: 600, fontSize: "0.9rem", marginBottom: 1 }}
-                >
-                  Seleções Aplicadas
-                </Typography>
-                <Button
-                  size="small"
-                  color="secondary"
-                  startIcon={
-                    <Delete
-                      sx={{
-                        width: 16,
-                        height: 16,
-                        mr: -0.5,
-                      }}
-                    />
-                  }
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
                 >
                   <Typography
-                    variant="caption"
                     sx={{
-                      fontWeight: 300,
-                      textTransform: "none",
-                      fontSize: "0.7rem",
+                      fontWeight: 600,
+                      fontSize: "0.9rem",
+                      marginBottom: 1,
                     }}
                   >
-                    Limpar Tudo
+                    Seleções Aplicadas
                   </Typography>
-                </Button>
-              </Box>
-              <Box>
-                <Chip
-                  size="small"
-                  label="Seleção 1"
-                  onDelete={() => {}}
-                  sx={{
-                    backgroundColor: "#d3e3e4",
-                    fontSize: "0.75rem",
-                    fontWeight: 300,
-                    color: "#000", // Corrigido de "#00000" para "#000"
-                    "& .MuiChip-deleteIcon": {
-                      color: "#0D6070", // Altere aqui para a cor desejada
-                    },
-                  }}
-                />
-              </Box>
-            </Box>
+                  <Button
+                    size="small"
+                    color="secondary"
+                    onClick={handleResetSelectedRequirements}
+                    startIcon={
+                      <Delete
+                        sx={{
+                          width: 16,
+                          height: 16,
+                          mr: -0.5,
+                        }}
+                      />
+                    }
+                  >
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        fontWeight: 300,
+                        textTransform: "none",
+                        fontSize: "0.7rem",
+                      }}
+                    >
+                      Limpar Tudo
+                    </Typography>
+                  </Button>
+                </Box>
 
+                <Box
+                  sx={{
+                    display: "flex",
+                    gap: 1,
+                    flexWrap: "wrap",
+                    mt: 1,
+                  }}
+                >
+                  {newSelectedRequirements?.map((requirement) => (
+                    <Chip
+                      size="small"
+                      label={requirement.newName}
+                      onDelete={() => handleUnselectRequirement(requirement.id)}
+                      sx={{
+                        backgroundColor: "#d3e3e4",
+                        fontSize: "0.75rem",
+                        fontWeight: 300,
+                        color: "#000", // Corrigido de "#00000" para "#000"
+                        "& .MuiChip-deleteIcon": {
+                          color: "#0D6070", // Altere aqui para a cor desejada
+                        },
+                      }}
+                    />
+                  ))}
+                </Box>
+              </Box>
+            )}
             <Box
               sx={{
                 flexGrow: 1,
@@ -205,8 +292,12 @@ export default function HomePage() {
                 gap: 3,
               }}
             >
-              {methods.map((method) => (
-                <Card key={method.id} {...method} />
+              {sortedResults.map((result) => (
+                <Card
+                  key={result.methodId}
+                  {...methods.find((method) => method.id === result.methodId)}
+                  scoreGeral={result.scoreGeneral}
+                />
               ))}
             </Box>
           </Box>
