@@ -76,10 +76,10 @@ export const requirements: RequirementsProps[] = [
   {
     id: CONSTANTES.QUANTIDADE_DE_USUARIOS,
     values: [
-      { id: "CONSTANTES.QUANTIDADE_DE_USUARIOS_1_5", value: "1-5" },
-      { id: "CONSTANTES.QUANTIDADE_DE_USUARIOS_5_10", value: "6-10" },
-      { id: "CONSTANTES.QUANTIDADE_DE_USUARIOS_10_20", value: "11-20" },
-      { id: "CONSTANTES.QUANTIDADE_DE_USUARIOS_20_mais", value: "21+" },
+      { id: "1_5", value: "1-5" },
+      { id: "5_10", value: "6-10" },
+      { id: "10_20", value: "11-20" },
+      { id: "20_mais", value: "21+" },
     ],
     type: "OR",
   },
