@@ -31,6 +31,7 @@ interface GlobalContextData {
   selectedRequirements: RequirementProps[] | null | undefined;
   handleResetSelectedRequirements: () => void;
   handleUnselectRequirement: (requirementId: string) => void;
+  isRequirementSelected: (requirementId: string, value: string) => boolean;
 }
 
 // Provedor do contexto que engloba os componentes filhos
@@ -285,6 +286,17 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     }
   };
 
+  const isRequirementSelected = (
+    requirementId: string,
+    value: string
+  ): boolean => {
+    const foundRequirement = selectedRequirements?.find(
+      (req) => req.id === requirementId
+    );
+
+    return foundRequirement?.selectedValues.includes(value) ?? false;
+  };
+
   return (
     <GlobalContext.Provider
       value={{
@@ -296,6 +308,7 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
         selectedRequirements,
         handleResetSelectedRequirements,
         handleUnselectRequirement,
+        isRequirementSelected,
       }}
     >
       {children}

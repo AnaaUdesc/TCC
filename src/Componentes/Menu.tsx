@@ -19,7 +19,6 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
 import { CgRead } from "react-icons/cg";
 import { GoGoal } from "react-icons/go";
 import ItemMenu from "./ItemMenu";
@@ -27,28 +26,24 @@ import { useGlobalContext } from "../GlobalProvider";
 import { CONSTANTES } from "../constantes";
 
 export default function Menu() {
-  const [nivelDeFidelidade, setNivelDeFidelidade] = useState("");
-  const [orcamentoRelativo, setOrcamentoRelativo] = useState("");
-  const [tempo, setTempo] = useState("");
-
-  const handleChangeNivelDeFidelidade = (value: string) => {
-    setNivelDeFidelidade(value);
-  };
-
-  const handleChangeOrcamentoRelativo = (value: string) => {
-    setOrcamentoRelativo(value);
-  };
-
-  const handleChangeTempo = (value: string) => {
-    setTempo(value);
-  };
-
   const {
     getRequirementLength,
     handleCheckboxChange,
     handleRadioChange,
     handleClearRequirement,
+    isRequirementSelected,
   } = useGlobalContext();
+
+  const handleRadioClick = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    requirementId: string,
+    value: string
+  ) => {
+    event.stopPropagation();
+    if (isRequirementSelected(requirementId, value)) {
+      handleClearRequirement([requirementId]);
+    }
+  };
 
   return (
     <>
@@ -90,6 +85,10 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
+                  checked={isRequirementSelected(
+                    "objetivos_da_avaliacao",
+                    "Usabilidade"
+                  )}
                   onChange={(e) => {
                     handleCheckboxChange(
                       e,
@@ -127,6 +126,10 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
+                  checked={isRequirementSelected(
+                    "objetivos_da_avaliacao",
+                    "Acessibilidade"
+                  )}
                   onChange={(e) => {
                     handleCheckboxChange(
                       e,
@@ -158,6 +161,10 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
+                  checked={isRequirementSelected(
+                    "objetivos_da_avaliacao",
+                    "Ergonomia"
+                  )}
                   onChange={(e) => {
                     handleCheckboxChange(
                       e,
@@ -188,6 +195,10 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
+                  checked={isRequirementSelected(
+                    "objetivos_da_avaliacao",
+                    "Qualidade/Conformidade"
+                  )}
                   onChange={(e) => {
                     handleCheckboxChange(
                       e,
@@ -221,6 +232,10 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
+                  checked={isRequirementSelected(
+                    "objetivos_da_avaliacao",
+                    "Comparação"
+                  )}
                   onChange={(e) => {
                     handleCheckboxChange(
                       e,
@@ -252,6 +267,10 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
+                  checked={isRequirementSelected(
+                    "objetivos_da_avaliacao",
+                    "Validar Informações"
+                  )}
                   onChange={(e) => {
                     handleCheckboxChange(
                       e,
@@ -284,6 +303,10 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
+                  checked={isRequirementSelected(
+                    "objetivos_da_avaliacao",
+                    "Comunicabilidade"
+                  )}
                   onChange={(e) => {
                     handleCheckboxChange(
                       e,
@@ -336,12 +359,7 @@ export default function Menu() {
           name="Orçamento Relativo"
           requirementsLength={getRequirementLength("orcamento_relativo")}
         >
-          <FormGroup
-            sx={{ marginBottom: 4 }}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              handleChangeOrcamentoRelativo(e.target.value as string);
-            }}
-          >
+          <FormGroup sx={{ marginBottom: 4 }}>
             <RadioGroup
               onChange={(e) => {
                 handleRadioChange(e, "orcamento_relativo");
@@ -355,13 +373,12 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
-                    checked={orcamentoRelativo === "baixo"}
+                    checked={isRequirementSelected(
+                      "orcamento_relativo",
+                      "baixo"
+                    )}
                     onClick={(event) => {
-                      event.stopPropagation();
-                      if (orcamentoRelativo === "baixo") {
-                        setOrcamentoRelativo("");
-                        handleClearRequirement(["orcamento_relativo"]);
-                      }
+                      handleRadioClick(event, "orcamento_relativo", "baixo");
                     }}
                   />
                 }
@@ -374,13 +391,12 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
-                    checked={orcamentoRelativo === "medio"}
+                    checked={isRequirementSelected(
+                      "orcamento_relativo",
+                      "medio"
+                    )}
                     onClick={(event) => {
-                      event.stopPropagation();
-                      if (orcamentoRelativo === "medio") {
-                        setOrcamentoRelativo("");
-                        handleClearRequirement(["orcamento_relativo"]);
-                      }
+                      handleRadioClick(event, "orcamento_relativo", "medio");
                     }}
                   />
                 }
@@ -393,13 +409,12 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
-                    checked={orcamentoRelativo === "alto"}
+                    checked={isRequirementSelected(
+                      "orcamento_relativo",
+                      "alto"
+                    )}
                     onClick={(event) => {
-                      event.stopPropagation();
-                      if (orcamentoRelativo === "alto") {
-                        setOrcamentoRelativo("");
-                        handleClearRequirement(["orcamento_relativo"]);
-                      }
+                      handleRadioClick(event, "orcamento_relativo", "alto");
                     }}
                   />
                 }
@@ -431,12 +446,7 @@ export default function Menu() {
           }
           requirementsLength={getRequirementLength("tempo")}
         >
-          <FormGroup
-            sx={{ marginBottom: 4 }}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              handleChangeTempo(e.target.value as string);
-            }}
-          >
+          <FormGroup sx={{ marginBottom: 4 }}>
             <RadioGroup
               onChange={(e) => {
                 handleRadioChange(e, "tempo");
@@ -450,13 +460,9 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
-                    checked={tempo === "baixo"}
+                    checked={isRequirementSelected("tempo", "baixo")}
                     onClick={(event) => {
-                      event.stopPropagation();
-                      if (tempo === "baixo") {
-                        setTempo("");
-                        handleClearRequirement(["tempo"]);
-                      }
+                      handleRadioClick(event, "tempo", "baixo");
                     }}
                   />
                 }
@@ -469,13 +475,9 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
-                    checked={tempo === "medio"}
+                    checked={isRequirementSelected("tempo", "medio")}
                     onClick={(event) => {
-                      event.stopPropagation();
-                      if (tempo === "medio") {
-                        setTempo("");
-                        handleClearRequirement(["tempo"]);
-                      }
+                      handleRadioClick(event, "tempo", "medio");
                     }}
                   />
                 }
@@ -488,13 +490,9 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
-                    checked={tempo === "alto"}
+                    checked={isRequirementSelected("tempo", "alto")}
                     onClick={(event) => {
-                      event.stopPropagation();
-                      if (tempo === "alto") {
-                        setTempo("");
-                        handleClearRequirement(["tempo"]);
-                      }
+                      handleRadioClick(event, "tempo", "alto");
                     }}
                   />
                 }
@@ -524,6 +522,10 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
+                  checked={isRequirementSelected(
+                    "tipo_de_dado_coletado",
+                    "Qualitativo"
+                  )}
                   onChange={(e) => {
                     handleCheckboxChange(
                       e,
@@ -563,6 +565,10 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
+                  checked={isRequirementSelected(
+                    "tipo_de_dado_coletado",
+                    "Quantitativo"
+                  )}
                   onChange={(e) => {
                     handleCheckboxChange(
                       e,
@@ -647,22 +653,86 @@ export default function Menu() {
               >
                 <FormControlLabel
                   value="nenhum"
-                  control={<Radio size="small" color="secondary" />}
+                  control={
+                    <Radio
+                      size="small"
+                      color="secondary"
+                      checked={isRequirementSelected(
+                        "quantidade_de_especialistas",
+                        "nenhum"
+                      )}
+                      onClick={(event) => {
+                        handleRadioClick(
+                          event,
+                          "quantidade_de_especialistas",
+                          "nenhum"
+                        );
+                      }}
+                    />
+                  }
                   label="Nenhum"
                 />
                 <FormControlLabel
                   value="1"
-                  control={<Radio size="small" color="secondary" />}
+                  control={
+                    <Radio
+                      size="small"
+                      color="secondary"
+                      checked={isRequirementSelected(
+                        "quantidade_de_especialistas",
+                        "1"
+                      )}
+                      onClick={(event) => {
+                        handleRadioClick(
+                          event,
+                          "quantidade_de_especialistas",
+                          "1"
+                        );
+                      }}
+                    />
+                  }
                   label="1"
                 />
                 <FormControlLabel
                   value="2_4"
-                  control={<Radio size="small" color="secondary" />}
+                  control={
+                    <Radio
+                      size="small"
+                      color="secondary"
+                      checked={isRequirementSelected(
+                        "quantidade_de_especialistas",
+                        "2_4"
+                      )}
+                      onClick={(event) => {
+                        handleRadioClick(
+                          event,
+                          "quantidade_de_especialistas",
+                          "2_4"
+                        );
+                      }}
+                    />
+                  }
                   label="2 a 4"
                 />
                 <FormControlLabel
                   value="5+"
-                  control={<Radio size="small" color="secondary" />}
+                  control={
+                    <Radio
+                      size="small"
+                      color="secondary"
+                      checked={isRequirementSelected(
+                        "quantidade_de_especialistas",
+                        "5+"
+                      )}
+                      onClick={(event) => {
+                        handleRadioClick(
+                          event,
+                          "quantidade_de_especialistas",
+                          "5+"
+                        );
+                      }}
+                    />
+                  }
                   label="5 ou mais"
                 />
               </RadioGroup>
@@ -685,12 +755,7 @@ export default function Menu() {
             "nivel_de_fidelidade_do_sistema"
           )}
         >
-          <FormGroup
-            sx={{ marginBottom: 4 }}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              handleChangeNivelDeFidelidade(e.target.value as string);
-            }}
-          >
+          <FormGroup sx={{ marginBottom: 4 }}>
             <RadioGroup
               onChange={(e) => {
                 handleRadioChange(e, "nivel_de_fidelidade_do_sistema");
@@ -704,15 +769,16 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
-                    checked={nivelDeFidelidade === "baixa"}
+                    checked={isRequirementSelected(
+                      "nivel_de_fidelidade_do_sistema",
+                      "baixa"
+                    )}
                     onClick={(event) => {
-                      event.stopPropagation();
-                      if (nivelDeFidelidade === "baixa") {
-                        setNivelDeFidelidade("");
-                        handleClearRequirement([
-                          "nivel_de_fidelidade_do_sistema",
-                        ]);
-                      }
+                      handleRadioClick(
+                        event,
+                        "nivel_de_fidelidade_do_sistema",
+                        "baixa"
+                      );
                     }}
                   />
                 }
@@ -744,15 +810,16 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
-                    checked={nivelDeFidelidade === "media"}
+                    checked={isRequirementSelected(
+                      "nivel_de_fidelidade_do_sistema",
+                      "media"
+                    )}
                     onClick={(event) => {
-                      event.stopPropagation();
-                      if (nivelDeFidelidade === "media") {
-                        setNivelDeFidelidade("");
-                        handleClearRequirement([
-                          "nivel_de_fidelidade_do_sistema",
-                        ]);
-                      }
+                      handleRadioClick(
+                        event,
+                        "nivel_de_fidelidade_do_sistema",
+                        "media"
+                      );
                     }}
                   />
                 }
@@ -784,15 +851,16 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
-                    checked={nivelDeFidelidade === "alta"}
+                    checked={isRequirementSelected(
+                      "nivel_de_fidelidade_do_sistema",
+                      "alta"
+                    )}
                     onClick={(event) => {
-                      event.stopPropagation();
-                      if (nivelDeFidelidade === "alta") {
-                        setNivelDeFidelidade("");
-                        handleClearRequirement([
-                          "nivel_de_fidelidade_do_sistema",
-                        ]);
-                      }
+                      handleRadioClick(
+                        event,
+                        "nivel_de_fidelidade_do_sistema",
+                        "alta"
+                      );
                     }}
                   />
                 }
@@ -859,27 +927,107 @@ export default function Menu() {
               >
                 <FormControlLabel
                   value="nenhum"
-                  control={<Radio size="small" color="secondary" />}
+                  control={
+                    <Radio
+                      size="small"
+                      color="secondary"
+                      checked={isRequirementSelected(
+                        CONSTANTES.QUANTIDADE_DE_USUARIOS,
+                        "nenhum"
+                      )}
+                      onClick={(event) => {
+                        handleRadioClick(
+                          event,
+                          CONSTANTES.QUANTIDADE_DE_USUARIOS,
+                          "nenhum"
+                        );
+                      }}
+                    />
+                  }
                   label="Nenhum"
                 />
                 <FormControlLabel
                   value="1-5"
-                  control={<Radio size="small" color="secondary" />}
+                  control={
+                    <Radio
+                      size="small"
+                      color="secondary"
+                      checked={isRequirementSelected(
+                        CONSTANTES.QUANTIDADE_DE_USUARIOS,
+                        "1-5"
+                      )}
+                      onClick={(event) => {
+                        handleRadioClick(
+                          event,
+                          CONSTANTES.QUANTIDADE_DE_USUARIOS,
+                          "1-5"
+                        );
+                      }}
+                    />
+                  }
                   label="1 a 5"
                 />
                 <FormControlLabel
                   value="6-10"
-                  control={<Radio size="small" color="secondary" />}
+                  control={
+                    <Radio
+                      size="small"
+                      color="secondary"
+                      checked={isRequirementSelected(
+                        CONSTANTES.QUANTIDADE_DE_USUARIOS,
+                        "6-10"
+                      )}
+                      onClick={(event) => {
+                        handleRadioClick(
+                          event,
+                          CONSTANTES.QUANTIDADE_DE_USUARIOS,
+                          "6-10"
+                        );
+                      }}
+                    />
+                  }
                   label="6 a 10"
                 />
                 <FormControlLabel
                   value="11-20"
-                  control={<Radio size="small" color="secondary" />}
+                  control={
+                    <Radio
+                      size="small"
+                      color="secondary"
+                      checked={isRequirementSelected(
+                        CONSTANTES.QUANTIDADE_DE_USUARIOS,
+                        "11-20"
+                      )}
+                      onClick={(event) => {
+                        handleRadioClick(
+                          event,
+                          CONSTANTES.QUANTIDADE_DE_USUARIOS,
+                          "11-20"
+                        );
+                      }}
+                    />
+                  }
                   label="11 a 20"
                 />
                 <FormControlLabel
                   value="21+"
-                  control={<Radio size="small" color="secondary" />}
+                  control={
+                    <Radio
+                      size="small"
+                      color="secondary"
+                      checked={isRequirementSelected(
+                        CONSTANTES.QUANTIDADE_DE_USUARIOS,
+                        "21+"
+                      )}
+                      onClick={(event) => {
+                        handleRadioClick(
+                          event,
+                          CONSTANTES.QUANTIDADE_DE_USUARIOS,
+                          "21+"
+                        );
+                      }}
+                    />
+                  }
                   label="21 ou mais"
                 />
               </RadioGroup>
@@ -916,6 +1064,10 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
+                  checked={isRequirementSelected(
+                    "modalidade_da_avaliacao",
+                    "Remota"
+                  )}
                   onChange={(e) => {
                     handleCheckboxChange(
                       e,
@@ -933,6 +1085,10 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
+                  checked={isRequirementSelected(
+                    "modalidade_da_avaliacao",
+                    "Presencial"
+                  )}
                   onChange={(e) => {
                     handleCheckboxChange(
                       e,

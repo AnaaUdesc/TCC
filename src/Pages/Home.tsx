@@ -27,6 +27,18 @@ export default function HomePage() {
     handleUnselectRequirement,
   } = useGlobalContext();
 
+  const hasSelectedRequirements = useMemo(() => {
+    if (!selectedRequirements) {
+      return false;
+    } else {
+      const newValues = selectedRequirements.flatMap((requirement) => {
+        return requirement.selectedValues;
+      });
+      return newValues.length > 0;
+    }
+    return false;
+  }, [selectedRequirements]);
+
   const filteredMethods = useMemo(() => {
     return methods.filter((method) => {
       return (
@@ -214,7 +226,7 @@ export default function HomePage() {
                 </IconButton>
               </Box>
             </Box>
-            {selectedRequirements && selectedRequirements.length > 0 && (
+            {hasSelectedRequirements && (
               <Box
                 sx={{
                   border: 0.8,

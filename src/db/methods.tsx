@@ -253,6 +253,10 @@ export const methods: MethodProps[] = [
       { requirement: "orcamento_relativo", values: ["baixo"] },
       { requirement: "tempo", values: ["baixo"] },
       { requirement: CONSTANTES.QUANTIDADE_DE_USUARIOS, values: ["6-10"] },
+      {
+        requirement: "quantidade_de_especialistas",
+        values: ["nenhum"],
+      },
     ],
     unNeedORReference: [
       { requirement: "orcamento_relativo", values: ["medio", "alto"] },
@@ -322,6 +326,10 @@ export const methods: MethodProps[] = [
       { requirement: "tempo", values: ["baixo"] },
       { requirement: "nivel_de_fidelidade_do_sistema", values: ["alta"] },
       { requirement: CONSTANTES.QUANTIDADE_DE_USUARIOS, values: ["6-10"] },
+      {
+        requirement: "quantidade_de_especialistas",
+        values: ["nenhum"],
+      },
     ],
     unNeedORReference: [
       { requirement: "orcamento_relativo", values: ["medio", "alto"] },
