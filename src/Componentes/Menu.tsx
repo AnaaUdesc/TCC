@@ -356,7 +356,7 @@ export default function Menu() {
             </>
           }
           icon={<AttachMoney />}
-          name="Orçamento Relativo"
+          name="Orçamento relativo"
           requirementsLength={getRequirementLength("orcamento_relativo")}
         >
           <FormGroup sx={{ marginBottom: 4 }}>
@@ -608,7 +608,7 @@ export default function Menu() {
         <Divider sx={{ borderColor: "#E3E3E3", marginX: 2 }} />
         <ItemMenu
           icon={<CgRead />}
-          name="Disponibilidade de Especialista"
+          name="Disponibilidade de especialista"
           tooltipTile={
             <>
               <Typography>
@@ -742,7 +742,7 @@ export default function Menu() {
         <Divider sx={{ borderColor: "#E3E3E3", marginX: 2 }} />
         <ItemMenu
           icon={<PersonalVideo />}
-          name="Nível de Fidelidade do Sistema"
+          name="Nível de fidelidade do sistema"
           tooltipTile={
             <>
               <Typography>
@@ -892,7 +892,7 @@ export default function Menu() {
         <Divider sx={{ borderColor: "#E3E3E3", marginX: 2 }} />
         <ItemMenu
           icon={<Groups />}
-          name="Participação do Usuário"
+          name="Participação do usuário"
           tooltipTile={
             <>
               <Typography>
@@ -1037,7 +1037,7 @@ export default function Menu() {
         <Divider sx={{ borderColor: "#E3E3E3", marginX: 2 }} />
         <ItemMenu
           icon={<VideoChat />}
-          name="Modalidade da Avaliação"
+          name="Modalidade da avaliação"
           tooltipTile={
             <>
               <Typography>

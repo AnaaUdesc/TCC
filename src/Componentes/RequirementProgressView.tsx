@@ -9,15 +9,20 @@ import {
   Typography,
 } from "@mui/material";
 import { BorderLinearProgress } from "./Card";
+import { Padding } from "@mui/icons-material";
 
-const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
+export const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))(() => ({
   [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: "#86ADB5",
+    backgroundColor: "rgba(134, 173, 181, 0.90)",
     color: "rgba(0, 0, 0, 0.87)",
+    padding: "20px 20px",
     // boxShadow: theme.shadows[1],
     // fontSize: 11,
+  },
+  [`& .${tooltipClasses.arrow}`]: {
+    color: "rgba(134, 173, 181, 0.90)", // Define a cor da seta aqui
   },
 }));
 
@@ -44,7 +49,9 @@ export default function RequirementProgressView({
           width: "100%",
         }}
       >
-        <SvgIcon color="secondary">{icon}</SvgIcon>
+        <SvgIcon color="secondary" sx={{ fontSize: 25 }}>
+          {icon}
+        </SvgIcon>
 
         <Box
           sx={{
@@ -56,11 +63,26 @@ export default function RequirementProgressView({
               {title}
             </Typography>
           </Badge>
-          <BorderLinearProgress
-            variant="determinate"
-            value={progress}
-            sx={{ width: "100%", height: 7 }}
-          />
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+              marginTop: -0.5,
+            }}
+          >
+            <BorderLinearProgress
+              variant="determinate"
+              value={progress}
+              sx={{ width: "100%", height: 7 }}
+            />
+            <Typography
+              variant="caption"
+              sx={{ fontStyle: "italic", color: "#a0a0a0" }}
+            >
+              {progress}%
+            </Typography>
+          </Box>
         </Box>
       </Box>
     </LightTooltip>

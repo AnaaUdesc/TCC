@@ -124,6 +124,7 @@ export default function Card({
             flexDirection: "column",
             justifyContent: "space-around",
             paddingX: 2,
+            paddingRight: 5,
           }}
         >
           <Box sx={{ display: "flex", gap: 1, marginBottom: -3 }}>
@@ -171,60 +172,66 @@ export default function Card({
             alignItems: "center",
           }}
         >
-          <Box sx={{ padding: 3, paddingBottom: 1 }}>
-            <Box
-              sx={{
-                position: "relative",
-                display: "inline-flex",
-              }}
-            >
-              <CircularProgress
-                variant="determinate"
-                sx={{
-                  color: "#d9d9d9",
-                }}
-                size={100}
-                thickness={5}
-                value={100}
-              />
-              <CircularProgress
-                variant="determinate"
-                sx={{
-                  color: getColorByScore(scoreGeral),
-                  position: "absolute",
-                  left: 0,
-                }}
-                size={100}
-                thickness={5}
-                value={scoreGeral}
-              />
-
+          <Tooltip
+            title="Compatibilidade geral do método"
+            arrow
+            placement="left"
+          >
+            <Box sx={{ padding: 3, paddingBottom: 1 }}>
               <Box
                 sx={{
-                  top: 0,
-                  left: 0,
-                  bottom: 0,
-                  right: 0,
-                  position: "absolute",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  position: "relative",
+                  display: "inline-flex",
                 }}
               >
-                <Typography
-                  variant="h5"
-                  component="div"
-                  sx={{ fontWeight: 600 }}
-                >
-                  {scoreGeral}%
-                </Typography>
-              </Box>
-            </Box>
+                <CircularProgress
+                  variant="determinate"
+                  sx={{
+                    color: "#d9d9d9",
+                  }}
+                  size={100}
+                  thickness={5}
+                  value={100}
+                />
+                <CircularProgress
+                  variant="determinate"
+                  sx={{
+                    color: getColorByScore(scoreGeral),
+                    position: "absolute",
+                    left: 0,
+                  }}
+                  size={100}
+                  thickness={5}
+                  value={scoreGeral}
+                />
 
-            {/* <Typography variant="h6" fontWeight={600}>
+                <Box
+                  sx={{
+                    top: 0,
+                    left: 0,
+                    bottom: 0,
+                    right: 0,
+                    position: "absolute",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Typography
+                    variant="h5"
+                    component="div"
+                    sx={{ fontWeight: 600 }}
+                  >
+                    {scoreGeral}%
+                  </Typography>
+                </Box>
+              </Box>
+
+              {/* <Typography variant="h6" fontWeight={600}>
               {Math.round(Number(result.scoreGeral))}%
             </Typography> */}
-          </Box>
+            </Box>
+          </Tooltip>
           <Box sx={{ paddingX: 3 }}>
             <Box sx={{ alignItems: "center", display: "flex", gap: 1 }}>
               <Tooltip

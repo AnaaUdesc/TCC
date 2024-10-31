@@ -1,4 +1,11 @@
-import { Close, Group, Share } from "@mui/icons-material";
+import {
+  Close,
+  Group,
+  PersonalVideo,
+  PieChart,
+  Share,
+  VideoChat,
+} from "@mui/icons-material";
 import {
   Dialog,
   Box,
@@ -7,15 +14,19 @@ import {
   Link,
   Divider,
   CircularProgress,
+  Tooltip,
 } from "@mui/material";
 import { MethodProps, methods } from "../db/methods";
 import { technics } from "../db/tecnicas";
 import { getColorByScore, getMethodOrTechniqueById } from "./Card";
 import { AttachMoney, CalendarMonth } from "@mui/icons-material";
 import { GoGoal } from "react-icons/go";
-import RequirementProgressView from "./RequirementProgressView";
+import RequirementProgressView, {
+  LightTooltip,
+} from "./RequirementProgressView";
 import { requirements } from "../db/requirements";
 import { useGlobalContext } from "../GlobalProvider";
+import { CgRead } from "react-icons/cg";
 
 const getReferenceValueByRequirementId = (
   requirementId: string,
@@ -76,22 +87,66 @@ export default function MethodDialog({
 }: MethodDialogProps) {
   const { getSelectedValuesByRequirementId } = useGlobalContext();
 
+  const selectedObjetivos = getSelectedValuesByRequirementId(
+    "objetivos_da_avaliacao"
+  );
+  const referenceObjetivos = getReferenceValueByRequirementId(
+    "objetivos_da_avaliacao",
+    methodId
+  );
+
+  const selectedOrcamento =
+    getSelectedValuesByRequirementId("orcamento_relativo");
+  const referenceOrcamento = getReferenceValueByRequirementId(
+    "orcamento_relativo",
+    methodId
+  );
+
+  const selectedTempo = getSelectedValuesByRequirementId("tempo");
+  const referenceTempo = getReferenceValueByRequirementId("tempo", methodId);
+
+  const selectedTipoDeDado = getSelectedValuesByRequirementId(
+    "tipo_de_dado_coletado"
+  );
+  const referenceTipoDeDado = getReferenceValueByRequirementId(
+    "tipo_de_dado_coletado",
+    methodId
+  );
+
+  const selectedEspecialista = getSelectedValuesByRequirementId(
+    "quantidade_de_especialistas"
+  );
+  const referenceEspecialista = getReferenceValueByRequirementId(
+    "quantidade_de_especialistas",
+    methodId
+  );
+
+  const selectedFidelidade = getSelectedValuesByRequirementId(
+    "nivel_de_fidelidade_do_sistema"
+  );
+
+  const referenceFidelidade = getReferenceValueByRequirementId(
+    "nivel_de_fidelidade_do_sistema",
+    methodId
+  );
+
   const selectedUsers = getSelectedValuesByRequirementId(
     "quantidade_de_usuarios"
   );
-  console.log("selectedUsers", selectedUsers);
 
   const referenceUsers = getReferenceValueByRequirementId(
     "quantidade_de_usuarios",
     methodId
   );
 
-  // const referenceObjectives = getReferenceValueByRequirementId(
-  //   "objetivos_da_avaliacao",
-  //   methodId
-  // );
+  const selectedModalidade = getSelectedValuesByRequirementId(
+    "modalidade_da_avaliacao"
+  );
 
-  // console.log("referenceObjectives", referenceObjectives);
+  const referenceModalidade = getReferenceValueByRequirementId(
+    "modalidade_da_avaliacao",
+    methodId
+  );
 
   const requirementsProps: {
     title: string;
@@ -101,45 +156,222 @@ export default function MethodDialog({
     {
       title: "Objetivo da avaliação",
       children: (
-        <Box>
-          child objetivo asd
-          <address>{title}</address>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 1,
+          }}
+        >
+          <Typography>Valor de referência do método:</Typography>
+          {referenceObjetivos?.map((ref) => (
+            <Typography key={ref}>{ref}</Typography>
+          ))}
+          <Typography>
+            <br />
+            Valor de input:
+          </Typography>
+          {selectedObjetivos?.map((ref) => (
+            <Typography key={ref}>{ref}</Typography>
+          ))}
         </Box>
       ),
       icon: <GoGoal />,
     },
     {
-      title: "Orçamento Relativo",
-      children: <Box>child csto</Box>,
-      icon: <AttachMoney />,
-    },
-    {
-      title: "Tempo",
-      children: <Box>child tempo</Box>,
-      icon: <CalendarMonth />,
-    },
-    {
-      title: "Participação de Usuario",
+      title: "Orçamento relativo",
       children: (
         <Box
           sx={{
             display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
             alignItems: "center",
             gap: 1,
           }}
         >
-          <Typography>Referência </Typography>
+          <Typography>Valor de referência do método:</Typography>
+          {referenceOrcamento?.map((ref) => (
+            <Typography key={ref}>{ref}</Typography>
+          ))}
+          <Typography>
+            <br />
+            Valor de input:
+          </Typography>
+          {selectedOrcamento?.map((ref) => (
+            <Typography key={ref}>{ref}</Typography>
+          ))}
+        </Box>
+      ),
+      icon: <AttachMoney />,
+    },
+    {
+      title: "Tempo",
+      children: (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 1,
+          }}
+        >
+          <Typography>Valor de referência do método:</Typography>
+          {referenceTempo?.map((ref) => (
+            <Typography key={ref}>{ref}</Typography>
+          ))}
+          <Typography>
+            <br />
+            Valor de input:
+          </Typography>
+          {selectedTempo?.map((ref) => (
+            <Typography key={ref}>{ref}</Typography>
+          ))}
+        </Box>
+      ),
+      icon: <CalendarMonth />,
+    },
+    {
+      title: "Tipo de dado coletado",
+      children: (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 1,
+          }}
+        >
+          <Typography>Valor de referência do método:</Typography>
+          {referenceTipoDeDado?.map((ref) => (
+            <Typography key={ref}>{ref}</Typography>
+          ))}
+          <Typography>
+            <br />
+            Valor de input:
+          </Typography>
+          {selectedTipoDeDado?.map((ref) => (
+            <Typography key={ref}>{ref}</Typography>
+          ))}
+        </Box>
+      ),
+
+      icon: <PieChart />,
+    },
+    {
+      title: "Disponibilidade de especialista",
+      children: (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 1,
+          }}
+        >
+          <Typography>Valor de referência do método:</Typography>
+          {referenceEspecialista?.map((ref) => (
+            <Typography key={ref}>{ref}</Typography>
+          ))}
+          <Typography>
+            <br />
+            Valor de input:
+          </Typography>
+          {selectedEspecialista?.map((ref) => (
+            <Typography key={ref}>{ref}</Typography>
+          ))}
+        </Box>
+      ),
+
+      icon: <CgRead />,
+    },
+    {
+      title: "Nivel de fidelidade do sistema",
+      children: (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 1,
+          }}
+        >
+          <Typography>Valor de referência do método:</Typography>
+          {referenceFidelidade?.map((ref) => (
+            <Typography key={ref}>{ref}</Typography>
+          ))}
+          <Typography>
+            <br />
+            Valor de input:
+          </Typography>
+          {selectedFidelidade?.map((ref) => (
+            <Typography key={ref}>{ref}</Typography>
+          ))}
+        </Box>
+      ),
+
+      icon: <PersonalVideo />,
+    },
+    {
+      title: "Participação do usuário",
+      children: (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 1,
+          }}
+        >
+          <Typography>Valor de referência do método:</Typography>
           {referenceUsers?.map((ref) => (
             <Typography key={ref}>{ref}</Typography>
           ))}
-          /
+          <Typography>
+            <br />
+            Valor de input:
+          </Typography>
           {selectedUsers?.map((ref) => (
             <Typography key={ref}>{ref}</Typography>
           ))}
-          <Typography>Você</Typography>
         </Box>
       ),
       icon: <Group />,
+    },
+    {
+      title: "Modalidade da avaliação",
+      children: (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 1,
+          }}
+        >
+          <Typography>Valor de referência do método:</Typography>
+          {referenceModalidade?.map((ref) => (
+            <Typography key={ref}>{ref}</Typography>
+          ))}
+          <Typography>
+            <br />
+            Valor de input:
+          </Typography>
+          {selectedModalidade?.map((ref) => (
+            <Typography key={ref}>{ref}</Typography>
+          ))}
+        </Box>
+      ),
+
+      icon: <VideoChat />,
     },
   ];
 
@@ -307,7 +539,7 @@ export default function MethodDialog({
                   fontWeight={600}
                   sx={{ marginTop: 2, marginBottom: 2 }}
                 >
-                  Leia Mais
+                  Indicação de Leitura e Referências
                 </Typography>
                 <Box sx={{ marginBottom: 7 }}>
                   {more?.map((link, index) => (
@@ -441,67 +673,102 @@ export default function MethodDialog({
               width: "800px",
             }}
           >
-            <Typography>Compatibilidade</Typography>
+            <Typography variant="h5" fontWeight={600}>
+              Compatibilidades
+            </Typography>
+            <Typography
+              variant="h6"
+              fontWeight={500}
+              fontStyle={"italic"}
+              sx={{ marginTop: 2 }}
+            >
+              Total
+            </Typography>
             <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
                 gap: 2,
                 alignItems: "center",
-                my: 4,
+                my: 1,
               }}
             >
-              <Box
-                sx={{
-                  position: "relative",
-                  display: "inline-flex",
-                }}
+              <LightTooltip
+                title={
+                  <Typography>
+                    A <b>compatibilidade geral</b> representa o percentual de
+                    adequação deste método aos requisitos que você forneceu,
+                    combinados com as condições necessárias para o funcionamento
+                    deste método.
+                    <br />
+                    <br />
+                    Você encontrará justificativas sobre essa porcentagem
+                    observando as porcentagens <b>'Por requisito'</b>, listadas
+                    abaixo.
+                  </Typography>
+                }
+                arrow
+                placement="left"
               >
-                <CircularProgress
-                  variant="determinate"
-                  sx={{
-                    color: "#d9d9d9",
-                  }}
-                  size={100}
-                  thickness={5}
-                  value={100}
-                />
-                <CircularProgress
-                  variant="determinate"
-                  sx={{
-                    color: getColorByScore(scoreGeral ?? 0),
-                    position: "absolute",
-                    left: 0,
-                  }}
-                  size={100}
-                  thickness={5}
-                  value={scoreGeral}
-                />
-
                 <Box
                   sx={{
-                    top: 0,
-                    left: 0,
-                    bottom: 0,
-                    right: 0,
-                    position: "absolute",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
+                    position: "relative",
+                    display: "inline-flex",
                   }}
                 >
-                  <Typography
-                    variant="h5"
-                    component="div"
-                    sx={{ fontWeight: 600 }}
+                  <CircularProgress
+                    variant="determinate"
+                    sx={{
+                      color: "#d9d9d9",
+                    }}
+                    size={100}
+                    thickness={5}
+                    value={100}
+                  />
+                  <CircularProgress
+                    variant="determinate"
+                    sx={{
+                      color: getColorByScore(scoreGeral ?? 0),
+                      position: "absolute",
+                      left: 0,
+                    }}
+                    size={100}
+                    thickness={5}
+                    value={scoreGeral}
+                  />
+
+                  <Box
+                    sx={{
+                      top: 0,
+                      left: 0,
+                      bottom: 0,
+                      right: 0,
+                      position: "absolute",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
                   >
-                    {scoreGeral}%
-                  </Typography>
+                    <Typography
+                      variant="h5"
+                      component="div"
+                      sx={{ fontWeight: 600 }}
+                    >
+                      {scoreGeral}%
+                    </Typography>
+                  </Box>
                 </Box>
-              </Box>
+              </LightTooltip>
             </Box>
 
-            <Typography>Por requisito</Typography>
+            <Typography
+              variant="h6"
+              fontWeight={500}
+              fontStyle={"italic"}
+              sx={{ marginTop: 5, marginBottom: 2 }}
+            >
+              Por requisito
+            </Typography>
             <Box
               sx={{
                 display: "flex",
