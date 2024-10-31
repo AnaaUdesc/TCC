@@ -1,9 +1,15 @@
-import { AttachMoney, CalendarMonth, Groups } from "@mui/icons-material";
+import {
+  AttachMoney,
+  CalendarMonth,
+  Groups,
+  MoreHoriz,
+} from "@mui/icons-material";
 import { GoGoal } from "react-icons/go";
 import {
   Box,
   CircularProgress,
   Divider,
+  IconButton,
   LinearProgress,
   linearProgressClasses,
   Link,
@@ -103,7 +109,7 @@ export default function Card({
           sx={{
             backgroundImage: `url(${image})`,
             width: 161,
-            height: 261,
+            height: 275,
             minWidth: 161,
             minHeight: 261,
             borderRadius: 2,
@@ -163,7 +169,7 @@ export default function Card({
             alignItems: "center",
           }}
         >
-          <Box sx={{ padding: 3 }}>
+          <Box sx={{ padding: 3, paddingBottom: 1 }}>
             <Box
               sx={{
                 position: "relative",
@@ -310,6 +316,21 @@ export default function Card({
                 %
               </Typography>
             </Box>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              mt: 0,
+              ml: 2,
+            }}
+          >
+            <Tooltip title="Ver mais requisitos" placement="bottom" arrow>
+              <IconButton onClick={() => setOpen(true)} color="secondary">
+                <MoreHoriz />
+              </IconButton>
+            </Tooltip>
           </Box>
         </Box>
       </Box>
