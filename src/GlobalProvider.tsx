@@ -27,6 +27,9 @@ interface GlobalContextData {
   handleClearRequirement: (requirementIds: string[]) => void;
   handleCalculateScoreByMethod: (method: string) => {
     scoreGeral: number;
+    scoresRepresentativos: {
+      [key: string]: { score: number; scoreRepresentativo: number };
+    };
   };
   selectedRequirements: RequirementProps[] | null | undefined;
   handleResetSelectedRequirements: () => void;
@@ -246,7 +249,7 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     });
 
     return {
-      ...scoreByMethod,
+      scoresRepresentativos: scoreByMethod,
       scoreGeral: Object.values(scoreByMethod).reduce(
         (acc, score) => acc + score.scoreRepresentativo,
         0

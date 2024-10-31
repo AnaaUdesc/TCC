@@ -21,6 +21,12 @@ import { technics } from "../db/tecnicas";
 
 interface CardProps extends MethodProps {
   scoreGeral: number;
+  scoresRepresentativos: {
+    [key: string]: {
+      score: number;
+      scoreRepresentativo: number;
+    };
+  };
 }
 
 export default function Card({
@@ -35,11 +41,13 @@ export default function Card({
   exemples,
   relatedMethods,
   scoreGeral,
+  scoresRepresentativos,
 }: CardProps) {
   const [open, setOpen] = useState(false);
   const [selectedMethodOrTechnique, setSelectedMethodOrTechnique] =
     useState<MethodProps | null>(null);
 
+  console.log("scoresRepresentativos", scoresRepresentativos);
   const handleClose = () => {
     setOpen(false);
   };
@@ -51,6 +59,10 @@ export default function Card({
       return "#BE0000";
     }
     return "#D3BF28";
+  };
+
+  const handleGetScoreByKey = (key: string) => {
+    return scoresRepresentativos[key]?.score ?? 0;
   };
 
   const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
@@ -217,12 +229,15 @@ export default function Card({
               </Tooltip>
               <BorderLinearProgress
                 variant="determinate"
-                value={50}
+                value={handleGetScoreByKey("orcamento_relativo")}
                 sx={{ width: 100 }}
               />
-              {/* <Typography sx={{ fontStyle: "italic", color: "#bbbbbb" }}>
-                50%
-              </Typography> */}
+              <Typography
+                variant="caption"
+                sx={{ fontStyle: "italic", color: "#a0a0a0" }}
+              >
+                {Math.round(Number(handleGetScoreByKey("orcamento_relativo")))}%
+              </Typography>
             </Box>
             <Box sx={{ alignItems: "center", display: "flex", gap: 1 }}>
               <Tooltip
@@ -235,12 +250,15 @@ export default function Card({
               </Tooltip>
               <BorderLinearProgress
                 variant="determinate"
-                value={50}
+                value={handleGetScoreByKey("tempo")}
                 sx={{ width: 100 }}
               />
-              {/* <Typography sx={{ fontStyle: "italic", color: "#bbbbbb" }}>
-                50%
-              </Typography> */}
+              <Typography
+                variant="caption"
+                sx={{ fontStyle: "italic", color: "#a0a0a0" }}
+              >
+                {Math.round(Number(handleGetScoreByKey("tempo")))}%
+              </Typography>
             </Box>{" "}
             <Box sx={{ alignItems: "center", display: "flex", gap: 1 }}>
               <Tooltip
@@ -253,13 +271,19 @@ export default function Card({
               </Tooltip>
               <BorderLinearProgress
                 variant="determinate"
-                value={50}
+                value={handleGetScoreByKey("quantidade_de_usuarios")}
                 sx={{ width: 100 }}
               />
-              {/* <Typography sx={{ fontStyle: "italic", color: "#bbbbbb" }}>
-                50%
-              </Typography> */}
-            </Box>{" "}
+              <Typography
+                variant="caption"
+                sx={{ fontStyle: "italic", color: "#a0a0a0" }}
+              >
+                {Math.round(
+                  Number(handleGetScoreByKey("quantidade_de_usuarios"))
+                )}
+                %
+              </Typography>
+            </Box>
             <Box sx={{ alignItems: "center", display: "flex", gap: 1 }}>
               <Tooltip
                 title={"Objetivo da avaliação"}
@@ -267,20 +291,24 @@ export default function Card({
                 placement="left"
                 onClick={() => setOpen(true)}
               >
-                <SvgIcon
-                  color="secondary"
-                  component={GoGoal}
-                  sx={{ cursor: "pointer" }}
-                />
+                <SvgIcon color="secondary" sx={{ cursor: "pointer" }}>
+                  <GoGoal />
+                </SvgIcon>
               </Tooltip>
               <BorderLinearProgress
                 variant="determinate"
-                value={50}
+                value={handleGetScoreByKey("objetivos_da_avaliacao")}
                 sx={{ width: 100 }}
               />
-              {/* <Typography sx={{ fontStyle: "italic", color: "#bbbbbb" }}>
-                50%
-              </Typography> */}
+              <Typography
+                variant="caption"
+                sx={{ fontStyle: "italic", color: "#a0a0a0" }}
+              >
+                {Math.round(
+                  Number(handleGetScoreByKey("objetivos_da_avaliacao"))
+                )}
+                %
+              </Typography>
             </Box>
           </Box>
         </Box>

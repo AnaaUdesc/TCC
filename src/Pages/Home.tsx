@@ -36,7 +36,6 @@ export default function HomePage() {
       });
       return newValues.length > 0;
     }
-    return false;
   }, [selectedRequirements]);
 
   const filteredMethods = useMemo(() => {
@@ -51,14 +50,21 @@ export default function HomePage() {
   const result: {
     methodId: string;
     scoreGeneral: number;
+    scoresRepresentativos: {
+      [key: string]: {
+        score: number;
+        scoreRepresentativo: number;
+      };
+    };
   }[] = useMemo(
     () =>
       filteredMethods.map((method) => {
+        const resultCalculate = handleCalculateScoreByMethod(method.id);
+
         return {
           methodId: method.id,
-          scoreGeneral: Math.round(
-            Number(handleCalculateScoreByMethod(method.id).scoreGeral)
-          ),
+          scoreGeneral: Math.round(Number(resultCalculate.scoreGeral)),
+          scoresRepresentativos: resultCalculate.scoresRepresentativos,
         };
       }),
     [filteredMethods, handleCalculateScoreByMethod]
@@ -290,6 +296,7 @@ export default function HomePage() {
                 >
                   {newSelectedRequirements?.map((requirement) => (
                     <Chip
+                      key={requirement.id}
                       size="small"
                       label={requirement.newName}
                       onDelete={() => handleUnselectRequirement(requirement.id)}
@@ -322,6 +329,7 @@ export default function HomePage() {
                     (method) => method.id === result.methodId
                   ) as MethodProps)}
                   scoreGeral={result.scoreGeneral}
+                  scoresRepresentativos={result.scoresRepresentativos}
                 />
               ))}
             </Box>
