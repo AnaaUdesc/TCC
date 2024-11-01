@@ -27,6 +27,7 @@ import RequirementProgressView, {
 import { requirements } from "../db/requirements";
 import { useGlobalContext } from "../GlobalProvider";
 import { CgRead } from "react-icons/cg";
+import React from "react";
 
 const getReferenceValueByRequirementId = (
   requirementId: string,
@@ -58,10 +59,10 @@ interface MethodDialogProps {
   title: string;
   classificationIcons?: React.ReactNode[];
   fullDescription: React.ReactNode;
-  goodPractices?: string[];
+  goodPractices?: React.ReactNode;
   attentionPoints?: string[];
   more?: string[];
-  exemples?: string[];
+  exemples?: React.ReactNode;
   image: string;
   relatedMethods?: string[];
   onMethodClick?: (id: string) => void;
@@ -468,7 +469,7 @@ export default function MethodDialog({
             width: "100%",
           }}
         >
-          <Box sx={{ padding: 6 }}>
+          <Box sx={{ padding: 6, paddingTop: 4 }}>
             <Typography
               sx={{
                 marginTop: 1,
@@ -478,7 +479,7 @@ export default function MethodDialog({
               {fullDescription}
             </Typography>
 
-            {exemples && exemples.length > 0 && (
+            {exemples && (
               <>
                 <Typography
                   variant="h5"
@@ -487,16 +488,10 @@ export default function MethodDialog({
                 >
                   Exemplo de Utilização
                 </Typography>
-                <Box sx={{ marginBottom: 7 }}>
-                  {exemples?.map((exemple, index) => (
-                    <Typography sx={{ marginBottom: 1 }} key={index}>
-                      {exemple}
-                    </Typography>
-                  ))}
-                </Box>
+                <Box sx={{ marginBottom: 7 }}>{exemples}</Box>
               </>
             )}
-            {goodPractices && goodPractices.length > 0 && (
+            {goodPractices && (
               <>
                 <Typography
                   variant="h5"
@@ -505,16 +500,10 @@ export default function MethodDialog({
                 >
                   Boas Práticas e Dicas
                 </Typography>
-                <Box sx={{ marginBottom: 7 }}>
-                  {goodPractices?.map((practice, index) => (
-                    <Typography sx={{ marginBottom: 1 }} key={index}>
-                      {practice}
-                    </Typography>
-                  ))}
-                </Box>
+                <Box sx={{ marginBottom: 7 }}>{goodPractices}</Box>
               </>
             )}
-            {attentionPoints && attentionPoints.length > 0 && (
+            {attentionPoints && (
               <>
                 <Typography
                   variant="h5"
@@ -523,13 +512,7 @@ export default function MethodDialog({
                 >
                   Pontos de Atenção ou Desvantagens
                 </Typography>
-                <Box sx={{ marginBottom: 7 }}>
-                  {attentionPoints?.map((point, index) => (
-                    <Typography key={index} sx={{ marginBottom: 2 }}>
-                      {point}
-                    </Typography>
-                  ))}
-                </Box>
+                <Box sx={{ marginBottom: 7 }}>{attentionPoints}</Box>
               </>
             )}
             {more && more.length > 0 && (
@@ -660,7 +643,7 @@ export default function MethodDialog({
           </Box>
           <Divider
             sx={{
-              mt: 8,
+              mt: 6,
               height: "700px",
             }}
             orientation="vertical"
@@ -669,7 +652,7 @@ export default function MethodDialog({
           <Box
             sx={{
               p: 6,
-              mt: 1,
+
               width: "800px",
             }}
           >
