@@ -9,7 +9,6 @@ import {
   Typography,
 } from "@mui/material";
 import { BorderLinearProgress } from "./Card";
-import { Padding } from "@mui/icons-material";
 
 export const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />

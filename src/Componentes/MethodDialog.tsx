@@ -14,10 +14,7 @@ import {
   Link,
   Divider,
   CircularProgress,
-  Tooltip,
 } from "@mui/material";
-import { MethodProps, methods } from "../db/methods";
-import { technics } from "../db/tecnicas";
 import { getColorByScore, getMethodOrTechniqueById } from "./Card";
 import { AttachMoney, CalendarMonth } from "@mui/icons-material";
 import { GoGoal } from "react-icons/go";
