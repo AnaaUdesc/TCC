@@ -1,7 +1,7 @@
 import {
   AttachMoney,
   CalendarMonth,
-  Groups,
+  Group,
   MoreHoriz,
 } from "@mui/icons-material";
 import { GoGoal } from "react-icons/go";
@@ -14,14 +14,21 @@ import {
   linearProgressClasses,
   Link,
   styled,
-  SvgIcon,
   Tooltip,
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import { MethodProps, methods } from "../db/methods";
+import { MethodProps } from "../db/methods";
 import MethodDialog from "./MethodDialog";
-import { technics } from "../db/tecnicas";
+import { useGlobalContext } from "../GlobalProvider";
+import {
+  getReferenceValueByRequirementId,
+  getScoreByKey,
+  getMethodOrTechniqueById,
+} from "../utils";
+import RequirementProgressView, {
+  RequirementProgressViewProps,
+} from "./RequirementProgressView";
 
 // Importando a imagem
 
@@ -53,22 +60,17 @@ export const getColorByScore = (scoreGeral: number) => {
   return "#D3BF28";
 };
 
-interface CardProps extends MethodProps {
-  scoreGeral: number;
-  scoresRepresentativos: {
-    [key: string]: {
-      score: number;
-      scoreRepresentativo: number;
-    };
+export interface ScoresRepresentativos {
+  [key: string]: {
+    score: number;
+    scoreRepresentativo: number;
   };
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const getMethodOrTechniqueById = (id: string): MethodProps => {
-  const method = methods.find((method) => method.id === id);
-  const technique = technics.find((technique) => technique.id === id);
-  return (method || technique) as MethodProps;
-};
+interface CardProps extends MethodProps {
+  scoreGeral: number;
+  scoresRepresentativos: ScoresRepresentativos;
+}
 
 export default function Card({
   description,
@@ -93,9 +95,130 @@ export default function Card({
     setOpen(false);
   };
 
-  const handleGetScoreByKey = (key: string) => {
-    return scoresRepresentativos[key]?.score ?? 0;
-  };
+  const { getSelectedValuesByRequirementId } = useGlobalContext();
+
+  const requirementsProps: RequirementProgressViewProps[] = [
+    {
+      children: (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 1,
+          }}
+        >
+          <Typography>Valor de referência do método:</Typography>
+          {getReferenceValueByRequirementId("orcamento_relativo", id)?.map(
+            (ref) => (
+              <Typography key={ref}>{ref}</Typography>
+            )
+          )}
+          <Typography>
+            <br />
+            Valor de input:
+          </Typography>
+          {getSelectedValuesByRequirementId("orcamento_relativo")?.map(
+            (ref) => (
+              <Typography key={ref}>{ref}</Typography>
+            )
+          )}
+        </Box>
+      ),
+      icon: <AttachMoney />,
+      progress: getScoreByKey(scoresRepresentativos, "orcamento_relativo"),
+    },
+    {
+      children: (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 1,
+          }}
+        >
+          <Typography>Valor de referência do método:</Typography>
+          {getReferenceValueByRequirementId("tempo", id)?.map((ref) => (
+            <Typography key={ref}>{ref}</Typography>
+          ))}
+          <Typography>
+            <br />
+            Valor de input:
+          </Typography>
+          {getSelectedValuesByRequirementId("tempo")?.map((ref) => (
+            <Typography key={ref}>{ref}</Typography>
+          ))}
+        </Box>
+      ),
+      icon: <CalendarMonth />,
+      progress: getScoreByKey(scoresRepresentativos, "tempo"),
+    },
+    {
+      children: (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 1,
+          }}
+        >
+          <Typography>Valor de referência do método:</Typography>
+          {getReferenceValueByRequirementId("quantidade_de_usuarios", id)?.map(
+            (ref) => (
+              <Typography key={ref}>{ref}</Typography>
+            )
+          )}
+          <Typography>
+            <br />
+            Valor de input:
+          </Typography>
+          {getSelectedValuesByRequirementId("quantidade_de_usuarios")?.map(
+            (ref) => (
+              <Typography key={ref}>{ref}</Typography>
+            )
+          )}
+        </Box>
+      ),
+      icon: <Group />,
+      progress: getScoreByKey(scoresRepresentativos, "quantidade_de_usuarios"),
+    },
+    {
+      children: (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 1,
+          }}
+        >
+          <Typography>Valor de referência do método:</Typography>
+          {getReferenceValueByRequirementId("objetivos_da_avaliacao", id)?.map(
+            (ref) => (
+              <Typography key={ref}>{ref}</Typography>
+            )
+          )}
+          <Typography>
+            <br />
+            Valor de input:
+          </Typography>
+          {getSelectedValuesByRequirementId("objetivos_da_avaliacao")?.map(
+            (ref) => (
+              <Typography key={ref}>{ref}</Typography>
+            )
+          )}
+        </Box>
+      ),
+      icon: <GoGoal />,
+      progress: getScoreByKey(scoresRepresentativos, "objetivos_da_avaliacao"),
+    },
+  ];
 
   return (
     <>
@@ -233,97 +356,26 @@ export default function Card({
             </Box>
           </Tooltip>
           <Box sx={{ paddingX: 3 }}>
-            <Box sx={{ alignItems: "center", display: "flex", gap: 1 }}>
-              <Tooltip
-                title={"Orçamento Relativo"}
-                arrow
-                placement="left"
-                onClick={() => setOpen(true)}
-              >
-                <AttachMoney color="secondary" sx={{ cursor: "pointer" }} />
-              </Tooltip>
-              <BorderLinearProgress
-                variant="determinate"
-                value={handleGetScoreByKey("orcamento_relativo")}
-                sx={{ width: 100 }}
-              />
-              <Typography
-                variant="caption"
-                sx={{ fontStyle: "italic", color: "#a0a0a0" }}
-              >
-                {Math.round(Number(handleGetScoreByKey("orcamento_relativo")))}%
-              </Typography>
-            </Box>
-            <Box sx={{ alignItems: "center", display: "flex", gap: 1 }}>
-              <Tooltip
-                title={"Tempo"}
-                arrow
-                placement="left"
-                onClick={() => setOpen(true)}
-              >
-                <CalendarMonth color="secondary" sx={{ cursor: "pointer" }} />
-              </Tooltip>
-              <BorderLinearProgress
-                variant="determinate"
-                value={handleGetScoreByKey("tempo")}
-                sx={{ width: 100 }}
-              />
-              <Typography
-                variant="caption"
-                sx={{ fontStyle: "italic", color: "#a0a0a0" }}
-              >
-                {Math.round(Number(handleGetScoreByKey("tempo")))}%
-              </Typography>
-            </Box>{" "}
-            <Box sx={{ alignItems: "center", display: "flex", gap: 1 }}>
-              <Tooltip
-                title={"Participação de Usuário"}
-                arrow
-                placement="left"
-                onClick={() => setOpen(true)}
-              >
-                <Groups color="secondary" sx={{ cursor: "pointer" }} />
-              </Tooltip>
-              <BorderLinearProgress
-                variant="determinate"
-                value={handleGetScoreByKey("quantidade_de_usuarios")}
-                sx={{ width: 100 }}
-              />
-              <Typography
-                variant="caption"
-                sx={{ fontStyle: "italic", color: "#a0a0a0" }}
-              >
-                {Math.round(
-                  Number(handleGetScoreByKey("quantidade_de_usuarios"))
-                )}
-                %
-              </Typography>
-            </Box>
-            <Box sx={{ alignItems: "center", display: "flex", gap: 1 }}>
-              <Tooltip
-                title={"Objetivo da avaliação"}
-                arrow
-                placement="left"
-                onClick={() => setOpen(true)}
-              >
-                <SvgIcon color="secondary" sx={{ cursor: "pointer" }}>
-                  <GoGoal />
-                </SvgIcon>
-              </Tooltip>
-              <BorderLinearProgress
-                variant="determinate"
-                value={handleGetScoreByKey("objetivos_da_avaliacao")}
-                sx={{ width: 100 }}
-              />
-              <Typography
-                variant="caption"
-                sx={{ fontStyle: "italic", color: "#a0a0a0" }}
-              >
-                {Math.round(
-                  Number(handleGetScoreByKey("objetivos_da_avaliacao"))
-                )}
-                %
-              </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                // gap: 2,
+                // mt: 1,
+                minWidth: 150,
+              }}
+            >
+              {requirementsProps.map((requirement) => (
+                <RequirementProgressView
+                  key={requirement.title}
+                  progress={requirement.progress ?? 0}
+                  title={requirement.title}
+                  icon={requirement.icon}
+                  BorderLinearProgressWidth="110px"
+                >
+                  {requirement.children}
+                </RequirementProgressView>
+              ))}
             </Box>
           </Box>
           <Box
@@ -360,6 +412,7 @@ export default function Card({
         }}
         scoreGeral={scoreGeral}
         id={id}
+        scoresRepresentativos={scoresRepresentativos}
       />
       {selectedMethodOrTechnique !== null && (
         <MethodDialog

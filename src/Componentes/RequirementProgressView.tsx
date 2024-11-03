@@ -25,11 +25,12 @@ export const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
   },
 }));
 
-interface RequirementProgressViewProps {
+export interface RequirementProgressViewProps {
   progress: number;
-  title: string;
+  title?: string;
   children: React.ReactNode;
   icon: React.ReactNode;
+  BorderLinearProgressWidth?: string;
 }
 
 export default function RequirementProgressView({
@@ -37,6 +38,7 @@ export default function RequirementProgressView({
   title,
   children,
   icon,
+  BorderLinearProgressWidth = "100%",
 }: RequirementProgressViewProps) {
   return (
     <LightTooltip arrow placement="left" title={<Box>{children}</Box>}>
@@ -45,7 +47,7 @@ export default function RequirementProgressView({
           display: "flex",
           alignItems: "center",
           gap: 1,
-          width: "100%",
+          // width: "100%",
         }}
       >
         <SvgIcon color="secondary" sx={{ fontSize: 25 }}>
@@ -57,27 +59,30 @@ export default function RequirementProgressView({
             width: "100%",
           }}
         >
-          <Badge badgeContent={progress} color="secondary" variant="dot">
-            <Typography variant="body2" mb={0.5}>
-              {title}
-            </Typography>
-          </Badge>
+          {title && (
+            <Badge badgeContent={progress} color="secondary" variant="dot">
+              <Typography variant="body2" mb={0.5}>
+                {title}
+              </Typography>
+            </Badge>
+          )}
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
               gap: 1,
               marginTop: -0.5,
+              width: "100%",
             }}
           >
             <BorderLinearProgress
               variant="determinate"
               value={progress}
-              sx={{ width: "100%", height: 7 }}
+              sx={{ width: BorderLinearProgressWidth, height: 7, flexGrow: 1 }}
             />
             <Typography
               variant="caption"
-              sx={{ fontStyle: "italic", color: "#a0a0a0" }}
+              sx={{ fontStyle: "italic", color: "#a0a0a0", minWidth: "28px" }}
             >
               {progress}%
             </Typography>
