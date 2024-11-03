@@ -114,6 +114,10 @@ export const methods: MethodProps[] = [
         values: ["6-10"],
       },
       {
+        requirement: "nivel_de_fidelidade_do_sistema",
+        values: ["baixa", "media", "alta"],
+      },
+      {
         requirement: "quantidade_de_especialistas",
         values: ["nenhum"],
       },
@@ -132,10 +136,7 @@ export const methods: MethodProps[] = [
         values: ["11-20", "21+"],
       },
     ],
-    canceledRequirements: [
-      "modalidade_da_avaliacao",
-      "nivel_de_fidelidade_do_sistema",
-    ],
+    canceledRequirements: ["modalidade_da_avaliacao"],
   },
 
   {
