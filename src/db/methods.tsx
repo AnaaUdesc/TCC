@@ -27,6 +27,7 @@ export interface MethodProps {
     requirement: string;
     values: string[];
   }[];
+  canceledRequirements?: string[];
   cantANDReference?: string[];
   needORReference?: {
     requirement: string;
@@ -131,6 +132,10 @@ export const methods: MethodProps[] = [
         values: ["11-20", "21+"],
       },
     ],
+    canceledRequirements: [
+      "modalidade_da_avaliacao",
+      "nivel_de_fidelidade_do_sistema",
+    ],
   },
 
   {
@@ -198,6 +203,10 @@ export const methods: MethodProps[] = [
       { requirement: "orcamento_relativo", values: ["medio", "alto"] },
       { requirement: "tempo", values: ["medio", "alto"] },
       { requirement: "quantidade_de_especialistas", values: ["5+"] },
+    ],
+    canceledRequirements: [
+      "modalidade_da_avaliacao",
+      "nivel_de_fidelidade_do_sistema",
     ],
   },
   {
@@ -270,6 +279,7 @@ export const methods: MethodProps[] = [
         values: ["11-20", "21+"],
       },
     ],
+    canceledRequirements: ["nivel_de_fidelidade_do_sistema"],
   },
   {
     id: "sus",
@@ -334,6 +344,10 @@ export const methods: MethodProps[] = [
         requirement: "quantidade_de_especialistas",
         values: ["nenhum"],
       },
+      {
+        requirement: "tipo_de_dado_coletado",
+        values: ["Quantitativo"],
+      },
     ],
     unNeedORReference: [
       { requirement: "orcamento_relativo", values: ["medio", "alto"] },
@@ -343,8 +357,8 @@ export const methods: MethodProps[] = [
         values: ["11-20", "21+"],
       },
     ],
+    canceledRequirements: ["modalidade_da_avaliacao"],
   },
-
   {
     id: "analise_de_logs",
     title: "Análise de Logs",
@@ -504,6 +518,10 @@ export const methods: MethodProps[] = [
         values: ["1", "2-4", "5+"],
       },
     ],
+    canceledRequirements: [
+      "nivel_de_fidelidade_do_sistema",
+      "modalidade_da_avaliacao",
+    ],
   },
   {
     id: "questionarios",
@@ -581,6 +599,7 @@ export const methods: MethodProps[] = [
         values: ["11-20", "21+"],
       },
     ],
+    canceledRequirements: ["modalidade_da_avaliacao", "tipo_de_dado_coletado"],
   },
   {
     id: "avaliacao_cooperativa",
@@ -656,15 +675,12 @@ export const methods: MethodProps[] = [
     unNeedORReference: [
       { requirement: "orcamento_relativo", values: ["medio", "alto"] },
       { requirement: "tempo", values: ["alto", "medio"] },
-      {
-        requirement: CONSTANTES.QUANTIDADE_DE_USUARIOS,
-        values: ["11-20", "21+"],
-      },
       { requirement: "nivel_de_fidelidade_do_sistema", values: ["alta"] },
       {
         requirement: CONSTANTES.QUANTIDADE_DE_USUARIOS,
         values: ["6-10", "11-20", "21+"],
       },
     ],
+    canceledRequirements: ["modalidade_da_avaliacao"],
   },
 ];

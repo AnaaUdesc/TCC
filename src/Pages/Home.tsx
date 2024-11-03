@@ -21,7 +21,7 @@ export default function HomePage() {
   const [search, setSearch] = useState("");
 
   const {
-    handleCalculateScoreByMethod,
+    handleScoreByMethod,
     selectedRequirements,
     handleResetSelectedRequirements,
     handleUnselectRequirement,
@@ -59,7 +59,7 @@ export default function HomePage() {
   }[] = useMemo(
     () =>
       filteredMethods.map((method) => {
-        const resultCalculate = handleCalculateScoreByMethod(method.id);
+        const resultCalculate = handleScoreByMethod(method.id);
 
         return {
           methodId: method.id,
@@ -67,7 +67,7 @@ export default function HomePage() {
           scoresRepresentativos: resultCalculate.scoresRepresentativos,
         };
       }),
-    [filteredMethods, handleCalculateScoreByMethod]
+    [filteredMethods, handleScoreByMethod]
   );
 
   const requirementIdsToTransform = [

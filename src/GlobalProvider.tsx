@@ -25,7 +25,7 @@ interface GlobalContextData {
     requirementId: string
   ) => void;
   handleClearRequirement: (requirementIds: string[]) => void;
-  handleCalculateScoreByMethod: (method: string) => {
+  handleScoreByMethod: (method: string) => {
     scoreGeral: number;
     scoresRepresentativos: {
       [key: string]: { score: number; scoreRepresentativo: number };
@@ -159,7 +159,7 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     return methodRequirementValues;
   };
 
-  const handleCalculateScoreByMethod = (methodId: string) => {
+  const handleScoreByMethod = (methodId: string) => {
     const parentIds = handleGetParentRequirementIds(methodId);
 
     const method = methods.find((method) => method.id === methodId);
@@ -167,6 +167,11 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     const filteredSelectedRequirements = selectedRequirements?.filter((req) =>
       parentIds.includes(req.id)
     );
+
+    const canceledInSelectedRequirements =
+      selectedRequirements?.filter((req) =>
+        method?.canceledRequirements?.includes(req.id)
+      ).length || 0;
 
     const quantityOfParentIds = parentIds.length;
 
@@ -249,12 +254,22 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
       }
     });
 
+    let scoreGeral = Object.values(scoreByMethod).reduce(
+      (acc, score) => acc + score.scoreRepresentativo,
+      0
+    );
+
+    const modifier =
+      scoreGeral /
+      ((selectedRequirements?.length ?? 1) - canceledInSelectedRequirements);
+
+    scoreGeral = Math.round(
+      modifier * (filteredSelectedRequirements?.length ?? 1)
+    );
+
     return {
       scoresRepresentativos: scoreByMethod,
-      scoreGeral: Object.values(scoreByMethod).reduce(
-        (acc, score) => acc + score.scoreRepresentativo,
-        0
-      ),
+      scoreGeral,
     };
   };
 
@@ -316,7 +331,7 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
         getRequirementLength,
         handleRadioChange,
         handleClearRequirement,
-        handleCalculateScoreByMethod,
+        handleScoreByMethod,
         selectedRequirements,
         handleResetSelectedRequirements,
         handleUnselectRequirement,
