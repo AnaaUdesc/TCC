@@ -139,7 +139,7 @@ export default function HomePage() {
             borderColor: "#86ADB5",
             flexGrow: 1,
             marginBottom: -2,
-            display: "flex", // Para que o conteúdo dentro seja flexível
+            display: "flex",
             flexDirection: "row",
             paddingX: 12,
             paddingY: 4,
