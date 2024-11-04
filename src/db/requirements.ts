@@ -58,9 +58,10 @@ export const requirements: RequirementsProps[] = [
   {
     id: "quantidade_de_especialistas",
     values: [
-      { id: "quantidade_de_especialistas_1", value: "1" },
-      { id: "quantidade_de_especialistas_2_4", value: "2_4" },
       { id: "quantidade_de_especialistas_5_mais", value: "5+" },
+      { id: "quantidade_de_especialistas_2_4", value: "2_4" },
+      { id: "quantidade_de_especialistas_1", value: "1" },
+      { id: "nenhum", value: "nenhum" },
     ],
     type: "OR",
   },
@@ -76,10 +77,11 @@ export const requirements: RequirementsProps[] = [
   {
     id: CONSTANTES.QUANTIDADE_DE_USUARIOS,
     values: [
-      { id: "1_5", value: "1-5" },
-      { id: "5_10", value: "6-10" },
-      { id: "10_20", value: "11-20" },
       { id: "20_mais", value: "21+" },
+      { id: "10_20", value: "11-20" },
+      { id: "5_10", value: "6-10" },
+      { id: "1_5", value: "1-5" },
+      { id: "nenhum", value: "nenhum" },
     ],
     type: "OR",
   },

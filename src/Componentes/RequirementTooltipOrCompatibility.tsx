@@ -98,7 +98,7 @@ export default function RequirementTooltipOrCompatibility({
       }}
     >
       {requirementValues?.map((requirementValue, index) => {
-        const size = 240 - index * 80;
+        const size = requirementValues.length * 65 - index * 60; // Valores menores para limitar o tamanho
 
         return (
           <Box

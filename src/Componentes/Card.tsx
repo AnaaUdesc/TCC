@@ -112,31 +112,13 @@ export default function Card({
     },
     {
       children: (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 1,
-          }}
-        >
-          <Typography>Valor de referência do método:</Typography>
-          {getReferenceValueByRequirementId("quantidade_de_usuarios", id)?.map(
-            (ref) => (
-              <Typography key={ref}>{ref}</Typography>
-            )
-          )}
-          <Typography>
-            <br />
-            Valor de input:
-          </Typography>
-          {getSelectedValuesByRequirementId("quantidade_de_usuarios")?.map(
-            (ref) => (
-              <Typography key={ref}>{ref}</Typography>
-            )
-          )}
-        </Box>
+        <>
+          <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
+          <RequirementTooltipOrCompatibility
+            requirementId="quantidade_de_usuarios"
+            methodId={id}
+          />
+        </>
       ),
       icon: <Group />,
       progress: getScoreByKey(scoresRepresentativos, "quantidade_de_usuarios"),
