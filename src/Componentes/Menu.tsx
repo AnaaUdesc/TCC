@@ -197,13 +197,13 @@ export default function Menu() {
                   sx={{ color: "secondary.main" }}
                   checked={isRequirementSelectedByValue(
                     "objetivos_da_avaliacao",
-                    "Qualidade/Conformidade"
+                    "Qualidade / Conformidade"
                   )}
                   onChange={(e) => {
                     handleCheckboxChange(
                       e,
                       "objetivos_da_avaliacao",
-                      "Qualidade/Conformidade"
+                      "Qualidade / Conformidade"
                     );
                   }}
                 />
@@ -221,7 +221,7 @@ export default function Menu() {
                   }
                 >
                   <Typography sx={{ fontWeight: 300 }}>
-                    Qualidade/Conformidade
+                    Qualidade / Conformidade
                   </Typography>
                 </Tooltip>
               }

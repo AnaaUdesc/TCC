@@ -15,7 +15,7 @@ export const requirements: RequirementsProps[] = [
       { id: "objetivos_da_avaliacao_ergonomia", value: "Ergonomia" },
       {
         id: "objetivos_da_avaliacao_qualidade_conformidade",
-        value: "Qualidade/Conformidade",
+        value: "Qualidade / Conformidade",
       },
       { id: "objetivos_da_avaliacao_comparacao", value: "Comparação" },
       {

@@ -20,9 +20,7 @@ import {
 import { useState } from "react";
 import { MethodProps } from "../db/methods";
 import MethodDialog from "./MethodDialog";
-import { useGlobalContext } from "../GlobalProvider";
 import {
-  getReferenceValueByRequirementId,
   getScoreByKey,
   getMethodOrTechniqueById,
   getColorByScore,
@@ -31,6 +29,7 @@ import RequirementProgressView, {
   RequirementProgressViewProps,
 } from "./RequirementProgressView";
 import RequirementTooltipOrCompatibility from "./RequirementTooltipOrCompatibility";
+import RequirementTooltipAndCompatibility from "./RequirementTooltipAndCompatibility";
 
 export const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
@@ -85,8 +84,6 @@ export default function Card({
     setOpen(false);
   };
 
-  const { getSelectedValuesByRequirementId } = useGlobalContext();
-
   const requirementsProps: RequirementProgressViewProps[] = [
     {
       children: (
@@ -126,31 +123,14 @@ export default function Card({
     },
     {
       children: (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 1,
-          }}
-        >
-          <Typography>Valor de referência do método:</Typography>
-          {getReferenceValueByRequirementId("objetivos_da_avaliacao", id)?.map(
-            (ref) => (
-              <Typography key={ref}>{ref}</Typography>
-            )
+        <RequirementTooltipAndCompatibility
+          requirementId="objetivos_da_avaliacao"
+          methodId={id}
+          compatibility={getScoreByKey(
+            scoresRepresentativos,
+            "objetivos_da_avaliacao"
           )}
-          <Typography>
-            <br />
-            Valor de input:
-          </Typography>
-          {getSelectedValuesByRequirementId("objetivos_da_avaliacao")?.map(
-            (ref) => (
-              <Typography key={ref}>{ref}</Typography>
-            )
-          )}
-        </Box>
+        />
       ),
       icon: <GoGoal />,
       progress: getScoreByKey(scoresRepresentativos, "objetivos_da_avaliacao"),
