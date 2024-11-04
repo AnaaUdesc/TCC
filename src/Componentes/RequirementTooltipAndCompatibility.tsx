@@ -22,6 +22,10 @@ export default function RequirementTooltipAndCompatibility({
     methodId
   );
 
+  const requirement = requirements.find(
+    (requirement) => requirement.id === requirementId
+  );
+
   const requirementValues = requirements.find(
     (requirement) => requirement.id === requirementId
   )?.values;
@@ -50,7 +54,7 @@ export default function RequirementTooltipAndCompatibility({
             mr: 2,
           }}
         >
-          Objetivos do método
+          {requirement?.title}
         </Typography>
 
         <Typography
@@ -61,7 +65,7 @@ export default function RequirementTooltipAndCompatibility({
             textAlign: "center",
           }}
         >
-          Objetivos selecionados por você
+          Selecionados por você
         </Typography>
       </Box>
       <Divider

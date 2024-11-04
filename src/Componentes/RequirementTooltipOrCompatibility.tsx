@@ -3,6 +3,7 @@ import { methods } from "../db/methods";
 import { requirements } from "../db/requirements";
 import { useGlobalContext } from "../GlobalProvider";
 import { getReferenceValueByRequirementId } from "../utils";
+import { Circle, RadioButtonUnchecked } from "@mui/icons-material";
 
 interface RequirementTooltipOrCompatibilityProps {
   requirementId: string;
@@ -33,10 +34,12 @@ export default function RequirementTooltipOrCompatibility({
   )?.values;
 
   const possibleValues = referenceValues.concat(unNeedValues || []);
-
   const selectedValues = getSelectedValuesByRequirementId(requirementId);
-
   const selectedValue = selectedValues[0];
+
+  const requirement = requirements.find(
+    (requirement) => requirement.id === requirementId
+  );
 
   const getColor = (value: string) => {
     if (referenceValues?.includes(value)) {
@@ -89,62 +92,103 @@ export default function RequirementTooltipOrCompatibility({
   return (
     <Box
       sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        position: "relative",
-        width: "400px",
-        height: "300px",
+        pb: 2,
       }}
     >
-      {requirementValues?.map((requirementValue, index) => {
-        const size = requirementValues.length * 65 - index * 60; // Valores menores para limitar o tamanho
+      <Typography
+        variant="h6"
+        sx={{
+          textAlign: "center",
+          mb: 2,
+        }}
+      >
+        {requirement?.title}
+      </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: 1,
+          ...(!selectedValue && {
+            mb: 4,
+          }),
+        }}
+      >
+        <Circle color="secondary" />
+        <Typography>Valor esperado</Typography>
+      </Box>
+      {selectedValue && (
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 1,
+            mb: 4,
+          }}
+        >
+          <RadioButtonUnchecked
+            sx={{ color: getPercentage(selectedValue).color }}
+          />
+          <Typography>Valor selecionado por você</Typography>
+        </Box>
+      )}
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          position: "relative",
+          width: "400px",
+          height: "300px",
+        }}
+      >
+        {requirementValues?.map((requirementValue, index) => {
+          const size = requirementValues.length * 65 - index * 60; // Valores menores para limitar o tamanho
 
-        return (
-          <Box
-            key={requirementValue.id}
-            sx={{
-              mr: 16,
-              width: size,
-              height: size,
-              borderRadius: "50%",
-              backgroundColor: getColor(requirementValue.value)?.bg,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              position: "absolute",
-              boxShadow: "0px 0px 10px 4px rgba(0, 0, 0, 0.1)",
-              border: getBorder(requirementValue.value),
-            }}
-          >
-            <Typography
+          return (
+            <Box
+              key={requirementValue.id}
               sx={{
+                mr: 6,
+                width: size,
+                height: size,
+                borderRadius: "50%",
+                backgroundColor: getColor(requirementValue.value)?.bg,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 position: "absolute",
-
-                ...(index !== requirementValues.length - 1 && {
-                  top: 10,
-                }),
-
-                textAlign: "center",
-                color: getColor(requirementValue.value)?.title,
+                boxShadow: "0px 0px 10px 4px rgba(0, 0, 0, 0.1)",
+                border: getBorder(requirementValue.value),
               }}
             >
-              {getFormattedText(requirementValue.value)}
-            </Typography>
-            <Typography
-              sx={{
-                color: getPercentage(requirementValue.value).color,
-                // fontSize: 24,
-                position: "absolute",
-                bottom: -30,
-                zIndex: 999,
-              }}
-            >
-              {getPercentage(requirementValue.value).value}
-            </Typography>
-          </Box>
-        );
-      })}
+              <Typography
+                sx={{
+                  position: "absolute",
+                  ...(index !== requirementValues.length - 1 && {
+                    top: 6,
+                  }),
+
+                  textAlign: "center",
+                  color: getColor(requirementValue.value)?.title,
+                }}
+              >
+                {getFormattedText(requirementValue.value)}
+              </Typography>
+              <Typography
+                sx={{
+                  color: getPercentage(requirementValue.value).color,
+                  position: "absolute",
+                  bottom: -30,
+                  zIndex: 999,
+                }}
+              >
+                {getPercentage(requirementValue.value).value}
+              </Typography>
+            </Box>
+          );
+        })}
+      </Box>
     </Box>
   );
 }

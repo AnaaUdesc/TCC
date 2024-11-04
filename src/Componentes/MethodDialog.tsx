@@ -19,19 +19,18 @@ import { ScoresRepresentativos } from "./Card";
 import { AttachMoney, CalendarMonth } from "@mui/icons-material";
 import { GoGoal } from "react-icons/go";
 import RequirementProgressView, {
-  LightTooltip,
   RequirementProgressViewProps,
 } from "./RequirementProgressView";
-import { useGlobalContext } from "../GlobalProvider";
 import { CgRead } from "react-icons/cg";
 import React from "react";
 import {
-  getReferenceValueByRequirementId,
   getScoreByKey,
   getMethodOrTechniqueById,
   getColorByScore,
 } from "../utils";
 import RequirementTooltipOrCompatibility from "./RequirementTooltipOrCompatibility";
+import RequirementTooltipAndCompatibility from "./RequirementTooltipAndCompatibility";
+import { LightTooltip } from "./LightTooltip";
 
 interface MethodDialogProps {
   open: boolean;
@@ -68,8 +67,6 @@ export default function MethodDialog({
   scoreGeral,
   scoresRepresentativos = {},
 }: MethodDialogProps) {
-  const { getSelectedValuesByRequirementId } = useGlobalContext();
-
   const requirementsProps: RequirementProgressViewProps[] = [
     {
       title: "Orçamento relativo",
@@ -86,27 +83,10 @@ export default function MethodDialog({
     {
       title: "Tempo",
       children: (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 1,
-          }}
-        >
-          <Typography>Valor de referência do método:</Typography>
-          {getReferenceValueByRequirementId("tempo", methodId)?.map((ref) => (
-            <Typography key={ref}>{ref}</Typography>
-          ))}
-          <Typography>
-            <br />
-            Valor de input:
-          </Typography>
-          {getSelectedValuesByRequirementId("tempo")?.map((ref) => (
-            <Typography key={ref}>{ref}</Typography>
-          ))}
-        </Box>
+        <RequirementTooltipOrCompatibility
+          requirementId="tempo"
+          methodId={methodId}
+        />
       ),
       icon: <CalendarMonth />,
       progress: getScoreByKey(scoresRepresentativos, "tempo"),
@@ -115,32 +95,10 @@ export default function MethodDialog({
     {
       title: "Participação do usuário",
       children: (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 1,
-          }}
-        >
-          <Typography>Valor de referência do método:</Typography>
-          {getReferenceValueByRequirementId(
-            "quantidade_de_usuarios",
-            methodId
-          )?.map((ref) => (
-            <Typography key={ref}>{ref}</Typography>
-          ))}
-          <Typography>
-            <br />
-            Valor de input:
-          </Typography>
-          {getSelectedValuesByRequirementId("quantidade_de_usuarios")?.map(
-            (ref) => (
-              <Typography key={ref}>{ref}</Typography>
-            )
-          )}
-        </Box>
+        <RequirementTooltipOrCompatibility
+          requirementId="quantidade_de_usuarios"
+          methodId={methodId}
+        />
       ),
       icon: <Group />,
       progress: getScoreByKey(scoresRepresentativos, "quantidade_de_usuarios"),
@@ -149,32 +107,14 @@ export default function MethodDialog({
     {
       title: "Objetivo da avaliação",
       children: (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 1,
-          }}
-        >
-          <Typography>Valor de referência do método:</Typography>
-          {getReferenceValueByRequirementId(
-            "objetivos_da_avaliacao",
-            methodId
-          )?.map((ref) => (
-            <Typography key={ref}>{ref}</Typography>
-          ))}
-          <Typography>
-            <br />
-            Valor de input:
-          </Typography>
-          {getSelectedValuesByRequirementId("objetivos_da_avaliacao")?.map(
-            (ref) => (
-              <Typography key={ref}>{ref}</Typography>
-            )
+        <RequirementTooltipAndCompatibility
+          requirementId="objetivos_da_avaliacao"
+          methodId={methodId}
+          compatibility={getScoreByKey(
+            scoresRepresentativos,
+            "objetivos_da_avaliacao"
           )}
-        </Box>
+        />
       ),
       icon: <GoGoal />,
       progress: getScoreByKey(scoresRepresentativos, "objetivos_da_avaliacao"),
@@ -183,32 +123,14 @@ export default function MethodDialog({
     {
       title: "Tipo de dado coletado",
       children: (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 1,
-          }}
-        >
-          <Typography>Valor de referência do método:</Typography>
-          {getReferenceValueByRequirementId(
-            "tipo_de_dado_coletado",
-            methodId
-          )?.map((ref) => (
-            <Typography key={ref}>{ref}</Typography>
-          ))}
-          <Typography>
-            <br />
-            Valor de input:
-          </Typography>
-          {getSelectedValuesByRequirementId("tipo_de_dado_coletado")?.map(
-            (ref) => (
-              <Typography key={ref}>{ref}</Typography>
-            )
+        <RequirementTooltipAndCompatibility
+          requirementId="tipo_de_dado_coletado"
+          methodId={methodId}
+          compatibility={getScoreByKey(
+            scoresRepresentativos,
+            "tipo_de_dado_coletado"
           )}
-        </Box>
+        />
       ),
       icon: <PieChart />,
       progress: getScoreByKey(scoresRepresentativos, "tipo_de_dado_coletado"),
@@ -217,32 +139,10 @@ export default function MethodDialog({
     {
       title: "Disponibilidade de especialista",
       children: (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 1,
-          }}
-        >
-          <Typography>Valor de referência do método:</Typography>
-          {getReferenceValueByRequirementId(
-            "quantidade_de_especialistas",
-            methodId
-          )?.map((ref) => (
-            <Typography key={ref}>{ref}</Typography>
-          ))}
-          <Typography>
-            <br />
-            Valor de input:
-          </Typography>
-          {getSelectedValuesByRequirementId("quantidade_de_especialistas")?.map(
-            (ref) => (
-              <Typography key={ref}>{ref}</Typography>
-            )
-          )}
-        </Box>
+        <RequirementTooltipOrCompatibility
+          requirementId="quantidade_de_especialistas"
+          methodId={methodId}
+        />
       ),
       icon: <CgRead />,
       progress: getScoreByKey(
@@ -254,32 +154,10 @@ export default function MethodDialog({
     {
       title: "Nivel de fidelidade do sistema",
       children: (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 1,
-          }}
-        >
-          <Typography>Valor de referência do método:</Typography>
-          {getReferenceValueByRequirementId(
-            "nivel_de_fidelidade_do_sistema",
-            methodId
-          )?.map((ref) => (
-            <Typography key={ref}>{ref}</Typography>
-          ))}
-          <Typography>
-            <br />
-            Valor de input:
-          </Typography>
-          {getSelectedValuesByRequirementId(
-            "nivel_de_fidelidade_do_sistema"
-          )?.map((ref) => (
-            <Typography key={ref}>{ref}</Typography>
-          ))}
-        </Box>
+        <RequirementTooltipOrCompatibility
+          requirementId="nivel_de_fidelidade_do_sistema"
+          methodId={methodId}
+        />
       ),
       icon: <PersonalVideo />,
       progress: getScoreByKey(
@@ -291,32 +169,14 @@ export default function MethodDialog({
     {
       title: "Modalidade da avaliação",
       children: (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 1,
-          }}
-        >
-          <Typography>Valor de referência do método:</Typography>
-          {getReferenceValueByRequirementId(
-            "modalidade_da_avaliacao",
-            methodId
-          )?.map((ref) => (
-            <Typography key={ref}>{ref}</Typography>
-          ))}
-          <Typography>
-            <br />
-            Valor de input:
-          </Typography>
-          {getSelectedValuesByRequirementId("modalidade_da_avaliacao")?.map(
-            (ref) => (
-              <Typography key={ref}>{ref}</Typography>
-            )
+        <RequirementTooltipAndCompatibility
+          requirementId="modalidade_da_avaliacao"
+          methodId={methodId}
+          compatibility={getScoreByKey(
+            scoresRepresentativos,
+            "modalidade_da_avaliacao"
           )}
-        </Box>
+        />
       ),
       icon: <VideoChat />,
       progress: getScoreByKey(scoresRepresentativos, "modalidade_da_avaliacao"),

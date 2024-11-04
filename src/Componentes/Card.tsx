@@ -109,13 +109,10 @@ export default function Card({
     },
     {
       children: (
-        <>
-          <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-          <RequirementTooltipOrCompatibility
-            requirementId="quantidade_de_usuarios"
-            methodId={id}
-          />
-        </>
+        <RequirementTooltipOrCompatibility
+          requirementId="quantidade_de_usuarios"
+          methodId={id}
+        />
       ),
       icon: <Group />,
       progress: getScoreByKey(scoresRepresentativos, "quantidade_de_usuarios"),
@@ -267,10 +264,6 @@ export default function Card({
                   </Typography>
                 </Box>
               </Box>
-
-              {/* <Typography variant="h6" fontWeight={600}>
-              {Math.round(Number(result.scoreGeral))}%
-            </Typography> */}
             </Box>
           </Tooltip>
           <Box sx={{ paddingX: 3 }}>
@@ -278,8 +271,7 @@ export default function Card({
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                // gap: 2,
-                // mt: 1,
+
                 minWidth: 150,
               }}
             >

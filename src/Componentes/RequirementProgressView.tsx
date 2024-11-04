@@ -1,32 +1,7 @@
-import {
-  Badge,
-  Box,
-  styled,
-  SvgIcon,
-  Tooltip,
-  tooltipClasses,
-  TooltipProps,
-  Typography,
-} from "@mui/material";
+import { Badge, Box, SvgIcon, Typography } from "@mui/material";
 import { BorderLinearProgress } from "./Card";
 import { useGlobalContext } from "../GlobalProvider";
-
-export const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
-  <Tooltip {...props} classes={{ popper: className }} />
-))(() => ({
-  [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: "#fff",
-    color: "rgba(0, 0, 0, 0.87)",
-    padding: "20px 20px",
-    boxShadow: "0px 0px 10px 4px rgba(0,0,0,0.1)",
-    width: "400px",
-    minWidth: "400px",
-    maxWidth: "400px",
-  },
-  [`& .${tooltipClasses.arrow}`]: {
-    color: "#fff",
-  },
-}));
+import { LightTooltip } from "./LightTooltip";
 
 export interface RequirementProgressViewProps {
   progress: number;
@@ -35,6 +10,7 @@ export interface RequirementProgressViewProps {
   icon: React.ReactNode;
   BorderLinearProgressWidth?: string;
   requirementId: string;
+  tooltipSx?: React.CSSProperties;
 }
 
 export default function RequirementProgressView({
@@ -44,11 +20,22 @@ export default function RequirementProgressView({
   icon,
   BorderLinearProgressWidth = "100%",
   requirementId,
+  tooltipSx,
 }: RequirementProgressViewProps) {
   const { isRequirementSelected } = useGlobalContext();
 
   return (
-    <LightTooltip arrow placement="left" title={children}>
+    <LightTooltip
+      arrow
+      placement="left"
+      title={children}
+      sx={{
+        width: "400px",
+        minWidth: "400px",
+        maxWidth: "400px",
+        ...tooltipSx,
+      }}
+    >
       <Box
         sx={{
           display: "flex",
