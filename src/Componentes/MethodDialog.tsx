@@ -15,11 +15,12 @@ import {
   Divider,
   CircularProgress,
 } from "@mui/material";
-import { getColorByScore, ScoresRepresentativos } from "./Card";
+import { ScoresRepresentativos } from "./Card";
 import { AttachMoney, CalendarMonth } from "@mui/icons-material";
 import { GoGoal } from "react-icons/go";
 import RequirementProgressView, {
   LightTooltip,
+  RequirementProgressViewProps,
 } from "./RequirementProgressView";
 import { useGlobalContext } from "../GlobalProvider";
 import { CgRead } from "react-icons/cg";
@@ -28,7 +29,9 @@ import {
   getReferenceValueByRequirementId,
   getScoreByKey,
   getMethodOrTechniqueById,
+  getColorByScore,
 } from "../utils";
+import RequirementTooltipOrCompatibility from "./RequirementTooltipOrCompatibility";
 
 interface MethodDialogProps {
   open: boolean;
@@ -67,44 +70,18 @@ export default function MethodDialog({
 }: MethodDialogProps) {
   const { getSelectedValuesByRequirementId } = useGlobalContext();
 
-  const requirementsProps: {
-    title: string;
-    children: React.ReactNode;
-    icon: React.ReactNode;
-    progress?: number;
-  }[] = [
+  const requirementsProps: RequirementProgressViewProps[] = [
     {
       title: "Orçamento relativo",
       children: (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 1,
-          }}
-        >
-          <Typography>Valor de referência do método:</Typography>
-          {getReferenceValueByRequirementId(
-            "orcamento_relativo",
-            methodId
-          )?.map((ref) => (
-            <Typography key={ref}>{ref}</Typography>
-          ))}
-          <Typography>
-            <br />
-            Valor de input:
-          </Typography>
-          {getSelectedValuesByRequirementId("orcamento_relativo")?.map(
-            (ref) => (
-              <Typography key={ref}>{ref}</Typography>
-            )
-          )}
-        </Box>
+        <RequirementTooltipOrCompatibility
+          requirementId="orcamento_relativo"
+          methodId={methodId}
+        />
       ),
       icon: <AttachMoney />,
       progress: getScoreByKey(scoresRepresentativos, "orcamento_relativo"),
+      requirementId: "orcamento_relativo",
     },
     {
       title: "Tempo",
@@ -133,6 +110,7 @@ export default function MethodDialog({
       ),
       icon: <CalendarMonth />,
       progress: getScoreByKey(scoresRepresentativos, "tempo"),
+      requirementId: "tempo",
     },
     {
       title: "Participação do usuário",
@@ -166,6 +144,7 @@ export default function MethodDialog({
       ),
       icon: <Group />,
       progress: getScoreByKey(scoresRepresentativos, "quantidade_de_usuarios"),
+      requirementId: "quantidade_de_usuarios",
     },
     {
       title: "Objetivo da avaliação",
@@ -199,6 +178,7 @@ export default function MethodDialog({
       ),
       icon: <GoGoal />,
       progress: getScoreByKey(scoresRepresentativos, "objetivos_da_avaliacao"),
+      requirementId: "objetivos_da_avaliacao",
     },
     {
       title: "Tipo de dado coletado",
@@ -232,6 +212,7 @@ export default function MethodDialog({
       ),
       icon: <PieChart />,
       progress: getScoreByKey(scoresRepresentativos, "tipo_de_dado_coletado"),
+      requirementId: "tipo_de_dado_coletado",
     },
     {
       title: "Disponibilidade de especialista",
@@ -268,6 +249,7 @@ export default function MethodDialog({
         scoresRepresentativos,
         "quantidade_de_especialistas"
       ),
+      requirementId: "quantidade_de_especialistas",
     },
     {
       title: "Nivel de fidelidade do sistema",
@@ -304,6 +286,7 @@ export default function MethodDialog({
         scoresRepresentativos,
         "nivel_de_fidelidade_do_sistema"
       ),
+      requirementId: "nivel_de_fidelidade_do_sistema",
     },
     {
       title: "Modalidade da avaliação",
@@ -337,6 +320,7 @@ export default function MethodDialog({
       ),
       icon: <VideoChat />,
       progress: getScoreByKey(scoresRepresentativos, "modalidade_da_avaliacao"),
+      requirementId: "modalidade_da_avaliacao",
     },
   ];
 
@@ -730,6 +714,7 @@ export default function MethodDialog({
                   progress={requirement.progress ?? 0}
                   title={requirement.title}
                   icon={requirement.icon}
+                  requirementId={requirement.requirementId}
                 >
                   {requirement.children}
                 </RequirementProgressView>

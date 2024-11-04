@@ -34,8 +34,12 @@ interface GlobalContextData {
   selectedRequirements: RequirementProps[] | null | undefined;
   handleResetSelectedRequirements: () => void;
   handleUnselectRequirement: (requirementId: string) => void;
-  isRequirementSelected: (requirementId: string, value: string) => boolean;
+  isRequirementSelectedByValue: (
+    requirementId: string,
+    value: string
+  ) => boolean;
   getSelectedValuesByRequirementId: (requirementId: string) => string[];
+  isRequirementSelected: (requirementId: string) => boolean;
 }
 
 // Provedor do contexto que engloba os componentes filhos
@@ -305,7 +309,14 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     }
   };
 
-  const isRequirementSelected = (
+  const isRequirementSelected = (requirementId: string): boolean => {
+    return (
+      selectedRequirements?.find((req) => req.id === requirementId) !==
+      undefined
+    );
+  };
+
+  const isRequirementSelectedByValue = (
     requirementId: string,
     value: string
   ): boolean => {
@@ -335,8 +346,9 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
         selectedRequirements,
         handleResetSelectedRequirements,
         handleUnselectRequirement,
-        isRequirementSelected,
+        isRequirementSelectedByValue,
         getSelectedValuesByRequirementId,
+        isRequirementSelected,
       }}
     >
       {children}

@@ -31,7 +31,7 @@ export default function Menu() {
     handleCheckboxChange,
     handleRadioChange,
     handleClearRequirement,
-    isRequirementSelected,
+    isRequirementSelectedByValue,
   } = useGlobalContext();
 
   const handleRadioClick = (
@@ -40,7 +40,7 @@ export default function Menu() {
     value: string
   ) => {
     event.stopPropagation();
-    if (isRequirementSelected(requirementId, value)) {
+    if (isRequirementSelectedByValue(requirementId, value)) {
       handleClearRequirement([requirementId]);
     }
   };
@@ -85,7 +85,7 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
-                  checked={isRequirementSelected(
+                  checked={isRequirementSelectedByValue(
                     "objetivos_da_avaliacao",
                     "Usabilidade"
                   )}
@@ -126,7 +126,7 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
-                  checked={isRequirementSelected(
+                  checked={isRequirementSelectedByValue(
                     "objetivos_da_avaliacao",
                     "Acessibilidade"
                   )}
@@ -161,7 +161,7 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
-                  checked={isRequirementSelected(
+                  checked={isRequirementSelectedByValue(
                     "objetivos_da_avaliacao",
                     "Ergonomia"
                   )}
@@ -195,7 +195,7 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
-                  checked={isRequirementSelected(
+                  checked={isRequirementSelectedByValue(
                     "objetivos_da_avaliacao",
                     "Qualidade/Conformidade"
                   )}
@@ -232,7 +232,7 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
-                  checked={isRequirementSelected(
+                  checked={isRequirementSelectedByValue(
                     "objetivos_da_avaliacao",
                     "Comparação"
                   )}
@@ -267,7 +267,7 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
-                  checked={isRequirementSelected(
+                  checked={isRequirementSelectedByValue(
                     "objetivos_da_avaliacao",
                     "Validar Informações"
                   )}
@@ -303,7 +303,7 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
-                  checked={isRequirementSelected(
+                  checked={isRequirementSelectedByValue(
                     "objetivos_da_avaliacao",
                     "Comunicabilidade"
                   )}
@@ -373,7 +373,7 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
-                    checked={isRequirementSelected(
+                    checked={isRequirementSelectedByValue(
                       "orcamento_relativo",
                       "baixo"
                     )}
@@ -391,7 +391,7 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
-                    checked={isRequirementSelected(
+                    checked={isRequirementSelectedByValue(
                       "orcamento_relativo",
                       "medio"
                     )}
@@ -409,7 +409,7 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
-                    checked={isRequirementSelected(
+                    checked={isRequirementSelectedByValue(
                       "orcamento_relativo",
                       "alto"
                     )}
@@ -460,7 +460,7 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
-                    checked={isRequirementSelected("tempo", "baixo")}
+                    checked={isRequirementSelectedByValue("tempo", "baixo")}
                     onClick={(event) => {
                       handleRadioClick(event, "tempo", "baixo");
                     }}
@@ -475,7 +475,7 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
-                    checked={isRequirementSelected("tempo", "medio")}
+                    checked={isRequirementSelectedByValue("tempo", "medio")}
                     onClick={(event) => {
                       handleRadioClick(event, "tempo", "medio");
                     }}
@@ -490,7 +490,7 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
-                    checked={isRequirementSelected("tempo", "alto")}
+                    checked={isRequirementSelectedByValue("tempo", "alto")}
                     onClick={(event) => {
                       handleRadioClick(event, "tempo", "alto");
                     }}
@@ -522,7 +522,7 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
-                  checked={isRequirementSelected(
+                  checked={isRequirementSelectedByValue(
                     "tipo_de_dado_coletado",
                     "Qualitativo"
                   )}
@@ -565,7 +565,7 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
-                  checked={isRequirementSelected(
+                  checked={isRequirementSelectedByValue(
                     "tipo_de_dado_coletado",
                     "Quantitativo"
                   )}
@@ -657,7 +657,7 @@ export default function Menu() {
                     <Radio
                       size="small"
                       color="secondary"
-                      checked={isRequirementSelected(
+                      checked={isRequirementSelectedByValue(
                         "quantidade_de_especialistas",
                         "nenhum"
                       )}
@@ -678,7 +678,7 @@ export default function Menu() {
                     <Radio
                       size="small"
                       color="secondary"
-                      checked={isRequirementSelected(
+                      checked={isRequirementSelectedByValue(
                         "quantidade_de_especialistas",
                         "1"
                       )}
@@ -699,7 +699,7 @@ export default function Menu() {
                     <Radio
                       size="small"
                       color="secondary"
-                      checked={isRequirementSelected(
+                      checked={isRequirementSelectedByValue(
                         "quantidade_de_especialistas",
                         "2_4"
                       )}
@@ -720,7 +720,7 @@ export default function Menu() {
                     <Radio
                       size="small"
                       color="secondary"
-                      checked={isRequirementSelected(
+                      checked={isRequirementSelectedByValue(
                         "quantidade_de_especialistas",
                         "5+"
                       )}
@@ -769,7 +769,7 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
-                    checked={isRequirementSelected(
+                    checked={isRequirementSelectedByValue(
                       "nivel_de_fidelidade_do_sistema",
                       "baixa"
                     )}
@@ -810,7 +810,7 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
-                    checked={isRequirementSelected(
+                    checked={isRequirementSelectedByValue(
                       "nivel_de_fidelidade_do_sistema",
                       "media"
                     )}
@@ -851,7 +851,7 @@ export default function Menu() {
                     size="small"
                     color="secondary"
                     sx={{ color: "secondary.main" }}
-                    checked={isRequirementSelected(
+                    checked={isRequirementSelectedByValue(
                       "nivel_de_fidelidade_do_sistema",
                       "alta"
                     )}
@@ -931,7 +931,7 @@ export default function Menu() {
                     <Radio
                       size="small"
                       color="secondary"
-                      checked={isRequirementSelected(
+                      checked={isRequirementSelectedByValue(
                         CONSTANTES.QUANTIDADE_DE_USUARIOS,
                         "nenhum"
                       )}
@@ -952,7 +952,7 @@ export default function Menu() {
                     <Radio
                       size="small"
                       color="secondary"
-                      checked={isRequirementSelected(
+                      checked={isRequirementSelectedByValue(
                         CONSTANTES.QUANTIDADE_DE_USUARIOS,
                         "1-5"
                       )}
@@ -973,7 +973,7 @@ export default function Menu() {
                     <Radio
                       size="small"
                       color="secondary"
-                      checked={isRequirementSelected(
+                      checked={isRequirementSelectedByValue(
                         CONSTANTES.QUANTIDADE_DE_USUARIOS,
                         "6-10"
                       )}
@@ -994,7 +994,7 @@ export default function Menu() {
                     <Radio
                       size="small"
                       color="secondary"
-                      checked={isRequirementSelected(
+                      checked={isRequirementSelectedByValue(
                         CONSTANTES.QUANTIDADE_DE_USUARIOS,
                         "11-20"
                       )}
@@ -1015,7 +1015,7 @@ export default function Menu() {
                     <Radio
                       size="small"
                       color="secondary"
-                      checked={isRequirementSelected(
+                      checked={isRequirementSelectedByValue(
                         CONSTANTES.QUANTIDADE_DE_USUARIOS,
                         "21+"
                       )}
@@ -1064,7 +1064,7 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
-                  checked={isRequirementSelected(
+                  checked={isRequirementSelectedByValue(
                     "modalidade_da_avaliacao",
                     "Remota"
                   )}
@@ -1085,7 +1085,7 @@ export default function Menu() {
                   size="small"
                   color="secondary"
                   sx={{ color: "secondary.main" }}
-                  checked={isRequirementSelected(
+                  checked={isRequirementSelectedByValue(
                     "modalidade_da_avaliacao",
                     "Presencial"
                   )}

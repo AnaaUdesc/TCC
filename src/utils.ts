@@ -39,3 +39,12 @@ export const getScoreByKey = (
 ) => {
   return scoresRepresentativos[key]?.score ?? 0;
 };
+
+export const getColorByScore = (scoreGeral: number) => {
+  if (scoreGeral >= 75) {
+    return "#056700";
+  } else if (scoreGeral <= 15) {
+    return "#BE0000";
+  }
+  return "#D3BF28";
+};

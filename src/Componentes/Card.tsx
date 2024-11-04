@@ -25,12 +25,12 @@ import {
   getReferenceValueByRequirementId,
   getScoreByKey,
   getMethodOrTechniqueById,
+  getColorByScore,
 } from "../utils";
 import RequirementProgressView, {
   RequirementProgressViewProps,
 } from "./RequirementProgressView";
-
-// Importando a imagem
+import RequirementTooltipOrCompatibility from "./RequirementTooltipOrCompatibility";
 
 export const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
@@ -49,16 +49,6 @@ export const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     }),
   },
 }));
-
-// eslint-disable-next-line react-refresh/only-export-components
-export const getColorByScore = (scoreGeral: number) => {
-  if (scoreGeral >= 75) {
-    return "#056700";
-  } else if (scoreGeral <= 15) {
-    return "#BE0000";
-  }
-  return "#D3BF28";
-};
 
 export interface ScoresRepresentativos {
   [key: string]: {
@@ -100,61 +90,25 @@ export default function Card({
   const requirementsProps: RequirementProgressViewProps[] = [
     {
       children: (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 1,
-          }}
-        >
-          <Typography>Valor de referência do método:</Typography>
-          {getReferenceValueByRequirementId("orcamento_relativo", id)?.map(
-            (ref) => (
-              <Typography key={ref}>{ref}</Typography>
-            )
-          )}
-          <Typography>
-            <br />
-            Valor de input:
-          </Typography>
-          {getSelectedValuesByRequirementId("orcamento_relativo")?.map(
-            (ref) => (
-              <Typography key={ref}>{ref}</Typography>
-            )
-          )}
-        </Box>
+        <RequirementTooltipOrCompatibility
+          requirementId="orcamento_relativo"
+          methodId={id}
+        />
       ),
       icon: <AttachMoney />,
       progress: getScoreByKey(scoresRepresentativos, "orcamento_relativo"),
+      requirementId: "orcamento_relativo",
     },
     {
       children: (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 1,
-          }}
-        >
-          <Typography>Valor de referência do método:</Typography>
-          {getReferenceValueByRequirementId("tempo", id)?.map((ref) => (
-            <Typography key={ref}>{ref}</Typography>
-          ))}
-          <Typography>
-            <br />
-            Valor de input:
-          </Typography>
-          {getSelectedValuesByRequirementId("tempo")?.map((ref) => (
-            <Typography key={ref}>{ref}</Typography>
-          ))}
-        </Box>
+        <RequirementTooltipOrCompatibility
+          requirementId="tempo"
+          methodId={id}
+        />
       ),
       icon: <CalendarMonth />,
       progress: getScoreByKey(scoresRepresentativos, "tempo"),
+      requirementId: "tempo",
     },
     {
       children: (
@@ -186,6 +140,7 @@ export default function Card({
       ),
       icon: <Group />,
       progress: getScoreByKey(scoresRepresentativos, "quantidade_de_usuarios"),
+      requirementId: "quantidade_de_usuarios",
     },
     {
       children: (
@@ -217,6 +172,7 @@ export default function Card({
       ),
       icon: <GoGoal />,
       progress: getScoreByKey(scoresRepresentativos, "objetivos_da_avaliacao"),
+      requirementId: "objetivos_da_avaliacao",
     },
   ];
 
@@ -371,6 +327,7 @@ export default function Card({
                   progress={requirement.progress ?? 0}
                   title={requirement.title}
                   icon={requirement.icon}
+                  requirementId={requirement.requirementId}
                   BorderLinearProgressWidth="110px"
                 >
                   {requirement.children}

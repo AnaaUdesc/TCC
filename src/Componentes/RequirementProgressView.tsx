@@ -9,19 +9,19 @@ import {
   Typography,
 } from "@mui/material";
 import { BorderLinearProgress } from "./Card";
+import { useGlobalContext } from "../GlobalProvider";
 
 export const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))(() => ({
   [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: "rgba(134, 173, 181, 0.90)",
+    backgroundColor: "#fff",
     color: "rgba(0, 0, 0, 0.87)",
     padding: "20px 20px",
-    // boxShadow: theme.shadows[1],
-    // fontSize: 11,
+    boxShadow: "0px 0px 10px 4px rgba(0,0,0,0.1)",
   },
   [`& .${tooltipClasses.arrow}`]: {
-    color: "rgba(134, 173, 181, 0.90)", // Define a cor da seta aqui
+    color: "#fff",
   },
 }));
 
@@ -31,6 +31,7 @@ export interface RequirementProgressViewProps {
   children: React.ReactNode;
   icon: React.ReactNode;
   BorderLinearProgressWidth?: string;
+  requirementId: string;
 }
 
 export default function RequirementProgressView({
@@ -39,9 +40,12 @@ export default function RequirementProgressView({
   children,
   icon,
   BorderLinearProgressWidth = "100%",
+  requirementId,
 }: RequirementProgressViewProps) {
+  const { isRequirementSelected } = useGlobalContext();
+
   return (
-    <LightTooltip arrow placement="left" title={<Box>{children}</Box>}>
+    <LightTooltip arrow placement="left" title={children}>
       <Box
         sx={{
           display: "flex",
@@ -60,7 +64,11 @@ export default function RequirementProgressView({
           }}
         >
           {title && (
-            <Badge badgeContent={progress} color="secondary" variant="dot">
+            <Badge
+              badgeContent={isRequirementSelected(requirementId) ? 1 : 0}
+              color="secondary"
+              variant="dot"
+            >
               <Typography variant="body2" mb={0.5}>
                 {title}
               </Typography>
