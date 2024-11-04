@@ -82,7 +82,7 @@ export default function RequirementProgressView({
               variant="caption"
               sx={{ fontStyle: "italic", color: "#a0a0a0", minWidth: "28px" }}
             >
-              {progress}%
+              {Math.round(Number(progress))}%
             </Typography>
           </Box>
         </Box>
