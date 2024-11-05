@@ -9,6 +9,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { GlobalProvider } from "./GlobalProvider";
+import AboutUsPage from "./Pages/AboutUs";
+import AboutEvaluationPage from "./Pages/AboutEvaluation";
 const theme = createTheme(themeOptions);
 
 const router = createHashRouter(
@@ -16,6 +18,8 @@ const router = createHashRouter(
     <Route>
       <Route path="/" element={<HomePage />} />
       <Route path="/contato" element={<ContatoPage />} />
+      <Route path="/aboutUs" element={<AboutUsPage />} />
+      <Route path="/aboutEvaluation" element={<AboutEvaluationPage />} />
     </Route>
   )
 );

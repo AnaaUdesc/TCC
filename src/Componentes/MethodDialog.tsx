@@ -14,6 +14,7 @@ import {
   Link,
   Divider,
   CircularProgress,
+  Tooltip,
 } from "@mui/material";
 import { ScoresRepresentativos } from "./Card";
 import { AttachMoney, CalendarMonth } from "@mui/icons-material";
@@ -267,9 +268,15 @@ export default function MethodDialog({
               ))}
             </Box>
           </Box>
-          <IconButton>
-            <Share fontSize="large" style={{ color: "gray" }} />
-          </IconButton>
+          <Tooltip
+            arrow
+            placement="left"
+            title={<Typography>Em desenvolvimento</Typography>}
+          >
+            <IconButton>
+              <Share fontSize="large" style={{ color: "gray" }} />
+            </IconButton>
+          </Tooltip>
         </Box>
         <Box
           sx={{

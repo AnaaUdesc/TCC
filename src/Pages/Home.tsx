@@ -5,6 +5,7 @@ import {
   Container,
   IconButton,
   TextField,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import Card from "../Componentes/Card";
@@ -229,9 +230,15 @@ export default function HomePage() {
                 >
                   resultados encontrados
                 </Typography>
-                <IconButton>
-                  <Share fontSize="small" style={{ color: "gray" }} />
-                </IconButton>
+                <Tooltip
+                  arrow
+                  placement="right"
+                  title={<Typography>Em desenvolvimento</Typography>}
+                >
+                  <IconButton>
+                    <Share fontSize="small" style={{ color: "gray" }} />
+                  </IconButton>
+                </Tooltip>
               </Box>
             </Box>
             {hasSelectedRequirements && (

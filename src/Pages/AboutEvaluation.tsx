@@ -1,7 +1,7 @@
 import { Construction } from "@mui/icons-material";
 import { Box, Button, Typography } from "@mui/material";
 
-export default function ContatoPage() {
+export default function AboutEvaluationPage() {
   return (
     <Box
       sx={{
@@ -14,7 +14,7 @@ export default function ContatoPage() {
       }}
     >
       <Construction sx={{ fontSize: 70 }} />
-      <Typography variant="h3">Página de Contato</Typography>
+      <Typography variant="h3">Página Sobre Avaliação</Typography>
       <Typography variant="h5" color="gray">
         {" "}
         em desenvolvimento

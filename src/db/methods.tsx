@@ -67,36 +67,93 @@ export const methods: MethodProps[] = [
     image: questionarios,
     fullDescription: (
       <Typography variant="body1">
+        Formulário físico ou online criado pelo avaliador e enviado aos usuários
+        com o objetivo de coletar informações sobre o uso do sistema.
         <br />
         <br />
+        Questionários são flexíveis e podem ser aplicados a poucos ou muitos
+        participantes, inclusive a pessoas geograficamente distantes.
         <br />
         <br />
+        A flexibilidade de aplicação de um questionário também se deve ao tipo
+        de dado que pode ser coletado, podendo ser qualitativo ou quantitativo.
+        Para obtenção de dados qualitativos, recomenda-se o uso de perguntas
+        abertas, que permitem ao usuário expressar sua opinião de forma livre.
+        Já para dados quantitativos, recomenda-se o uso de perguntas fechadas,
+        que permitem ao usuário escolher entre opções pré-definidas.
+        <br />
+        <br />É considerado um método de baixo custo e de fácil aplicação. Não é
+        necessário um especialista da área para a formulação das questões, mas
+        para dados mais precisos sobre a usabilidade do sistema, recomenda-se
+        aplicar o questionário após o uso de um sistema com nível de fidelidade
+        média ou alta.
       </Typography>
     ),
     exemples: (
       <Typography variant="body1">
-        Descrição de um exemplo de Utilização/aplicação do método.
+        <li>
+          Exemplo de pergunta aberta em um questionário de avaliação de
+          usabilidade:
+          <br />
+          <Typography sx={{ paddingX: 2, color: "gray", fontStyle: "italic" }}>
+            "Qual foi a sessão mais difícil de encontrar? Por que?"
+            <br />
+            <br />
+          </Typography>
+        </li>
+        <li>
+          Exemplo de pergunta fechada em um questionário de avaliação de
+          usabilidade:
+          <br />
+          <Typography sx={{ paddingX: 2, color: "gray", fontStyle: "italic" }}>
+            "Quão fácil foi encontrar a sessão de pagamento da compra?" <br /> (
+            ) Muito fácil <br />
+            ( ) Fácil <br />
+            ( ) Neutro <br />
+            ( ) Difícil <br /> ( ) Muito difícil
+          </Typography>
+        </li>
       </Typography>
     ),
     goodPractices: (
       <Typography variant="body1">
-        Estas serão as informações do tópicos 1. <br />
-        Estas serão as informações do tópicos 2. <br />
-        Este é o tópico 3.
+        <li>
+          Devem ser cuidadosamente formulados para evitar ambiguidades, pois não
+          há interação direta com o respondente para sanar dúvidas de
+          interpretação;
+        </li>
+        <li>
+          Recomenda-se realizar um teste piloto a fim de medir o tempo gasto
+          pelo usuário, a clareza das perguntas, validar a ordem das questões,
+          entre outros pontos a serem observados na criação de um formulário;
+          <br />
+        </li>
+        <li>
+          A quantidade ideal de perguntas deve variar de acordo com o tipo de
+          pergunta, recomenda-se que questionários com perguntas abertas tenham
+          menos perguntas que questionários com perguntas fechadas.
+        </li>
       </Typography>
     ),
 
     attentionPoints: (
       <Typography variant="body1">
-        Estas informações estarão em tópicos, esse é o tópico 1<br />
-        Estas informações estarão em tópicos, esse é o tópico 2<br />
-        Estas informações estarão em tópicos, esse é o tópico 3<br />
-        Estas informações estarão em tópicos, esse é o tópico 4<br />
+        <li>
+          Perguntas negativas precisam de atenção especial, pois podem confundir
+          o usuário, alguns pesquisadores optam por omitir esse tipo de
+          pergunta, outros preferem usá-las justamente para ajudar a verificar a
+          consistência das respostas dos usuários; <br />
+        </li>
+        <li>
+          Devemos tomar cuidado para não incluirmos muitas perguntas abertas em
+          um questionário, pois isso pode desmotivar os respondentes a
+          completá-los.
+        </li>
       </Typography>
     ),
 
     more: ["https://www.google.com"],
-    relatedMethods: ["", ""],
+    relatedMethods: [],
     needANDReference: [
       {
         requirement: "objetivos_da_avaliacao",
@@ -147,6 +204,8 @@ export const methods: MethodProps[] = [
     fullDescription: (
       <Typography variant="body1">
         <br />
+        Avaliar a qualidade de interação do usuário com o sistema, medir
+        impactos, identificar desconfortos observando o uso do produto.
         <br />
         <br />
         <br />
@@ -244,6 +303,8 @@ export const methods: MethodProps[] = [
     fullDescription: (
       <Typography variant="body1">
         <br />
+        Conversa guiada entre avaliador e usuário com objetivo de obter
+        informações qualitativas sobre o sistema pós uso do sistema.
         <br />
         <br />
         <br />
@@ -340,6 +401,9 @@ export const methods: MethodProps[] = [
     fullDescription: (
       <Typography variant="body1">
         <br />
+        Inspeção detalhada de interface efetuada por um especialista, buscando
+        por falhas na conformidade com uma lista de critérios denominados
+        heurísticas.
         <br />
         <br />
         <br />
@@ -416,6 +480,9 @@ export const methods: MethodProps[] = [
     fullDescription: (
       <Typography variant="body1">
         <br />
+        Entrevista/conversa com grupo de 6 a 12 pessoas para obtenção de dados
+        qualitativos (opiniões, experiências e críticas) após a utilização do
+        produto.
         <br />
         <br />
         <br />
@@ -492,6 +559,9 @@ export const methods: MethodProps[] = [
     fullDescription: (
       <Typography variant="body1">
         <br />
+        Um especialista coloca-se no papel de usuário ao interagir com o
+        sistema, com o intuito de realizar tarefas pré definidas identificando
+        possíveis falhas ou acertos nesse percurso.
         <br />
         <br />
         <br />
@@ -572,44 +642,78 @@ export const methods: MethodProps[] = [
     image: sus,
     fullDescription: (
       <Typography variant="body1">
+        Questionário aplicado ao usuário logo após o uso o sistema. O
+        questionário abrange aspectos variados de um sistema como : suporte,
+        treinamento, conhecimento prévio e complexidade.
         <br />
         <br />
+        O SUS consiste em uma escala de 10 afirmações, cada uma avaliada em uma
+        escala de 1 a 5, e gera uma pontuação entre 0 e 100 que representa a
+        usabilidade percebida do sistema.
         <br />
         <br />
+        Algumas vantagens do SUS incluem:
+        <li>
+          Simplicidade: Fácil de aplicar e de interpretar, não necessita de
+          especialista.
+        </li>
+        <li>
+          Comparabilidade: Permite comparar a usabilidade entre versões
+          diferentes do mesmo sistema ou com outros sistemas, se aplicado uma
+          vez a cada sistema e comparado os valores finais.
+        </li>
+        <li>Flexibilidade: Aplicação remota ou presencial. </li>
       </Typography>
     ),
     exemples: (
       <Typography variant="body1">
-        Descrição de um exemplo de Utilização/aplicação do método.
+        Algumas das afirmações incluídas no SUS são:
+        <li>Eu acho que gostaria de usar este sistema com frequência.</li>
+        <li>Eu achei o sistema desnecessariamente complexo.</li>
+        <li>Eu achei o sistema fácil de usar.</li>
+        <li>
+          Eu precisaria da ajuda de uma pessoa técnica para usar o sistema.
+        </li>
+        <br />
+        <br />O participante responde cada afirmação dessa com uma escala de 1 a
+        5, onde 1 é discordo totalmente e 5 é concordo totalmente.
       </Typography>
     ),
     goodPractices: (
-      <Typography variant="body1">
-        Estas serão as informações do tópicos 1. <br />
-        Estas serão as informações do tópicos 2. <br />
-        Este é o tópico 3.
+      <Typography>
+        Como o SUS foi projetado originalmente em inglês, recomenda-se buscar
+        por uma tradução confiável, que não altere a semântica das questões
+        originais.
       </Typography>
     ),
 
     attentionPoints: (
       <Typography variant="body1">
-        Estas informações estarão em tópicos, esse é o tópico 1<br />
-        Estas informações estarão em tópicos, esse é o tópico 2<br />
-        Estas informações estarão em tópicos, esse é o tópico 3<br />
-        Estas informações estarão em tópicos, esse é o tópico 4<br />
+        <li>
+          {" "}
+          O SUS não fornece detalhes específicos sobre problemas de usabilidade,
+          mas uma visão geral quantitativa. Portanto, ele é mais útil quando
+          usado em conjunto com métodos qualitativos, como entrevistas ou teste
+          de usabilidade, que ajudam a identificar e entender os problemas
+          específicos mencionados pelos usuários.
+        </li>
+        <li>
+          Desenvolvido para aplicação com sistemas cuja nivel de fidelidade seja
+          alto.
+        </li>
       </Typography>
     ),
 
     more: [
-      "https://d1wqtxts1xzle7.cloudfront.net/31452632/sus-libre.pdf?1392436529=&response-content-disposition=inline%3B+filename%3DSus_a_quick_and_dirty_usability_scale.pdf&Expires=1730216135&Signature=UvVabRNBtXiVJ2QcbYdkX5Wa9CDg3EpgSnj4VbOA82e10v1SO5JBemN9c4qlxryR1x7JvjHh1PiB0J3nsD9nsETgw07Z3CyHm5qLbXvqnk~XNj9xUwvXL~gmOYNFyhIg8eMCG91-MjKqKucPajST66VabKas1WFWBIbwleU2dXYhr2EEuW8m7L6v73~rPGu-rN~5~VFbLNkfyRZTq25opmTP4vm~~Df4uz47Kb4fdBHasRSragHFPhk33fMA4EvhXxxLl2Y55DoRU0N069Zt3~96vTZt7L-mkRyV-EidboK5VLGfqzBulZpdyANrfR3dV-LMgXMEeozigBXsbOJt-Q__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA",
+      "https://rickvanderzwet.nl/trac/personal/export/72/liacs/hci/docs/SUS-questionaire.pdf",
       "https://dialnet.unirioja.es/servlet/articulo?codigo=8435578",
     ],
-    relatedMethods: ["", ""],
+    relatedMethods: ["entrevista", "teste_de_usabilidade"],
 
     needANDReference: [
       {
         requirement: "objetivos_da_avaliacao",
-        values: ["Usabilidade"],
+        values: ["Usabilidade", "Comparação"],
       },
     ],
     needORReference: [
@@ -656,6 +760,9 @@ export const methods: MethodProps[] = [
     fullDescription: (
       <Typography variant="body1">
         <br />
+        Examina as interações do usuário através de arquivos de logs gerados
+        durante o uso do sistema, interferindo minimamente nas tarefas e
+        preservando o contexto do trabalho.
         <br />
         <br />
         <br />
@@ -742,9 +849,15 @@ export const methods: MethodProps[] = [
     image: avaliacao_cooperativa,
     fullDescription: (
       <Typography variant="body1">
+        <br />O usuário utiliza o sistema e pode interagir com o avaliador
+        enquanto usa, questionando e externalizando pensamentos, fazem a
+        avaliação em conjunto.
         <br />
         <br />
-        <br />
+        Diferente de outras técnicas que irão fornecer listas longas de
+        problemas a serem corrigidos, a avaliação cooperativa permite verificar
+        pontualmente os problemas mais importantes com o mínimo de esforço
+        possível.
         <br />
       </Typography>
     ),
@@ -770,8 +883,10 @@ export const methods: MethodProps[] = [
       </Typography>
     ),
 
-    more: ["https://www.google.com"],
-    relatedMethods: ["", ""],
+    more: [
+      "https://www.researchgate.net/publication/306375261_METODOS_DE_AVALIACAO_DE_USABILIDADE_CARACTERISTICAS_E_APLICACOES",
+    ],
+    relatedMethods: ["pensar_em_voz_alta"],
     needANDReference: [
       {
         requirement: "objetivos_da_avaliacao",
@@ -997,9 +1112,9 @@ export const methods: MethodProps[] = [
     fullDescription: (
       <Typography variant="body1">
         <br />
-        avalia a comunicabilidade de uma solução. O objetivo da inspeção
-        semiótica é avaliar a qualidade da emissão da metacomunicação do
-        designer codificada na interface.
+        Estudo de Campo é uma nomenclatura generalista para métodos que se
+        caracterizem pela observação do usuário final em seu ambiente real. O
+        objetivo é coletar dados e insight de situações reais de uso.
         <br />
         <br />
         <br />
@@ -1254,11 +1369,14 @@ export const methods: MethodProps[] = [
       </Tooltip>,
     ],
     description:
-      "Tipo de Teste de Usabilidade cujo objetivo é comparar boas alternativas de design entre sistemas semelhantes, sejam eles sistemas concorrentes ou apenas versões diferentes no mesmo sistema.",
+      "Tipo de Teste de Usabilidade cujo objetivo é comparar duas alternativas de design entre sistemas semelhantes, sejam eles sistemas concorrentes ou apenas versões diferentes no mesmo sistema.",
     image: teste_de_usabilidade_competitivo,
     fullDescription: (
       <Typography variant="body1">
         <br />
+        Tipo de Teste de Usabilidade cujo objetivo é comparar duas alternativas
+        de design entre sistemas semelhantes, sejam eles sistemas concorrentes
+        ou apenas versões diferentes no mesmo sistema.
         <br />
         <br />
         <br />
@@ -1357,9 +1475,9 @@ export const methods: MethodProps[] = [
     fullDescription: (
       <Typography variant="body1">
         <br />
-        avalia a comunicabilidade de uma solução. O objetivo da inspeção
-        semiótica é avaliar a qualidade da emissão da metacomunicação do
-        designer codificada na interface.
+        Especialistas observam usuário usando o sistema e avaliam a qualidade da
+        recepção da metacomunicação do designer com o usuário, identificando
+        principalmente rupturas na comunicação.
         <br />
         <br />
         <br />

@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Tooltip, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
@@ -22,12 +22,28 @@ export default function Footer() {
             height: "100%",
           }}
         >
-          <Box>
-            <Typography variant="h4">LOGO</Typography>
-            <Typography variant="h4" color="#ffff">
-              LOGO
-            </Typography>
-          </Box>
+          <Tooltip
+            arrow
+            placement="right"
+            title={
+              <Typography>
+                <b>
+                  Ferramenta de Apoio a Seleção de Método para Avaliação de
+                  Usabilidade.
+                </b>
+                <br />
+                <br />
+                Logotipo e nome da ferramenta ainda em desenvolvimento.
+              </Typography>
+            }
+          >
+            <Box>
+              <Typography variant="h4">LOGO</Typography>
+              <Typography variant="h4" color="#ffff">
+                LOGO
+              </Typography>
+            </Box>
+          </Tooltip>
           <Box
             sx={{
               alignSelf: "flex-end",
@@ -40,7 +56,11 @@ export default function Footer() {
 
           {/* Navegação do rodapé */}
           <Box>
-            <Link to="/#" style={{ textDecoration: "none" }}>
+            <Link
+              to="/aboutUs
+            "
+              style={{ textDecoration: "none" }}
+            >
               <Typography
                 color="#ffff"
                 sx={{
@@ -64,7 +84,11 @@ export default function Footer() {
                 Contato
               </Typography>
             </Link>
-            <Link to="/#" style={{ textDecoration: "none" }}>
+            <Link
+              to="/aboutEvaluation
+            "
+              style={{ textDecoration: "none" }}
+            >
               <Typography
                 color="#ffff"
                 sx={{
