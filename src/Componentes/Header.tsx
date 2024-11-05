@@ -27,12 +27,12 @@ export default function Header() {
               </Typography>
             }
           >
-            <>
+            <Box>
               <Typography variant="h5">LOGO</Typography>
               <Typography variant="h5" color="secondary">
                 LOGO
               </Typography>
-            </>
+            </Box>
           </Tooltip>
         </Box>
       </Box>
