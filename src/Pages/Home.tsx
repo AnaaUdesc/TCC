@@ -78,11 +78,13 @@ export default function HomePage() {
     "quantidade_de_especialistas",
   ];
 
-  const sortedResults = result
-    .sort((a, b) => {
-      return a.scoreGeneral - b.scoreGeneral;
-    })
-    .reverse();
+  const sortedResults = !selectedRequirements
+    ? result
+    : result
+        .sort((a, b) => {
+          return a.scoreGeneral - b.scoreGeneral;
+        })
+        .reverse();
 
   const newSelectedRequirements: {
     id: string;

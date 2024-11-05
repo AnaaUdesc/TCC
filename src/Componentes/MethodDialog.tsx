@@ -39,9 +39,9 @@ interface MethodDialogProps {
   classificationIcons?: React.ReactNode[];
   fullDescription: React.ReactNode;
   goodPractices?: React.ReactNode;
-  attentionPoints?: string[];
-  more?: string[];
+  attentionPoints?: React.ReactNode;
   exemples?: React.ReactNode;
+  more?: string[];
   image: string;
   relatedMethods?: string[];
   onMethodClick?: (id: string) => void;
@@ -152,7 +152,7 @@ export default function MethodDialog({
       requirementId: "quantidade_de_especialistas",
     },
     {
-      title: "Nivel de fidelidade do sistema",
+      title: "Nível de fidelidade do sistema",
       children: (
         <RequirementTooltipOrCompatibility
           requirementId="nivel_de_fidelidade_do_sistema"
@@ -277,7 +277,7 @@ export default function MethodDialog({
             width: "100%",
           }}
         >
-          <Box sx={{ padding: 6, paddingTop: 4 }}>
+          <Box sx={{ padding: 6, paddingTop: 4, width: "2200px" }}>
             <Typography
               sx={{
                 marginTop: 1,

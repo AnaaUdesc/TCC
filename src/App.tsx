@@ -3,7 +3,7 @@ import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import themeOptions from "./theme";
 import HomePage from "./Pages/Home";
 import {
-  createBrowserRouter,
+  createHashRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
@@ -11,7 +11,7 @@ import {
 import { GlobalProvider } from "./GlobalProvider";
 const theme = createTheme(themeOptions);
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/" element={<HomePage />} />
