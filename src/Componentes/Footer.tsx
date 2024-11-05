@@ -56,11 +56,7 @@ export default function Footer() {
 
           {/* Navegação do rodapé */}
           <Box>
-            <Link
-              to="/aboutUs
-            "
-              style={{ textDecoration: "none" }}
-            >
+            <Link to="/aboutUs" style={{ textDecoration: "none" }}>
               <Typography
                 color="#ffff"
                 sx={{
@@ -84,11 +80,7 @@ export default function Footer() {
                 Contato
               </Typography>
             </Link>
-            <Link
-              to="/aboutEvaluation
-            "
-              style={{ textDecoration: "none" }}
-            >
+            <Link to="/aboutEvaluation" style={{ textDecoration: "none" }}>
               <Typography
                 color="#ffff"
                 sx={{

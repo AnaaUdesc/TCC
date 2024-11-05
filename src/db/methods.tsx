@@ -303,10 +303,19 @@ export const methods: MethodProps[] = [
     fullDescription: (
       <Typography variant="body1">
         <br />
-        Conversa guiada entre avaliador e usuário com objetivo de obter
-        informações qualitativas sobre o sistema pós uso do sistema.
+        A técnica de entrevista é uma abordagem qualitativa de coleta de dados
+        que permite explorar em profundidade as percepções, experiências e
+        opiniões dos participantes sobre um determinado tema. Ela pode ser
+        estruturada, semiestruturada ou não estruturada, dependendo do nível de
+        flexibilidade desejado nas perguntas.
         <br />
         <br />
+        A estrutura da entrevista refere-se ao roteiro de perguntas, que pode
+        ser pré-definido(estruturado) ou adaptado conforme as respostas dos
+        participantes(semi-estruturado). A flexibilidade da entrevista permite
+        que o avaliador aprofunde-se em questões específicas, explorando
+        diferentes perspectivas e experiências. Ou ainda o avaliador por optar
+        por não roteirizar a entrevista.
         <br />
       </Typography>
     ),
@@ -345,10 +354,10 @@ export const methods: MethodProps[] = [
       },
     ],
     needORReference: [
-      // {
-      //   requirement: "orcamento_relativo",
-      //   values: ["medio"],
-      // },
+      {
+        requirement: "orcamento_relativo",
+        values: ["medio"],
+      },
       {
         requirement: "tempo",
         values: ["medio"],
@@ -363,10 +372,10 @@ export const methods: MethodProps[] = [
       },
     ],
     unNeedORReference: [
-      // {
-      //   requirement: "orcamento_relativo",
-      //   values: ["alto"],
-      // },
+      {
+        requirement: "orcamento_relativo",
+        values: ["alto"],
+      },
       {
         requirement: "tempo",
         values: ["alto"],
@@ -479,39 +488,158 @@ export const methods: MethodProps[] = [
     image: grupos_focais,
     fullDescription: (
       <Typography variant="body1">
-        <br />
         Entrevista/conversa com grupo de 6 a 12 pessoas para obtenção de dados
         qualitativos (opiniões, experiências e críticas) após a utilização do
         produto.
         <br />
         <br />
+        Dentre os métodos de avaliação, o grupo de foco está definido como um
+        dos mais informais, tendo apenas uma lista de assuntos que deve ser
+        seguida para a conversa / entrevista com os usuários.
         <br />
+        <br />
+        Este método permite obter reações de forma mais espontânea. Possibilita
+        a descoberta de problemas inesperados e a evidenciação de aspectos do
+        projeto mais importantes para os usuários, assim como uma grande rapidez
+        na obtenção de informações com um número significativo de usuários.
+        <br />
+        <br />
+        Pode ser usado para análise competitiva, ou seja, comparando sistemas
+        concorrentes ou diferentes versões do mesmo sistema, a fim de analisar
+        características atrativas ou desagradáveis para o público-alvo.
       </Typography>
     ),
     exemples: (
       <Typography variant="body1">
-        Descrição de um exemplo de Utilização/aplicação do método.
+        <Typography variant="h6">
+          Cenário de Exemplo: Desenvolvimento de um Aplicativo de Saúde
+        </Typography>
+        <p>
+          Imagine que uma equipe de desenvolvimento está criando um novo
+          aplicativo de saúde focado em melhorar o bem-estar dos usuários,
+          oferecendo funcionalidades como monitoramento de hábitos, lembretes de
+          atividade física e orientações de nutrição. A equipe quer entender
+          melhor o que potenciais usuários pensam sobre o design inicial e as
+          funcionalidades propostas, então decide realizar um grupo focal.
+        </p>
+
+        <Typography variant="h6">Objetivos do Grupo Focal</Typography>
+        <ul>
+          <li>
+            A relevância das funcionalidades propostas (monitoramento de
+            atividades, lembretes, dicas de nutrição).
+          </li>
+          <br />
+          <li>A clareza e usabilidade da interface inicial.</li>
+          <br />
+          <li>
+            Ideias e expectativas dos participantes sobre o que um aplicativo de
+            saúde ideal deveria oferecer.
+          </li>
+          <br />
+        </ul>
+
+        <Typography variant="h6">
+          Passo a Passo para Conduzir o Grupo Focal
+        </Typography>
+        <ol>
+          <li>
+            <strong>Seleção dos Participantes:</strong> A equipe seleciona entre
+            6 a 8 participantes representativos do público-alvo: adultos entre
+            25 e 50 anos, interessados em saúde e que usam dispositivos móveis
+            regularmente.
+          </li>
+          <br />
+
+          <li>
+            <strong>Definição das Perguntas-Chave:</strong>
+            <ul>
+              <li>
+                "Quais funcionalidades você acha mais úteis em um aplicativo de
+                saúde?"
+              </li>
+              <li>"O que acha do layout desta tela inicial?"</li>
+              <li>
+                "Quais dificuldades você vê ao usar esse tipo de aplicativo
+                diariamente?"
+              </li>
+              <br />
+            </ul>
+          </li>
+
+          <li>
+            <strong>Condução do Grupo Focal:</strong>
+            <ul>
+              <li>
+                O moderador (facilitador) inicia a sessão, explica o objetivo e
+                as regras, e incentiva todos a participarem ativamente.
+              </li>
+              <li>
+                As perguntas são feitas uma a uma, e o moderador facilita a
+                conversa, garantindo que cada participante tenha a chance de
+                expressar suas opiniões.
+              </li>
+              <li>
+                Observadores (se houver) tomam notas sobre reações não verbais,
+                pontos de consenso e divergência.
+              </li>
+              <br />
+            </ul>
+          </li>
+
+          <li>
+            <strong>Registro e Análise de Dados:</strong>
+            <ul>
+              <li>
+                Com a permissão dos participantes, a sessão é gravada para
+                revisão posterior.
+              </li>
+              <li>
+                Após o grupo focal, o moderador e os observadores analisam os
+                dados coletados, destacando os principais pontos de interesse e
+                feedback recorrente dos participantes.
+              </li>
+              <br />
+            </ul>
+          </li>
+
+          <li>
+            <strong>Uso do Feedback:</strong> As informações coletadas são
+            usadas para ajustar o design e funcionalidades do aplicativo,
+            assegurando que ele atenda às expectativas dos usuários. Por
+            exemplo, se vários participantes expressarem que gostariam de um
+            acompanhamento nutricional mais interativo, a equipe pode priorizar
+            essa funcionalidade na próxima versão.
+          </li>
+        </ol>
       </Typography>
     ),
     goodPractices: (
       <Typography variant="body1">
-        Estas serão as informações do tópicos 1. <br />
-        Estas serão as informações do tópicos 2. <br />
-        Este é o tópico 3.
+        É importante que hajam mais pessoas além do condutor da avaliação para a
+        coleta de dados e observação das interações entre os participantes, pois
+        o avaliador estará focado em conduzir a conversa e pode deixar escapar
+        informações importantes. <br />
+        <br />
+        Usar a técnica de gravação e análise pode ajudar a mitigar esse
+        problema, já que a gravação permite revisar o experimento diversas
+        vezes, captando dados não observados em tempo real.
       </Typography>
     ),
 
     attentionPoints: (
       <Typography variant="body1">
-        Estas informações estarão em tópicos, esse é o tópico 1<br />
-        Estas informações estarão em tópicos, esse é o tópico 2<br />
-        Estas informações estarão em tópicos, esse é o tópico 3<br />
-        Estas informações estarão em tópicos, esse é o tópico 4<br />
+        É fundamental equilibrar os perfis dos participantes, pois a exposição
+        de opiniões pessoais em grupo traz desafios a serem considerados, como a
+        vergonha em expressar opiniões divergentes em meio ao grupo ou a
+        influência de perfis dominantes ou manipuladores. <br />
       </Typography>
     ),
 
-    more: ["https://www.google.com"],
-    relatedMethods: [],
+    more: [
+      "https://www.researchgate.net/publication/306375261_METODOS_DE_AVALIACAO_DE_USABILIDADE_CARACTERISTICAS_E_APLICACOES",
+    ],
+    relatedMethods: ["gravacao_e_analise"],
     needANDReference: [
       {
         requirement: "objetivos_da_avaliacao",
@@ -558,43 +686,141 @@ export const methods: MethodProps[] = [
     image: percurso_cognitivo,
     fullDescription: (
       <Typography variant="body1">
-        <br />
         Um especialista coloca-se no papel de usuário ao interagir com o
         sistema, com o intuito de realizar tarefas pré definidas identificando
-        possíveis falhas ou acertos nesse percurso.
+        possíveis falhas ou acertos nesse percurso, de modo a observar os
+        trajetos cognitivos estabelecidos pelo usuário durante a utilização da
+        interface
         <br />
         <br />
-        <br />
+        É diferente de outros métodos por não verificar apenas a conformidade
+        ergonômica. É uma técnica que possui como principal objetivo avaliar a
+        facilidade de aprendizagem da interface pelo usuário, principalmente com
+        foco na aprendizagem por meio da exploração. Esse método foi motivado
+        pela preferência de muitas pessoas em “aprenderem fazendo”, em vez de
+        aprenderem através de treinamentos, leitura de manuais etc.
+        <br /> <br />
+        Por meio deste método é possível identificar se as informações que
+        constam na interface levam ao usuário a executar a tarefa de forma
+        correta, ou se leva ao erro
       </Typography>
     ),
     exemples: (
       <Typography variant="body1">
-        Descrição de um exemplo de Utilização/aplicação do método.
+        <Typography variant="h6">
+          Cenário Exemplo: Avaliação de um Sistema de E-commerce
+        </Typography>
+        <Typography variant="body1">
+          Uma equipe de desenvolvimento está testando a usabilidade de um novo
+          sistema de e-commerce para assegurar que os usuários consigam concluir
+          uma compra sem dificuldades.
+          <br />
+          <br />
+          <strong>Objetivo</strong>
+          <br />
+          Identificar possíveis obstáculos no fluxo de compra e aprimorar a
+          experiência do usuário.
+          <br />
+          <br />
+          <strong>Passo a Passo</strong>
+          <br />
+          <ol>
+            <li>
+              <strong>Definir Tarefas-Chave</strong>
+              <br />
+              As principais tarefas do usuário são:
+              <ul>
+                <li>Buscar um produto específico.</li>
+                <li>Adicionar o produto ao carrinho.</li>
+                <li>
+                  Finalizar a compra (preenchendo dados e confirmando o
+                  pagamento).
+                </li>
+                <br />
+              </ul>
+            </li>
+            <li>
+              <strong>Estabelecer o Perfil do Usuário-Tipo</strong>
+              <br />
+              Usuário com conhecimento básico de internet e pouca experiência no
+              site. Isso ajuda a equipe a prever ações e dificuldades.
+            </li>
+            <br />
+            <li>
+              <strong>Realizar o Percurso Cognitivo (etapa por etapa)</strong>
+              <br />
+              Para cada etapa, a equipe se faz as seguintes perguntas:
+              <ul>
+                <li>O usuário sabe o que fazer nesta etapa?</li>
+                <li>O usuário entende como fazer a ação necessária?</li>
+                <li>
+                  A interface oferece feedback suficiente para confirmar a ação?
+                </li>
+                <br />
+              </ul>
+            </li>
+            <li>
+              <strong>Exemplo de Perguntas por Tarefa:</strong>
+              <ul>
+                <li>
+                  <strong>Buscar Produto</strong>: O campo de busca está visível
+                  e é claro? Os resultados levam o usuário ao produto desejado?
+                </li>
+                <li>
+                  <strong>Adicionar ao Carrinho</strong>: O botão de "Adicionar
+                  ao Carrinho" é fácil de encontrar e intuitivo? A ação é
+                  confirmada?
+                </li>
+                <li>
+                  <strong>Finalizar Compra</strong>: O usuário encontra o botão
+                  de checkout e preenche as informações com facilidade? Recebe
+                  uma confirmação clara?
+                </li>
+                <br />
+              </ul>
+            </li>
+            <li>
+              <strong>Registro das Observações</strong>
+              <br />A equipe anota problemas como botões pouco visíveis, falta
+              de feedback ou confusão nos campos de preenchimento.
+            </li>
+            <br />
+            <li>
+              <strong>Análise e Melhorias</strong>
+              <br />
+              Com base nas observações, a equipe prioriza ajustes necessários,
+              como destacar elementos importantes ou simplificar campos
+              confusos.
+            </li>
+          </ol>
+        </Typography>
       </Typography>
     ),
     goodPractices: (
       <Typography variant="body1">
-        Estas serão as informações do tópicos 1. <br />
-        Estas serão as informações do tópicos 2. <br />
-        Este é o tópico 3.
+        O percurso cognitivo pode ser realizado por um ou mais avaliadores. Se
+        houver mais de um avaliador, todos devem realizar todas as atividades em
+        conjunto <br />
       </Typography>
     ),
 
     attentionPoints: (
       <Typography variant="body1">
-        Estas informações estarão em tópicos, esse é o tópico 1<br />
-        Estas informações estarão em tópicos, esse é o tópico 2<br />
-        Estas informações estarão em tópicos, esse é o tópico 3<br />
-        Estas informações estarão em tópicos, esse é o tópico 4<br />
+        Quanto mais próxima e fiel for a representação da interface da solução
+        final, melhores serão as condições de o avaliador prever a facilidade
+        que o usuário terá para aprender a realizar as tarefas em questão.
+        <br />
       </Typography>
     ),
 
-    more: ["https://www.google.com"],
-    relatedMethods: ["", ""],
+    more: [
+      "https://www.researchgate.net/publication/306375261_METODOS_DE_AVALIACAO_DE_USABILIDADE_CARACTERISTICAS_E_APLICACOES",
+    ],
+    relatedMethods: [],
     needANDReference: [
       {
         requirement: "objetivos_da_avaliacao",
-        values: ["Usabilidade"],
+        values: ["Usabilidade", "Ergonomia"],
       },
       {
         requirement: "tipo_de_dado_coletado",
@@ -851,7 +1077,11 @@ export const methods: MethodProps[] = [
       <Typography variant="body1">
         <br />O usuário utiliza o sistema e pode interagir com o avaliador
         enquanto usa, questionando e externalizando pensamentos, fazem a
-        avaliação em conjunto.
+        avaliação em conjunto. <br />
+        <br />
+        Inicialmente o designer da interface ou avaliador prescreve as tarefas
+        que o entrevistado terá que percorrer, observando ações inesperadas do
+        sistema, páginas que entraram por erro, entre outros problemas.
         <br />
         <br />
         Diferente de outras técnicas que irão fornecer listas longas de
@@ -863,23 +1093,120 @@ export const methods: MethodProps[] = [
     ),
     exemples: (
       <Typography variant="body1">
-        Descrição de um exemplo de Utilização/aplicação do método.
+        <Typography variant="h6">Cenário de Exemplo</Typography>
+        <p>
+          Imagine que você está desenvolvendo um sistema de cadastro de clientes
+          para uma empresa. A interface já está parcialmente pronta, e agora é o
+          momento de obter feedback dos usuários para ajustar o design e a
+          usabilidade antes do lançamento.
+        </p>
+
+        <Typography variant="h6">
+          Passo a Passo para a Avaliação Cooperativa
+        </Typography>
+        <ol>
+          <li>
+            <strong>Escolha dos Participantes:</strong> Selecione alguns
+            usuários reais ou potenciais do sistema (por exemplo, funcionários
+            da equipe de atendimento da empresa que usarão o sistema de
+            cadastro).
+          </li>
+          <br />
+
+          <li>
+            <strong>Planejamento das Tarefas:</strong> Defina algumas tarefas
+            que os usuários deverão realizar, como:
+            <ul>
+              <li>Cadastrar um novo cliente.</li>
+              <li>Atualizar informações de um cliente já cadastrado.</li>
+              <li>Buscar um cliente no sistema.</li>
+            </ul>
+            As tarefas devem representar cenários típicos de uso, que ajudam a
+            testar os principais fluxos da interface.
+          </li>
+          <br />
+
+          <li>
+            <strong>Explicação do Processo:</strong> Explique aos participantes
+            que eles devem verbalizar cada ação que realizam e o que estão
+            pensando enquanto usam o sistema. Por exemplo, se encontrarem algo
+            confuso ou fizerem uma escolha, devem explicar o motivo da decisão
+            em voz alta.
+          </li>
+          <br />
+
+          <li>
+            <strong>Realização da Avaliação:</strong>
+            <ul>
+              <li>
+                O designer ou avaliador acompanha o participante enquanto ele
+                executa as tarefas, observando as ações e ouvindo os
+                comentários.
+              </li>
+              <li>
+                Durante a interação, o avaliador registra as ações inesperadas,
+                como páginas acessadas por erro, elementos confusos na tela ou
+                dificuldades para encontrar funções.
+              </li>
+              <li>
+                O avaliador tenta evitar interromper o participante com
+                perguntas, mas anota questões para serem discutidas ao final da
+                tarefa.
+              </li>
+              <br />
+            </ul>
+          </li>
+
+          <li>
+            <strong>Discussão Pós-Tarefa:</strong> Após o usuário concluir as
+            tarefas, o avaliador faz perguntas sobre ações específicas
+            observadas, como:
+            <ul>
+              <li>
+                "Você mencionou que teve dificuldade em encontrar o botão de
+                salvar. O que acha que poderia melhorar nessa parte da
+                interface?"
+              </li>
+              <li>
+                "Quando você se confundiu com a ordem dos campos, o que você
+                pensou naquele momento?"
+              </li>
+              <br />
+            </ul>
+          </li>
+
+          <li>
+            <strong>Registro dos Resultados:</strong> Documente os principais
+            pontos de dificuldade e sugestões dadas pelos participantes. Esse
+            feedback servirá de base para melhorias no design da interface,
+            considerando os problemas mais críticos identificados.
+            <br />
+          </li>
+        </ol>
       </Typography>
     ),
     goodPractices: (
       <Typography variant="body1">
-        Estas serão as informações do tópicos 1. <br />
-        Estas serão as informações do tópicos 2. <br />
-        Este é o tópico 3.
+        É indicado que o avaliador tome nota dos questionamentos e ações que o
+        usuário realiza. <br />
       </Typography>
     ),
 
     attentionPoints: (
       <Typography variant="body1">
-        Estas informações estarão em tópicos, esse é o tópico 1<br />
-        Estas informações estarão em tópicos, esse é o tópico 2<br />
-        Estas informações estarão em tópicos, esse é o tópico 3<br />
-        Estas informações estarão em tópicos, esse é o tópico 4<br />
+        Este método não é indicado para aplicações iniciais ou protótipos de
+        baixa fidelidade, pois há a necessidade de que se tenha já informações
+        sólidas a respeito das tarefas a serem executadas e como serão
+        executadas dentro da interface
+        <br />
+        <br />
+        O avaliador deve fazer questionamentos acerca da ação do usuário, o que
+        pode ocasionar a interrupção da realização da tarefa. Dessa forma muitos
+        avaliadores procuram deixar os questionamentos para o fim do teste, mas
+        acabam correndo o risco de que alguns usuários apresentem problemas para
+        relembrar o que tinham feito ou pensado durante a ação.
+        <br />
+        <br />
       </Typography>
     ),
 
