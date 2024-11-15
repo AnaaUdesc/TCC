@@ -59,6 +59,7 @@ export interface ScoresRepresentativos {
 interface CardProps extends MethodProps {
   scoreGeral: number;
   scoresRepresentativos: ScoresRepresentativos;
+  isTechnique?: boolean;
 }
 
 export default function Card({
@@ -75,6 +76,7 @@ export default function Card({
   scoreGeral,
   scoresRepresentativos,
   id,
+  isTechnique,
 }: CardProps) {
   const [open, setOpen] = useState(false);
   const [selectedMethodOrTechnique, setSelectedMethodOrTechnique] =
@@ -170,7 +172,7 @@ export default function Card({
               {title}
             </Typography>
             <Box sx={{ display: "flex", gap: 1 }}>
-              {classificationIcons.map((icon, index) => (
+              {classificationIcons?.map((icon, index) => (
                 <Box
                   sx={{
                     display: "flex",
@@ -202,109 +204,113 @@ export default function Card({
             Ver detalhes
           </Link>
         </Box>
-        <Divider orientation="vertical" flexItem />
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Tooltip
-            title="Compatibilidade geral do método"
-            arrow
-            placement="left"
-          >
-            <Box sx={{ padding: 3, paddingBottom: 1 }}>
-              <Box
-                sx={{
-                  position: "relative",
-                  display: "inline-flex",
-                }}
-              >
-                <CircularProgress
-                  variant="determinate"
-                  sx={{
-                    color: "#d9d9d9",
-                  }}
-                  size={100}
-                  thickness={5}
-                  value={100}
-                />
-                <CircularProgress
-                  variant="determinate"
-                  sx={{
-                    color: getColorByScore(scoreGeral),
-                    position: "absolute",
-                    left: 0,
-                  }}
-                  size={100}
-                  thickness={5}
-                  value={scoreGeral}
-                />
-
-                <Box
-                  sx={{
-                    top: 0,
-                    left: 0,
-                    bottom: 0,
-                    right: 0,
-                    position: "absolute",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Typography
-                    variant="h5"
-                    component="div"
-                    sx={{ fontWeight: 600 }}
-                  >
-                    {scoreGeral}%
-                  </Typography>
-                </Box>
-              </Box>
-            </Box>
-          </Tooltip>
-          <Box sx={{ paddingX: 3 }}>
+        {!isTechnique && (
+          <>
+            <Divider orientation="vertical" flexItem />
             <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
-
-                minWidth: 150,
+                alignItems: "center",
               }}
             >
-              {requirementsProps.map((requirement) => (
-                <RequirementProgressView
-                  key={requirement.title}
-                  progress={requirement.progress ?? 0}
-                  title={requirement.title}
-                  icon={requirement.icon}
-                  requirementId={requirement.requirementId}
-                  BorderLinearProgressWidth="110px"
+              <Tooltip
+                title="Compatibilidade geral do método"
+                arrow
+                placement="left"
+              >
+                <Box sx={{ padding: 3, paddingBottom: 1 }}>
+                  <Box
+                    sx={{
+                      position: "relative",
+                      display: "inline-flex",
+                    }}
+                  >
+                    <CircularProgress
+                      variant="determinate"
+                      sx={{
+                        color: "#d9d9d9",
+                      }}
+                      size={100}
+                      thickness={5}
+                      value={100}
+                    />
+                    <CircularProgress
+                      variant="determinate"
+                      sx={{
+                        color: getColorByScore(scoreGeral),
+                        position: "absolute",
+                        left: 0,
+                      }}
+                      size={100}
+                      thickness={5}
+                      value={scoreGeral}
+                    />
+
+                    <Box
+                      sx={{
+                        top: 0,
+                        left: 0,
+                        bottom: 0,
+                        right: 0,
+                        position: "absolute",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Typography
+                        variant="h5"
+                        component="div"
+                        sx={{ fontWeight: 600 }}
+                      >
+                        {scoreGeral}%
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Box>
+              </Tooltip>
+              <Box sx={{ paddingX: 3 }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+
+                    minWidth: 150,
+                  }}
                 >
-                  {requirement.children}
-                </RequirementProgressView>
-              ))}
+                  {requirementsProps.map((requirement) => (
+                    <RequirementProgressView
+                      key={requirement.title}
+                      progress={requirement.progress ?? 0}
+                      title={requirement.title}
+                      icon={requirement.icon}
+                      requirementId={requirement.requirementId}
+                      BorderLinearProgressWidth="110px"
+                    >
+                      {requirement.children}
+                    </RequirementProgressView>
+                  ))}
+                </Box>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  mt: 0,
+                  ml: 2,
+                }}
+              >
+                <Tooltip title="Ver mais requisitos" placement="bottom" arrow>
+                  <IconButton onClick={() => setOpen(true)} color="secondary">
+                    <MoreHoriz />
+                  </IconButton>
+                </Tooltip>
+              </Box>
             </Box>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              mt: 0,
-              ml: 2,
-            }}
-          >
-            <Tooltip title="Ver mais requisitos" placement="bottom" arrow>
-              <IconButton onClick={() => setOpen(true)} color="secondary">
-                <MoreHoriz />
-              </IconButton>
-            </Tooltip>
-          </Box>
-        </Box>
+          </>
+        )}
       </Box>
       <MethodDialog
         open={open}
@@ -324,6 +330,7 @@ export default function Card({
         scoreGeral={scoreGeral}
         id={id}
         scoresRepresentativos={scoresRepresentativos}
+        isTechnique={isTechnique}
       />
       {selectedMethodOrTechnique !== null && (
         <MethodDialog

@@ -2,8 +2,6 @@ import {
   Box,
   Button,
   Chip,
-  Collapse,
-  ListItemText,
   Menu as MuiMenu,
   Container,
   Divider,
@@ -13,17 +11,15 @@ import {
   TextField,
   Tooltip,
   Typography,
-  ListItemIcon,
 } from "@mui/material";
 import Card from "../Componentes/Card";
 import Footer from "../Componentes/Footer";
 import Header from "../Componentes/Header";
 import PageviewIcon from "@mui/icons-material/Pageview";
-
 import { MethodProps, methods } from "../db/methods";
+import { technics } from "../db/tecnicas";
 import {
   ArrowRight,
-  ContentPaste,
   Delete,
   QuestionAnswer,
   Search,
@@ -35,18 +31,30 @@ import { useGlobalContext } from "../GlobalProvider";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import Menu from "../Componentes/Menu";
+import { getMethodOrTechniqueById, isTechnique } from "../utils";
 
 export default function HomePage() {
   const [openMethods, setOpenMethods] = useState(false);
   const [focused, setFocused] = useState(false);
   const [search, setSearch] = useState("");
-  const [anchorMethods, setAnchorMethods] = useState<HTMLButtonElement | null>(
+  const [anchorMethods, setAnchorMethods] = useState<HTMLDivElement | null>(
     null
+  );
+  const [selectedMethodType, setSelectedMethodType] = useState<
+    "Observação" | "Inspeção" | "Investigação" | "all"
+  >("all");
+
+  const [selectedType, setSelectedType] = useState<"method" | "technique">(
+    "method"
   );
 
   const handleOpenMethodsMenu = (
-    event: React.MouseEvent<HTMLButtonElement>
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
+    if (!openMethods) {
+      return;
+    }
+
     setAnchorMethods(event.currentTarget);
   };
 
@@ -74,17 +82,34 @@ export default function HomePage() {
     }
   }, [selectedRequirements]);
 
-  const filteredMethods = useMemo(() => {
-    return methods.filter((method) => {
+  const results: MethodProps[] = useMemo(() => {
+    if (selectedType === "technique") {
+      return technics;
+    }
+    if (selectedType === "method") {
+      return methods.filter((method) => {
+        if (selectedMethodType === "all") {
+          return true;
+        } else {
+          return method?.classifications?.includes(selectedMethodType);
+        }
+      });
+    }
+
+    return [];
+  }, [selectedMethodType, selectedType]);
+
+  const filtered = useMemo(() => {
+    return results.filter((item) => {
       return (
-        method.title.toLowerCase().includes(search.toLowerCase()) ||
-        method.description.toLowerCase().includes(search.toLowerCase())
+        item.title.toLowerCase().includes(search.toLowerCase()) ||
+        item.description.toLowerCase().includes(search.toLowerCase())
       );
     });
-  }, [search]);
+  }, [results, search]);
 
   const result: {
-    methodId: string;
+    id: string;
     scoreGeneral: number;
     scoresRepresentativos: {
       [key: string]: {
@@ -94,16 +119,16 @@ export default function HomePage() {
     };
   }[] = useMemo(
     () =>
-      filteredMethods.map((method) => {
-        const resultCalculate = handleScoreByMethod(method.id);
+      filtered.map((item) => {
+        const resultCalculate = handleScoreByMethod(item.id);
 
         return {
-          methodId: method.id,
+          id: item.id,
           scoreGeneral: Math.round(Number(resultCalculate.scoreGeral)),
           scoresRepresentativos: resultCalculate.scoresRepresentativos,
         };
       }),
-    [filteredMethods, handleScoreByMethod]
+    [filtered, handleScoreByMethod]
   );
 
   const requirementIdsToTransform = [
@@ -152,6 +177,12 @@ export default function HomePage() {
       });
     }
   });
+
+  const handleSetSelectedMethodType = (type: string) => {
+    setSelectedMethodType(type as "Observação" | "Inspeção" | "Investigação");
+    setSelectedType("method");
+    handleCloseMethodsMenu();
+  };
 
   return (
     <Box
@@ -263,10 +294,12 @@ export default function HomePage() {
                   sx={{
                     display: "flex",
                     justifyContent: "space-between",
-                    // alignItems: "center",
+                    alignItems: "center",
                   }}
                 >
-                  <Typography sx={{ fontWeight: 500 }}>Métodos</Typography>
+                  <Typography sx={{ fontWeight: 500 }}>
+                    {selectedType === "method" ? "Métodos" : "Técnicas"}
+                  </Typography>
                   {openMethods ? (
                     <SvgIcon
                       sx={{
@@ -297,7 +330,15 @@ export default function HomePage() {
                       mt: 1,
                     }}
                   >
-                    <Box>Técnicas</Box>
+                    <Box
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        setSelectedType("technique");
+                      }}
+                    >
+                      Técnicas
+                    </Box>
                     <Divider />
                     <Box
                       sx={{
@@ -308,6 +349,7 @@ export default function HomePage() {
                       }}
                       onClick={(e) => {
                         e.stopPropagation();
+                        e.preventDefault();
                         handleOpenMethodsMenu(e);
                       }}
                     >
@@ -321,18 +363,18 @@ export default function HomePage() {
                         vertical: "top",
                         horizontal: "right",
                       }}
-
-                      // transformOrigin={{
-                      //   vertical: "top",
-                      //   horizontal: "center",
-                      // }}
                     >
                       <Tooltip
                         title="Métodos de inspeção envolvem a interação do avaliador com o sistema, sem a participação direta do usuário. O objetivo é identificar antecipadamente problemas que os usuários possam encontrar, examinando detalhadamente a interface."
                         placement="left"
                         arrow
                       >
-                        <MenuItem sx={{ gap: 1 }}>
+                        <MenuItem
+                          sx={{ gap: 1 }}
+                          onClick={() => {
+                            handleSetSelectedMethodType("Inspeção");
+                          }}
+                        >
                           <Box
                             sx={{
                               borderRadius: 50,
@@ -360,7 +402,12 @@ export default function HomePage() {
                         placement="left"
                         arrow
                       >
-                        <MenuItem sx={{ gap: 1 }}>
+                        <MenuItem
+                          sx={{ gap: 1 }}
+                          onClick={() => {
+                            handleSetSelectedMethodType("Observação");
+                          }}
+                        >
                           <Box
                             sx={{
                               borderRadius: 50,
@@ -388,7 +435,12 @@ export default function HomePage() {
                         placement="left"
                         arrow
                       >
-                        <MenuItem sx={{ gap: 1 }}>
+                        <MenuItem
+                          sx={{ gap: 1 }}
+                          onClick={() => {
+                            handleSetSelectedMethodType("Investigação");
+                          }}
+                        >
                           <Box
                             sx={{
                               borderRadius: 50,
@@ -411,7 +463,12 @@ export default function HomePage() {
                         </MenuItem>
                       </Tooltip>
                       <Divider />
-                      <MenuItem sx={{ gap: 1 }}>
+                      <MenuItem
+                        sx={{ gap: 1 }}
+                        onClick={() => {
+                          handleSetSelectedMethodType("all");
+                        }}
+                      >
                         <Box
                           sx={{
                             borderRadius: 50,
@@ -570,12 +627,11 @@ export default function HomePage() {
             >
               {sortedResults.map((result) => (
                 <Card
-                  key={result.methodId}
-                  {...(methods.find(
-                    (method) => method.id === result.methodId
-                  ) as MethodProps)}
+                  key={result.id}
+                  {...(getMethodOrTechniqueById(result.id) as MethodProps)}
                   scoreGeral={result.scoreGeneral}
                   scoresRepresentativos={result.scoresRepresentativos}
+                  isTechnique={isTechnique(result.id)}
                 />
               ))}
             </Box>

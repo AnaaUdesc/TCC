@@ -23,6 +23,7 @@ export interface MethodProps {
   id: string;
   title: string;
   classificationIcons: React.ReactNode[];
+  classifications?: string[];
   description: string;
   image: string;
   fullDescription: React.ReactNode;
@@ -51,6 +52,7 @@ export const methods: MethodProps[] = [
   {
     id: "questionarios",
     title: "Questionários",
+    classifications: ["Investigação"],
     classificationIcons: [
       <Tooltip title="Método" arrow placement="top">
         <Typography variant="h6" color="#ffff" fontWeight={700}>
@@ -187,6 +189,7 @@ export const methods: MethodProps[] = [
   {
     id: "teste_de_usabilidade",
     title: "Teste de Usabilidade",
+    classifications: ["Observação"],
     classificationIcons: [
       <Tooltip title="Método" arrow placement="top">
         <Typography variant="h6" color="#ffff" fontWeight={700}>
@@ -286,6 +289,7 @@ export const methods: MethodProps[] = [
   {
     id: "entrevista",
     title: "Entrevistas",
+    classifications: ["Investigação"],
     classificationIcons: [
       <Tooltip title="Método" arrow placement="top">
         <Typography variant="h6" color="#ffff" fontWeight={700}>
@@ -393,6 +397,7 @@ export const methods: MethodProps[] = [
   {
     id: "avaliacao_heuristica",
     title: "Avaliação Heurística",
+    classifications: ["Inspeção"],
     classificationIcons: [
       <Tooltip title="Método" arrow placement="top">
         <Typography variant="h6" color="#ffff" fontWeight={700}>
@@ -472,6 +477,7 @@ export const methods: MethodProps[] = [
   {
     id: "grupos_focais",
     title: "Grupos Focais",
+    classifications: ["Investigação"],
     classificationIcons: [
       <Tooltip title="Método" arrow placement="top">
         <Typography variant="h6" color="#ffff" fontWeight={700}>
@@ -670,6 +676,7 @@ export const methods: MethodProps[] = [
   {
     id: "percurso_cognitivo",
     title: "Percurso Cognitivo",
+    classifications: ["Inspeção"],
     classificationIcons: [
       <Tooltip title="Método" arrow placement="top">
         <Typography variant="h6" color="#ffff" fontWeight={700}>
@@ -852,6 +859,7 @@ export const methods: MethodProps[] = [
   {
     id: "sus",
     title: "SUS - System Usability Scale",
+    classifications: ["Investigação"],
     classificationIcons: [
       <Tooltip title="Método" arrow placement="top">
         <Typography variant="h6" color="#ffff" fontWeight={700}>
@@ -969,6 +977,7 @@ export const methods: MethodProps[] = [
   {
     id: "analise_de_logs",
     title: "Análise de Logs",
+    classifications: ["Observação"],
     classificationIcons: [
       <Tooltip title="Método" arrow placement="top">
         <Typography variant="h6" color="#ffff" fontWeight={700}>
@@ -1055,10 +1064,10 @@ export const methods: MethodProps[] = [
       },
     ],
   },
-
   {
     id: "avaliacao_cooperativa",
     title: "Avaliação Cooperativa",
+    classifications: ["Investigação"],
     classificationIcons: [
       <Tooltip title="Método" arrow placement="top">
         <Typography variant="h6" color="#ffff" fontWeight={700}>
@@ -1251,6 +1260,7 @@ export const methods: MethodProps[] = [
   {
     id: "avaliacao_baseada_em_documento",
     title: "Avaliação Baseada em Documento",
+    classifications: ["Inspeção"],
     classificationIcons: [
       <Tooltip title="Método" arrow placement="top">
         <Typography variant="h6" color="#ffff" fontWeight={700}>
@@ -1337,6 +1347,7 @@ export const methods: MethodProps[] = [
   {
     id: "inspecao_semiotica",
     title: "Inspeção Semiótica",
+    classifications: ["Inspeção"],
     classificationIcons: [
       <Tooltip title="Método" arrow placement="top">
         <Typography variant="h6" color="#ffff" fontWeight={700}>
@@ -1422,6 +1433,7 @@ export const methods: MethodProps[] = [
   {
     id: "estudo_de_campo",
     title: "Estudo de Campo",
+    classifications: ["Observação"],
     classificationIcons: [
       <Tooltip title="Método" arrow placement="top">
         <Typography variant="h6" color="#ffff" fontWeight={700}>
@@ -1507,6 +1519,7 @@ export const methods: MethodProps[] = [
   {
     id: "eye_tracking",
     title: "Eye Tracking",
+    classifications: ["Observação"],
     classificationIcons: [
       <Tooltip title="Método" arrow placement="top">
         <Typography variant="h6" color="#ffff" fontWeight={700}>
@@ -1684,6 +1697,7 @@ export const methods: MethodProps[] = [
   {
     id: "teste_de_usabilidade_competitivo",
     title: "Teste de Usabilidade Competitivo",
+    classifications: ["Observação"],
     classificationIcons: [
       <Tooltip title="Método" arrow placement="top">
         <Typography variant="h6" color="#ffff" fontWeight={700}>
@@ -1785,6 +1799,7 @@ export const methods: MethodProps[] = [
   {
     id: "avaliacao_de_comunicabilidade",
     title: "Avaliação de Comunicabilidade",
+    classifications: ["Observação"],
     classificationIcons: [
       <Tooltip title="Método" arrow placement="top">
         <Typography variant="h6" color="#ffff" fontWeight={700}>

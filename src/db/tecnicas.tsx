@@ -1,21 +1,9 @@
 import { Tooltip, Typography } from "@mui/material";
 import pensar_em_voz_alta from "../assets/pensar_em_voz_alta.jpg"; // Importando a imagem diretamente
 import gravacao_e_analise from "../assets/gravacao_e_analise.jpg"; // Importando a imagem diretamente
+import { MethodProps } from "./methods";
 
-export interface TecnicaProps {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  classificationIcons: React.ReactNode[];
-  fullDescription: React.ReactNode;
-  goodPractices?: React.ReactNode;
-  attentionPoints?: React.ReactNode;
-  more?: string[];
-  exemples?: React.ReactNode;
-}
-
-export const technics: TecnicaProps[] = [
+export const technics: MethodProps[] = [
   {
     id: "pensar_em_voz_alta",
     title: "Pensar em Voz Alta",

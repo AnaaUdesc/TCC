@@ -49,6 +49,7 @@ interface MethodDialogProps {
   scoreGeral?: number;
   id: string;
   scoresRepresentativos?: ScoresRepresentativos;
+  isTechnique?: boolean;
 }
 
 export default function MethodDialog({
@@ -67,6 +68,7 @@ export default function MethodDialog({
   onMethodClick,
   scoreGeral,
   scoresRepresentativos = {},
+  isTechnique,
 }: MethodDialogProps) {
   const requirementsProps: RequirementProgressViewProps[] = [
     {
@@ -456,138 +458,142 @@ export default function MethodDialog({
               </>
             )}
           </Box>
-          <Divider
-            sx={{
-              mt: 6,
-              height: "700px",
-            }}
-            orientation="vertical"
-            flexItem
-          />
-          <Box
-            sx={{
-              p: 6,
+          {!isTechnique && (
+            <>
+              <Divider
+                sx={{
+                  mt: 6,
+                  height: "700px",
+                }}
+                orientation="vertical"
+                flexItem
+              />
+              <Box
+                sx={{
+                  p: 6,
 
-              width: "800px",
-            }}
-          >
-            <Typography variant="h5" fontWeight={600}>
-              Compatibilidades
-            </Typography>
-            <Typography
-              variant="h6"
-              fontWeight={500}
-              fontStyle={"italic"}
-              sx={{ marginTop: 2 }}
-            >
-              Total
-            </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                gap: 2,
-                alignItems: "center",
-                my: 1,
-              }}
-            >
-              <LightTooltip
-                title={
-                  <Typography>
-                    A <b>compatibilidade geral</b> representa o percentual de
-                    adequação deste método aos requisitos que você forneceu,
-                    combinados com as condições necessárias para o funcionamento
-                    deste método.
-                    <br />
-                    <br />
-                    Você encontrará justificativas sobre essa porcentagem
-                    observando as porcentagens <b>'Por requisito'</b>, listadas
-                    abaixo.
-                  </Typography>
-                }
-                arrow
-                placement="left"
+                  width: "800px",
+                }}
               >
+                <Typography variant="h5" fontWeight={600}>
+                  Compatibilidades
+                </Typography>
+                <Typography
+                  variant="h6"
+                  fontWeight={500}
+                  fontStyle={"italic"}
+                  sx={{ marginTop: 2 }}
+                >
+                  Total
+                </Typography>
                 <Box
                   sx={{
-                    position: "relative",
-                    display: "inline-flex",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 2,
+                    alignItems: "center",
+                    my: 1,
                   }}
                 >
-                  <CircularProgress
-                    variant="determinate"
-                    sx={{
-                      color: "#d9d9d9",
-                    }}
-                    size={100}
-                    thickness={5}
-                    value={100}
-                  />
-                  <CircularProgress
-                    variant="determinate"
-                    sx={{
-                      color: getColorByScore(scoreGeral ?? 0),
-                      position: "absolute",
-                      left: 0,
-                    }}
-                    size={100}
-                    thickness={5}
-                    value={scoreGeral}
-                  />
-
-                  <Box
-                    sx={{
-                      top: 0,
-                      left: 0,
-                      bottom: 0,
-                      right: 0,
-                      position: "absolute",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
+                  <LightTooltip
+                    title={
+                      <Typography>
+                        A <b>compatibilidade geral</b> representa o percentual
+                        de adequação deste método aos requisitos que você
+                        forneceu, combinados com as condições necessárias para o
+                        funcionamento deste método.
+                        <br />
+                        <br />
+                        Você encontrará justificativas sobre essa porcentagem
+                        observando as porcentagens <b>'Por requisito'</b>,
+                        listadas abaixo.
+                      </Typography>
+                    }
+                    arrow
+                    placement="left"
                   >
-                    <Typography
-                      variant="h5"
-                      component="div"
-                      sx={{ fontWeight: 600 }}
+                    <Box
+                      sx={{
+                        position: "relative",
+                        display: "inline-flex",
+                      }}
                     >
-                      {scoreGeral}%
-                    </Typography>
-                  </Box>
-                </Box>
-              </LightTooltip>
-            </Box>
+                      <CircularProgress
+                        variant="determinate"
+                        sx={{
+                          color: "#d9d9d9",
+                        }}
+                        size={100}
+                        thickness={5}
+                        value={100}
+                      />
+                      <CircularProgress
+                        variant="determinate"
+                        sx={{
+                          color: getColorByScore(scoreGeral ?? 0),
+                          position: "absolute",
+                          left: 0,
+                        }}
+                        size={100}
+                        thickness={5}
+                        value={scoreGeral}
+                      />
 
-            <Typography
-              variant="h6"
-              fontWeight={500}
-              fontStyle={"italic"}
-              sx={{ marginTop: 5, marginBottom: 2 }}
-            >
-              Por requisito
-            </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                gap: 2,
-                mt: 1,
-              }}
-            >
-              {requirementsProps.map((requirement) => (
-                <RequirementProgressView
-                  key={requirement.title}
-                  progress={requirement.progress ?? 0}
-                  title={requirement.title}
-                  icon={requirement.icon}
-                  requirementId={requirement.requirementId}
+                      <Box
+                        sx={{
+                          top: 0,
+                          left: 0,
+                          bottom: 0,
+                          right: 0,
+                          position: "absolute",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Typography
+                          variant="h5"
+                          component="div"
+                          sx={{ fontWeight: 600 }}
+                        >
+                          {scoreGeral}%
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </LightTooltip>
+                </Box>
+
+                <Typography
+                  variant="h6"
+                  fontWeight={500}
+                  fontStyle={"italic"}
+                  sx={{ marginTop: 5, marginBottom: 2 }}
                 >
-                  {requirement.children}
-                </RequirementProgressView>
-              ))}
-            </Box>
-          </Box>
+                  Por requisito
+                </Typography>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 2,
+                    mt: 1,
+                  }}
+                >
+                  {requirementsProps.map((requirement) => (
+                    <RequirementProgressView
+                      key={requirement.title}
+                      progress={requirement.progress ?? 0}
+                      title={requirement.title}
+                      icon={requirement.icon}
+                      requirementId={requirement.requirementId}
+                    >
+                      {requirement.children}
+                    </RequirementProgressView>
+                  ))}
+                </Box>
+              </Box>
+            </>
+          )}
         </Box>
       </Box>
     </Dialog>

@@ -33,6 +33,10 @@ export const getMethodOrTechniqueById = (id: string): MethodProps => {
   return (method || technique) as MethodProps;
 };
 
+export const isTechnique = (id: string) => {
+  return !!technics.find((technique) => technique.id === id);
+};
+
 export const getScoreByKey = (
   scoresRepresentativos: ScoresRepresentativos,
   key: string
