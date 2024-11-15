@@ -428,7 +428,7 @@ export default function Menu() {
         <Divider sx={{ borderColor: "#E3E3E3", marginX: 2 }} />
         <ItemMenu
           icon={<CalendarMonth />}
-          name="Tempo"
+          name="Tempo Relativo"
           tooltipTile={
             <>
               <Typography>
@@ -441,6 +441,9 @@ export default function Menu() {
                 <br />
                 Esse tempo pode variar conforme o <u>tamanho</u> do sistema e de
                 acordo com o <u>método escolhido</u>.
+                <br />
+                Também é considerado o tempo comparativo de aplicação entre
+                diferentes métodos.
               </Typography>
             </>
           }
