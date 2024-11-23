@@ -1,5 +1,4 @@
-import { Construction } from "@mui/icons-material";
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import Header from "../Componentes/Header";
 import Footer from "../Componentes/Footer";
 import logo_cct from "../assets/logo_cct.jpg";
