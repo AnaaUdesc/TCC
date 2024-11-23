@@ -1,7 +1,8 @@
-import { Link, Tooltip, Typography } from "@mui/material";
+import { Tooltip, Typography } from "@mui/material";
 import pensar_em_voz_alta from "../assets/pensar_em_voz_alta.jpg"; // Importando a imagem diretamente
 import gravacao_e_analise from "../assets/gravacao_e_analise.jpg"; // Importando a imagem diretamente
-import prototipacao_em_baixa_fidelidade from "../assets/prototipacao_em_baixa_fidelidade.jpg"; // Importando a imagem diretamente
+import prototipacao_em_baixa_fidelidade from "../assets/prototipacao_em_baixa_fidelidade.jpg";
+import heatmaps from "../assets/heatmaps.png";
 import { MethodProps } from "./methods";
 
 export const technics: MethodProps[] = [
@@ -297,6 +298,8 @@ export const technics: MethodProps[] = [
         Técnica usada para coletar informações de uso sem muito custo e esforço.
         <br />
         <br />
+        Também usada para comparar alternativas de design sem precisar de fato
+        implementa-las.
         <br />
         <br />
       </Typography>
@@ -305,53 +308,162 @@ export const technics: MethodProps[] = [
       <Typography variant="body1">
         <br />
         <li>
-          <b>Cenário 1: </b>
+          <b>Cenário: </b> Um avaliador convida usuários para realizar um teste
+          de usabilidade em aplicativo de entrega de comida utilizando
+          protótipos desenhados à mão.
           <ol>
-            <li></li>
+            <li>
+              São fornecidas tarefas, como selecionar um restaurante, adicionar
+              itens ao carrinho e finalizar um pedido.
+            </li>
             <br />
-            <li></li>
+            <li>
+              Durante o teste, o usuário verbaliza suas ações e faz gestos para
+              interagir com as telas em papel.
+            </li>
             <br />
-            <li></li>
-            <br />
-            <li></li>
-            <br />
+            <li>
+              O avaliador, atuando como “computador”, troca as telas simulando a
+              ação do sistema conforme o progresso da tarefa.
+            </li>
           </ol>
         </li>
-
-        <br />
-        <br />
-        <li>
-          <b></b>
-          <ol>
-            <li></li>
-            <br />
-            <li></li>
-            <br />
-            <li></li>
-          </ol>
-        </li>
-
-        <br />
       </Typography>
     ),
 
     goodPractices: (
       <Typography variant="body1">
-        <li></li>
+        <li>
+          Não se preocupe com detalhes visuais ou estéticos, foque no conceito
+          de interação apresentado na interface.
+        </li>
         <br />
-        <li></li>
-        <br />
-        <br />
+        <li>
+          Utilize materiais de baixo custo, como papel, caneta, post-its, entre
+          outros. Se preferir uma abordagem digital, utilize ferramentas como
+          Figma, Balsamiq, Draw.io entre outras.
+        </li>
       </Typography>
     ),
     attentionPoints: (
       <Typography variant="body1">
-        <li></li>
+        <li>
+          É importante prestar atenção na distinção entre problemas inerentes à
+          baixa fidelidade do protótipo e questões de usabilidade.
+        </li>
         <br />
       </Typography>
     ),
 
-    more: [""],
-    relatedMethods: [""],
+    more: [
+      "https://books.google.com.br/books?hl=pt-BR&lr=&id=YgBojJsVLGMC&oi=fnd&pg=PP1&dq=Snyder,+Carolyn+(2003).+Paper+Prototyping:+The+Fast+and+Easy+Way+to+Design+and+Refine+User+Interfaces.+Morgan+Kaufmann+Publishers+Inc.,+San+Francisco,+CA,+USA&ots=1pXQvTZ18D&sig=3ryTPb__gzYzayFIHUjT28i1p94#v=onepage&q&f=false",
+      "https://copec.eu/congresses/icece2013/proc/works/36.pdf",
+    ],
+    relatedMethods: [
+      "teste_de_usabilidade",
+      "teste_de_usabilidade_competitivo",
+      "entrevista",
+      "grupos_focais",
+    ],
+  },
+  {
+    id: "heatmaps",
+    title: "Heatmaps - Mapas de Calor",
+    description:
+      "Técnica de agrupamento de dados para obter informações sobre a atenção do usuário em determinados pontos da interface.",
+    image: heatmaps,
+    classificationIcons: [
+      <Tooltip title="Técnica" arrow placement="top">
+        <Typography variant="h6" color="#ffff" fontWeight={700}>
+          T
+        </Typography>
+      </Tooltip>,
+    ],
+    fullDescription: (
+      <Typography variant="body1">
+        Técnica de agrupamento de dados individuais para formar mapas de calor
+        que podem ser produzidos analisando cliques de mouse e/ou rastreamento
+        ocular, obtendo informações sobre a atenção do usuário em determinados
+        pontos da interface.
+        <br />
+        <br />
+        As imagens com representação térmica mostram as tendências visuais dos
+        participantes, indicando comportamentos padrões do grupo.
+        <br />
+        <br />
+        Pode-se obter insights sobre o fluxo de leitura de uma página por
+        exemplo, áreas que passam despercebidas, entre outros.
+        <br />
+        <br />
+      </Typography>
+    ),
+    exemples: (
+      <Typography variant="body1">
+        <br />
+        <li>
+          <b>Cenário: </b> Um portal de notícias identifica, por meio da análise
+          de logs, que muitos usuários abandonam a página inicial sem clicar nos
+          artigos sugeridos.
+          <ol>
+            <li>
+              No entanto, os logs não mostram quais áreas da página atraem mais
+              cliques.
+            </li>
+            <br />
+            <li>
+              Para complementar, são gerados heatmaps de cliques a partir da
+              interação dos usuários.
+            </li>
+            <br />
+            <li>
+              Os mapas revelam que a maioria dos cliques ocorre nos anúncios e
+              nos menus laterais, enquanto os links principais de artigos
+              recebem pouca atenção.
+            </li>
+            <br />
+            <li>
+              Combinando os dados, o portal reorganiza o layout, destacando os
+              artigos para aumentar a taxa de engajamento.
+            </li>
+          </ol>
+        </li>
+      </Typography>
+    ),
+
+    goodPractices: (
+      <Typography variant="body1">
+        <li>
+          Quanto mais participantes na avaliação, mais precisos serão os mapas
+          de calor gerados.
+        </li>
+        <br />
+        <li>
+          Pode-se utilizar softwares especializados para auxiliar na produção
+          deste tipo de informação gráfica.
+        </li>
+      </Typography>
+    ),
+    attentionPoints: (
+      <Typography variant="body1">
+        <li>Heatmaps não explicam "por que" algo atrai ou distrai.</li> <br />
+        <li>
+          É uma técnica recomendada como complemento na análise de dados, mas
+          não deve ser utilizada como a única fonte de informação em uma
+          pesquisa.
+        </li>
+        <br />
+      </Typography>
+    ),
+
+    more: [
+      "https://www.nngroup.com/articles/heatmap-visualizations-signifiers/",
+      "https://www.researchgate.net/profile/Joana-Pinto-12/publication/284512589_Eye_tracking_and_usability_Combining_methods_to_understand_user_behavior_on_online_search_engines/links/5654621208aefe619b19dd12/Eye-tracking-and-usability-Combining-methods-to-understand-user-behavior-on-online-search-engines.pdf",
+    ],
+    relatedMethods: [
+      "eye_tracking",
+      "teste_de_usabilidade",
+      "teste_de_usabilidade_competitivo",
+      "analise_de_logs",
+    ],
   },
 ];
