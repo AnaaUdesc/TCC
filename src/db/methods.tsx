@@ -214,6 +214,7 @@ export const methods: MethodProps[] = [
         impactos, identificar desconfortos observando o uso do produto.
         <br />
         <br />
+        Falar de remoto ou presencial, moderado e não moderado
         <br />
       </Typography>
     ),
@@ -240,7 +241,11 @@ export const methods: MethodProps[] = [
     ),
 
     more: ["https://www.google.com"],
-    relatedMethods: ["pensar_em_voz_alta", "gravacao_e_analise"],
+    relatedMethods: [
+      "pensar_em_voz_alta",
+      "gravacao_e_analise",
+      "prototipacao_em_baixa_fidelidade",
+    ],
     needANDReference: [
       {
         requirement: "objetivos_da_avaliacao",
@@ -309,12 +314,11 @@ export const methods: MethodProps[] = [
     image: entrevista,
     fullDescription: (
       <Typography variant="body1">
-        <br />
         A técnica de entrevista é uma abordagem qualitativa de coleta de dados
         que permite explorar em profundidade as percepções, experiências e
-        opiniões dos participantes sobre um determinado tema. Ela pode ser
-        estruturada, semiestruturada ou não estruturada, dependendo do nível de
-        flexibilidade desejado nas perguntas.
+        opiniões dos participantes sobre o uso do produto, após usa-lo. Ela pode
+        ser estruturada, semiestruturada ou não estruturada, dependendo do nível
+        de flexibilidade desejado nas perguntas.
         <br />
         <br />
         A estrutura da entrevista refere-se ao roteiro de perguntas, que pode
@@ -324,6 +328,9 @@ export const methods: MethodProps[] = [
         diferentes perspectivas e experiências. Ou ainda o avaliador por optar
         por não roteirizar a entrevista.
         <br />
+        <br />
+        As entrevistas também podem ser realizadas presencialmente ou de
+        remotamente.
       </Typography>
     ),
     exemples: (
@@ -341,10 +348,13 @@ export const methods: MethodProps[] = [
 
     attentionPoints: (
       <Typography variant="body1">
-        Estas informações estarão em tópicos, esse é o tópico 1<br />
-        Estas informações estarão em tópicos, esse é o tópico 2<br />
-        Estas informações estarão em tópicos, esse é o tópico 3<br />
-        Estas informações estarão em tópicos, esse é o tópico 4<br />
+        O entrevistador deve evitar influenciar as respostas dos entrevistados
+        com a formulação das perguntas, expressões faciais, gestos ou entonação
+        de voz.
+        <br />
+        <br />
+        <br />
+        <br />
       </Typography>
     ),
 

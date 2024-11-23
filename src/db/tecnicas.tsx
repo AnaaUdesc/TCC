@@ -279,7 +279,7 @@ export const technics: MethodProps[] = [
     id: "prototipacao_em_baixa_fidelidade",
     title: "Prototipação em Baixa Fidelidade",
     description:
-      "Um protótipo é uma representação limitada de um design ou partes dele, a qual contém estrutura miníma suficiente para ser testada com usuário.",
+      "Um protótipo é uma representação limitada de um design, a qual contém estrutura miníma suficiente para ser testada com usuário.",
     image: prototipacao_em_baixa_fidelidade,
     classificationIcons: [
       <Tooltip title="Técnica" arrow placement="top">
