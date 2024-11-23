@@ -27,7 +27,7 @@ export interface MethodProps {
   description: string;
   image: string;
   fullDescription: React.ReactNode;
-  goodPractices: React.ReactNode;
+  goodPractices?: React.ReactNode;
   attentionPoints: React.ReactNode;
   more: string[];
   exemples?: React.ReactNode;
@@ -124,12 +124,14 @@ export const methods: MethodProps[] = [
           há interação direta com o respondente para sanar dúvidas de
           interpretação;
         </li>
+        <br />
         <li>
           Recomenda-se realizar um teste piloto a fim de medir o tempo gasto
           pelo usuário, a clareza das perguntas, validar a ordem das questões,
           entre outros pontos a serem observados na criação de um formulário;
           <br />
         </li>
+        <br />
         <li>
           A quantidade ideal de perguntas deve variar de acordo com o tipo de
           pergunta, recomenda-se que questionários com perguntas abertas tenham
@@ -146,6 +148,7 @@ export const methods: MethodProps[] = [
           pergunta, outros preferem usá-las justamente para ajudar a verificar a
           consistência das respostas dos usuários; <br />
         </li>
+        <br />
         <li>
           Devemos tomar cuidado para não incluirmos muitas perguntas abertas em
           um questionário, pois isso pode desmotivar os respondentes a
@@ -154,7 +157,7 @@ export const methods: MethodProps[] = [
       </Typography>
     ),
 
-    more: ["https://www.google.com"],
+    more: ["https://leanpub.com/ihc-ux"],
     relatedMethods: [],
     needANDReference: [
       {
@@ -414,39 +417,82 @@ export const methods: MethodProps[] = [
     image: avaliacao_heuristica,
     fullDescription: (
       <Typography variant="body1">
-        <br />
         Inspeção detalhada de interface efetuada por um especialista, buscando
         por falhas na conformidade com uma lista de critérios denominados
-        heurísticas.
+        heurísticas, que descrevem características desejáveis da interação e da
+        interface.
         <br />
+        <br />
+        Conhecidos como heurísticas de Nielsen essas diretrizes são incluem
+        tópicos sobre : Consistência e padronização, prevenção de erros,
+        feedback do sistema, entre outros.
+        <br />
+        <br />
+        Pode ser realizado de forma remota ou presencial pelo avaliador
+        especialista.
         <br />
         <br />
       </Typography>
     ),
     exemples: (
       <Typography variant="body1">
-        Descrição de um exemplo de Utilização/aplicação do método.
-      </Typography>
-    ),
-    goodPractices: (
-      <Typography variant="body1">
-        Estas serão as informações do tópicos 1. <br />
-        Estas serão as informações do tópicos 2. <br />
-        Este é o tópico 3.
+        <li>
+          <b>Cenário: </b> Três avaliadores especialistas foram contratados para
+          avaliar a um site de comércio eletrônico.
+          <ol>
+            <li>
+              Os avaliadores notaram uma violação da heurística de consistência
+              e padrões de Nielsen, onde os botões de "Adicionar ao Carrinho"
+              tinham cores diferentes nas páginas de produtos e no carrinho de
+              compras.
+            </li>
+            <br />
+            <li>
+              Isso pode causar confusão no usuário, dificultando a navegação.
+              <ol>
+                <li>
+                  Localização: Página de produto e página do carrinho de
+                  compras.
+                </li>
+                <li>
+                  Classificação: Dois Classificaram como Grande. Um do
+                  especialistas classificou como Catastrófico.
+                </li>
+              </ol>
+            </li>
+            <br />
+            <li>
+              Na reunião final entre os avaliadores, chegaram à conclusão de que
+              a consistência nas cores dos botões é essencial para a usabilidade
+              e recomendam a unificação da cor e que o grau de gravidade é
+              apenas Grande mesmo, pois afeta a clareza da interação, mas não
+              impede o funcionamento do sistema.
+            </li>
+            <br />
+          </ol>
+        </li>
       </Typography>
     ),
 
     attentionPoints: (
       <Typography variant="body1">
-        Estas informações estarão em tópicos, esse é o tópico 1<br />
-        Estas informações estarão em tópicos, esse é o tópico 2<br />
-        Estas informações estarão em tópicos, esse é o tópico 3<br />
-        Estas informações estarão em tópicos, esse é o tópico 4<br />
+        <li>Recomenda-se a participação entre três e cinco especialistas.</li>
+        <br />
+        <li>
+          Não deve-se realizar sessões longas, pois o desempenho do avaliador
+          diminui muito com o passar do tempo, e ele deixa de produzir dados de
+          qualidade.
+        </li>
       </Typography>
     ),
 
-    more: ["https://www.google.com"],
-    relatedMethods: ["", ""],
+    more: [
+      "https://leanpub.com/ihc-ux",
+      "https://dl.acm.org/doi/abs/10.1145/97243.97281",
+      "https://www.ingenieriasimple.com/usabilidad/HeuristicEvaluation.pdf",
+      "https://dl.acm.org/doi/abs/10.1145/142750.142834",
+    ],
+    relatedMethods: [],
     needANDReference: [
       {
         requirement: "objetivos_da_avaliacao",
