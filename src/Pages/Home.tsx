@@ -1,24 +1,4 @@
 import {
-  Box,
-  Button,
-  Chip,
-  Menu as MuiMenu,
-  Container,
-  Divider,
-  IconButton,
-  MenuItem,
-  SvgIcon,
-  TextField,
-  Tooltip,
-  Typography,
-} from "@mui/material";
-import Card from "../Componentes/Card";
-import Footer from "../Componentes/Footer";
-import Header from "../Componentes/Header";
-import PageviewIcon from "@mui/icons-material/Pageview";
-import { MethodProps, methods } from "../db/methods";
-import { technics } from "../db/tecnicas";
-import {
   ArrowRight,
   Delete,
   QuestionAnswer,
@@ -26,11 +6,30 @@ import {
   Share,
   Visibility,
 } from "@mui/icons-material";
+import PageviewIcon from "@mui/icons-material/Pageview";
+import {
+  Box,
+  Button,
+  Chip,
+  Container,
+  Divider,
+  IconButton,
+  MenuItem,
+  Menu as MuiMenu,
+  SvgIcon,
+  TextField,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import { useMemo, useState } from "react";
-import { useGlobalContext } from "../GlobalProvider";
-import { IoIosArrowDown } from "react-icons/io";
-import { IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import Card from "../Componentes/Card";
+import Footer from "../Componentes/Footer";
+import Header from "../Componentes/Header";
 import Menu from "../Componentes/Menu";
+import { MethodProps, methods } from "../db/methods";
+import { technics } from "../db/tecnicas";
+import { useGlobalContext } from "../GlobalProvider";
 import { getMethodOrTechniqueById, isTechnique } from "../utils";
 
 export default function HomePage() {
@@ -69,6 +68,7 @@ export default function HomePage() {
     selectedRequirements,
     handleResetSelectedRequirements,
     handleUnselectRequirement,
+    handleClearRequirements,
   } = useGlobalContext();
 
   const hasSelectedRequirements = useMemo(() => {
@@ -214,7 +214,7 @@ export default function HomePage() {
             paddingY: 4,
           }}
         >
-          <Menu />
+          {selectedType === "method" && <Menu />}
           <Box
             sx={{
               marginX: 4,
@@ -335,6 +335,7 @@ export default function HomePage() {
                         e.stopPropagation();
                         e.preventDefault();
                         setSelectedType("technique");
+                        handleClearRequirements();
                       }}
                     >
                       Técnicas

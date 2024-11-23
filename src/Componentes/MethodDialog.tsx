@@ -1,4 +1,6 @@
 import {
+  AttachMoney,
+  CalendarMonth,
   Close,
   Group,
   PersonalVideo,
@@ -7,31 +9,30 @@ import {
   VideoChat,
 } from "@mui/icons-material";
 import {
-  Dialog,
   Box,
-  IconButton,
-  Typography,
-  Link,
-  Divider,
   CircularProgress,
+  Dialog,
+  Divider,
+  IconButton,
+  Link,
   Tooltip,
+  Typography,
 } from "@mui/material";
-import { ScoresRepresentativos } from "./Card";
-import { AttachMoney, CalendarMonth } from "@mui/icons-material";
+import React from "react";
+import { CgRead } from "react-icons/cg";
 import { GoGoal } from "react-icons/go";
+import {
+  getColorByScore,
+  getMethodOrTechniqueById,
+  getScoreByKey,
+} from "../utils";
+import { ScoresRepresentativos } from "./Card";
+import { LightTooltip } from "./LightTooltip";
 import RequirementProgressView, {
   RequirementProgressViewProps,
 } from "./RequirementProgressView";
-import { CgRead } from "react-icons/cg";
-import React from "react";
-import {
-  getScoreByKey,
-  getMethodOrTechniqueById,
-  getColorByScore,
-} from "../utils";
-import RequirementTooltipOrCompatibility from "./RequirementTooltipOrCompatibility";
 import RequirementTooltipAndCompatibility from "./RequirementTooltipAndCompatibility";
-import { LightTooltip } from "./LightTooltip";
+import RequirementTooltipOrCompatibility from "./RequirementTooltipOrCompatibility";
 
 interface MethodDialogProps {
   open: boolean;
@@ -245,7 +246,14 @@ export default function MethodDialog({
             paddingBottom: 0,
           }}
         >
-          <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+          <Box
+            sx={{
+              display: "flex",
+              gap: 1,
+              alignItems: "center",
+              maxWidth: isTechnique ? "1000px" : "100%",
+            }}
+          >
             <Typography variant="h4" noWrap fontWeight={600}>
               {title}
             </Typography>
@@ -291,6 +299,7 @@ export default function MethodDialog({
               sx={{
                 marginTop: 1,
                 marginBottom: 7,
+                maxWidth: isTechnique ? "80%" : "100%",
               }}
             >
               {fullDescription}
@@ -301,11 +310,22 @@ export default function MethodDialog({
                 <Typography
                   variant="h5"
                   fontWeight={600}
-                  sx={{ marginTop: 2, marginBottom: 2 }}
+                  sx={{
+                    marginTop: 2,
+                    marginBottom: 2,
+                    maxWidth: isTechnique ? "80%" : "100%",
+                  }}
                 >
                   Exemplo de Utilização
                 </Typography>
-                <Box sx={{ marginBottom: 7 }}>{exemples}</Box>
+                <Box
+                  sx={{
+                    marginBottom: 7,
+                    maxWidth: isTechnique ? "80%" : "100%",
+                  }}
+                >
+                  {exemples}
+                </Box>
               </>
             )}
             {goodPractices && (
@@ -313,11 +333,22 @@ export default function MethodDialog({
                 <Typography
                   variant="h5"
                   fontWeight={600}
-                  sx={{ marginTop: 2, marginBottom: 2 }}
+                  sx={{
+                    marginTop: 2,
+                    marginBottom: 2,
+                    maxWidth: isTechnique ? "80%" : "100%",
+                  }}
                 >
                   Boas Práticas e Dicas
                 </Typography>
-                <Box sx={{ marginBottom: 7 }}>{goodPractices}</Box>
+                <Box
+                  sx={{
+                    marginBottom: 7,
+                    maxWidth: isTechnique ? "80%" : "100%",
+                  }}
+                >
+                  {goodPractices}
+                </Box>
               </>
             )}
             {attentionPoints && (
@@ -325,11 +356,22 @@ export default function MethodDialog({
                 <Typography
                   variant="h5"
                   fontWeight={600}
-                  sx={{ marginTop: 2, marginBottom: 2 }}
+                  sx={{
+                    marginTop: 2,
+                    marginBottom: 2,
+                    maxWidth: isTechnique ? "80%" : "100%",
+                  }}
                 >
                   Pontos de Atenção ou Desvantagens
                 </Typography>
-                <Box sx={{ marginBottom: 7 }}>{attentionPoints}</Box>
+                <Box
+                  sx={{
+                    marginBottom: 7,
+                    maxWidth: isTechnique ? "80%" : "100%",
+                  }}
+                >
+                  {attentionPoints}
+                </Box>
               </>
             )}
             {more && more.length > 0 && (
@@ -337,11 +379,20 @@ export default function MethodDialog({
                 <Typography
                   variant="h5"
                   fontWeight={600}
-                  sx={{ marginTop: 2, marginBottom: 2 }}
+                  sx={{
+                    marginTop: 2,
+                    marginBottom: 2,
+                    maxWidth: isTechnique ? "80%" : "100%",
+                  }}
                 >
                   Indicação de Leitura e/ou Referências
                 </Typography>
-                <Box sx={{ marginBottom: 7 }}>
+                <Box
+                  sx={{
+                    marginBottom: 7,
+                    maxWidth: isTechnique ? "80%" : "100%",
+                  }}
+                >
                   {more?.map((link, index) => (
                     <Typography key={index} sx={{ marginBottom: 2 }}>
                       <Link

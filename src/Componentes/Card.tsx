@@ -4,7 +4,6 @@ import {
   Group,
   MoreHoriz,
 } from "@mui/icons-material";
-import { GoGoal } from "react-icons/go";
 import {
   Box,
   CircularProgress,
@@ -18,18 +17,20 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
+import { GoGoal } from "react-icons/go";
 import { MethodProps } from "../db/methods";
-import MethodDialog from "./MethodDialog";
 import {
-  getScoreByKey,
-  getMethodOrTechniqueById,
   getColorByScore,
+  getMethodOrTechniqueById,
+  getScoreByKey,
+  isTechnique,
 } from "../utils";
+import MethodDialog from "./MethodDialog";
 import RequirementProgressView, {
   RequirementProgressViewProps,
 } from "./RequirementProgressView";
-import RequirementTooltipOrCompatibility from "./RequirementTooltipOrCompatibility";
 import RequirementTooltipAndCompatibility from "./RequirementTooltipAndCompatibility";
+import RequirementTooltipOrCompatibility from "./RequirementTooltipOrCompatibility";
 
 export const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
@@ -76,7 +77,7 @@ export default function Card({
   scoreGeral,
   scoresRepresentativos,
   id,
-  isTechnique,
+  isTechnique: isATechnique,
 }: CardProps) {
   const [open, setOpen] = useState(false);
   const [selectedMethodOrTechnique, setSelectedMethodOrTechnique] =
@@ -330,13 +331,14 @@ export default function Card({
         scoreGeral={scoreGeral}
         id={id}
         scoresRepresentativos={scoresRepresentativos}
-        isTechnique={isTechnique}
+        isTechnique={isATechnique}
       />
       {selectedMethodOrTechnique !== null && (
         <MethodDialog
           open={selectedMethodOrTechnique !== null}
           handleClose={() => setSelectedMethodOrTechnique(null)}
           {...selectedMethodOrTechnique}
+          isTechnique={isTechnique(selectedMethodOrTechnique.id)}
         />
       )}
     </>

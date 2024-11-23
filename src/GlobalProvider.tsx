@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, ReactNode, useContext, useState } from "react";
 import { methods } from "./db/methods";
 import { requirements as requirementsDB } from "./db/requirements";
 
@@ -40,6 +40,7 @@ interface GlobalContextData {
   ) => boolean;
   getSelectedValuesByRequirementId: (requirementId: string) => string[];
   isRequirementSelected: (requirementId: string) => boolean;
+  handleClearRequirements: () => void;
 }
 
 // Provedor do contexto que engloba os componentes filhos
@@ -349,6 +350,7 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
         isRequirementSelectedByValue,
         getSelectedValuesByRequirementId,
         isRequirementSelected,
+        handleClearRequirements: () => setSelectedRequirements(null),
       }}
     >
       {children}
