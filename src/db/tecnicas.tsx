@@ -1,6 +1,7 @@
-import { Tooltip, Typography } from "@mui/material";
+import { Link, Tooltip, Typography } from "@mui/material";
 import pensar_em_voz_alta from "../assets/pensar_em_voz_alta.jpg"; // Importando a imagem diretamente
 import gravacao_e_analise from "../assets/gravacao_e_analise.jpg"; // Importando a imagem diretamente
+import prototipacao_em_baixa_fidelidade from "../assets/prototipacao_em_baixa_fidelidade.jpg"; // Importando a imagem diretamente
 import { MethodProps } from "./methods";
 
 export const technics: MethodProps[] = [
@@ -127,7 +128,7 @@ export const technics: MethodProps[] = [
     id: "gravacao_e_analise",
     title: "Gravação e Análise",
     description:
-      "Registrar a interação do usuário, capturando suas ações por áudio ou vídeo, garantindo que nenhum detalhe seja perdido, para análise posterior.",
+      "Registrar a interação do usuário, capturando suas ações por vídeo ou falas em áudio, garantindo que nenhum detalhe seja perdido, para análise posterior.",
     image: gravacao_e_analise,
     classificationIcons: [
       <Tooltip title="Técnica" arrow placement="top">
@@ -138,25 +139,219 @@ export const technics: MethodProps[] = [
     ],
     fullDescription: (
       <Typography variant="body1">
-        Registrar a interação do usuário, capturando suas ações por áudio ou
-        vídeo, garantindo que nenhum detalhe seja perdido, para análise
+        Registrar a interação do usuário, capturando suas ações por vídeo ou
+        falas em áudio, garante que nenhum detalhe seja perdido para análise
         posterior.
+        <br />
+        <br />
+        A gravação é recomendada especialmente em situações com apenas um
+        avaliador. Sem a gravação, o avaliador precisa anotar eventos enquanto
+        observa, dividindo sua atenção. Essa divisão pode comprometer a
+        qualidade das anotações, a eficiência da observação e o foco no usuário,
+        resultando em uma análise menos precisa.
+        <br />
+        <br />
+        A gravação pode ser usada posteriormente para análise de dados. Caso
+        seja apenas em áudio, o conteúdo pode ser transcrito com a ajuda de
+        ferramentas e softwares específicos.
+        <br />
+        <br />É indispensável obter a autorização do participante antes de
+        gravá-lo. O participante deve estar ciente da gravação. Recomenda-se
+        utilizar o{" "}
+        <b>
+          {" "}
+          Termo de Autorização para Gravação de Voz e/ou Registro de Imagens
+          (Fotos e/ou Vídeos)
+        </b>{" "}
+        , disponível em:
+        <a
+          href="https://www.gov.br/ebserh/pt-br/hospitais-universitarios/regiao-nordeste/huol-ufrn/ensino-e-pesquisa/comite-de-etica-em-pesquisa-cep/documentos/documentos-necessarios-para-submissao-de-projetos-de-pesquisa-que-serao-realizados-no-huol/termo-de-autorizacao-para-gravacao-de-voz-e-registro-de-imagens-1.docx"
+          target="_blank"
+        >
+          Termo de Autorização.
+        </a>
+      </Typography>
+    ),
+    exemples: (
+      <Typography variant="body1">
+        <br />
+        <li>
+          <b>Cenário 1: </b> Durante uma discussão em grupo focal, o grupo de
+          participantes compartilham opiniões e experiências sobre o uso de um
+          aplicativo:
+          <ol>
+            <li>
+              Os participantes autorizam a gravação de áudio por meio do Termo
+              de Autorização;
+            </li>
+            <br />
+            <li>
+              O avaliador posiciona o gravador em um local onde pode capturar
+              todas as vozes da sala, mas procura manter o gravador discreto;
+            </li>
+            <br />
+            <li>
+              A gravação de áudio é utilizada para registrar todas as falas do
+              grupo;
+            </li>
+            <br />
+            <li>
+              Posteriormente, o material é analisado para identificar insights,
+              padrões de comportamento e sugestões de melhorias a partir das
+              perspectivas dos participantes.
+            </li>
+            <br />
+          </ol>
+        </li>
+
+        <br />
+        <br />
+        <li>
+          <b>Cenário 2:</b> Um designer conduz um teste remoto de usabilidade em
+          que o participante interage com um protótipo digital:
+          <ol>
+            <li>
+              O participante autoriza a gravação da sessão por meio do Termo de
+              Autorização;
+            </li>
+            <br />
+            <li>
+              A gravação de tela e áudio é feita para capturar os movimentos do
+              cursor, as falas do participante, as ações realizadas e o tempo
+              gasto em cada tarefa;
+            </li>
+            <br />
+            <li>
+              Isso permite analisar como o participante navega pelo sistema e
+              identificar padrões ou obstáculos na interação.
+            </li>
+          </ol>
+        </li>
+
+        <br />
+      </Typography>
+    ),
+
+    goodPractices: (
+      <Typography variant="body1">
+        <li>
+          Testar os equipamentos antes de iniciar a gravação. Realize um vídeo
+          ou áudio de teste antes de cada sessão de avaliação.
+        </li>
+        <br />
+        <li>
+          Criar uma cópia de backup das gravações imediatamente após o término
+          de cada sessão.
+        </li>
+        <br />
+        <br />
+      </Typography>
+    ),
+    attentionPoints: (
+      <Typography variant="body1">
+        <li>
+          Um ponto importante ao realizar gravações é, após informar o
+          participante e obter sua autorização, minimizar a presença do gravador
+          de áudio ou câmera de vídeo. Isso ajuda a evitar constrangimentos e
+          garante que a interação com o participante seja o mais natural
+          possível.
+        </li>
+        <br />
+      </Typography>
+    ),
+
+    more: [
+      "https://books.google.com.br/books?hl=pt-BR&lr=&id=dKmqDAAAQBAJ&oi=fnd&pg=PA1&dq=FLICK,+Uwe.+Introdu%C3%A7%C3%A3o+%C3%A0+pesquisa+qualitativa.+3rd+ed.+Porto+Alegre:+ArtMed,+2008.+E-book.+p.266.+ISBN+9788536318523.+&ots=JiDcO21Prp&sig=eba9p7Xf3bI6MnfShFQ2Kf3-kro#v=onepage&q&f=false",
+      "http://www.irece.faced.ufba.br/twiki/pub/GEC/TrabalhoAno2006/a_video_gravacao_como_registro.pdf",
+    ],
+    relatedMethods: [
+      "teste_de_usabilidade",
+      "grupos_focais",
+      "entrevista",
+      "teste_de_usabilidade_competitivo",
+      "avaliacao_cooperativa",
+      "estudo_de_campo",
+      "eye_tracking",
+    ],
+  },
+  {
+    id: "prototipacao_em_baixa_fidelidade",
+    title: "Prototipação em Baixa Fidelidade",
+    description:
+      "Um protótipo é uma representação limitada de um design ou partes dele, a qual contém estrutura miníma suficiente para ser testada com usuário.",
+    image: prototipacao_em_baixa_fidelidade,
+    classificationIcons: [
+      <Tooltip title="Técnica" arrow placement="top">
+        <Typography variant="h6" color="#ffff" fontWeight={700}>
+          T
+        </Typography>
+      </Tooltip>,
+    ],
+    fullDescription: (
+      <Typography variant="body1">
+        Um protótipo é uma representação limitada de um design ou partes dele, a
+        qual contém estrutura miníma suficiente para ser testada com usuário,
+        pode ser em papel, maquete, wireframes entre outros.
+        <br />
+        <br />
+        Técnica usada para coletar informações de uso sem muito custo e esforço.
+        <br />
         <br />
         <br />
         <br />
       </Typography>
     ),
-    goodPractices: [
-      "Este é o tópico 1",
-      "Estas informações estarão em tópicos 2",
-      "Este é o tópico 3",
-    ],
-    attentionPoints: [
-      "Estas informações estarão em tópicos, esse é o tópico 1",
-      "Estas informações estarão em tópicos, esse é o tópico  2",
-      "Estas informações estarão em tópicos, esse é o tópico  3",
-      "Estas informações estarão em tópicos, esse é o tópico  4",
-    ],
-    more: ["https://www.google.com"],
+    exemples: (
+      <Typography variant="body1">
+        <br />
+        <li>
+          <b>Cenário 1: </b>
+          <ol>
+            <li></li>
+            <br />
+            <li></li>
+            <br />
+            <li></li>
+            <br />
+            <li></li>
+            <br />
+          </ol>
+        </li>
+
+        <br />
+        <br />
+        <li>
+          <b></b>
+          <ol>
+            <li></li>
+            <br />
+            <li></li>
+            <br />
+            <li></li>
+          </ol>
+        </li>
+
+        <br />
+      </Typography>
+    ),
+
+    goodPractices: (
+      <Typography variant="body1">
+        <li></li>
+        <br />
+        <li></li>
+        <br />
+        <br />
+      </Typography>
+    ),
+    attentionPoints: (
+      <Typography variant="body1">
+        <li></li>
+        <br />
+      </Typography>
+    ),
+
+    more: [""],
+    relatedMethods: [""],
   },
 ];

@@ -339,7 +339,7 @@ export default function MethodDialog({
                   fontWeight={600}
                   sx={{ marginTop: 2, marginBottom: 2 }}
                 >
-                  Indicação de Leitura e Referências
+                  Indicação de Leitura e/ou Referências
                 </Typography>
                 <Box sx={{ marginBottom: 7 }}>
                   {more?.map((link, index) => (

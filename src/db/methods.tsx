@@ -644,6 +644,7 @@ export const methods: MethodProps[] = [
 
     more: [
       "https://www.researchgate.net/publication/306375261_METODOS_DE_AVALIACAO_DE_USABILIDADE_CARACTERISTICAS_E_APLICACOES",
+      "https://sistemascolaborativos.uniriotec.br/wp-content/uploads/sites/18/2019/06/SC-cap23-metodologia.pdf",
     ],
     relatedMethods: ["gravacao_e_analise"],
     needANDReference: [
