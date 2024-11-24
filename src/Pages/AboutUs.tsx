@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Typography, Link } from "@mui/material";
 import Header from "../Componentes/Header";
 import Footer from "../Componentes/Footer";
 import logo_cct from "../assets/logo_cct.jpg";
@@ -53,12 +53,9 @@ export default function AboutUsPage() {
               <br />A monografia completa, intitulada "Ferramenta de Apoio à
               Seleção de Métodos para Avaliação da Usabilidade" pode ser
               acessada em:{" "}
-              <a
-                href="../assets/TCC2_Ana_Clara.pdf"
-                download="TCC2_Ana_Clara.pdf"
-              >
+              <Link href="TCC2_Ana_Clara.pdf" target="_blank">
                 TCC_Ana_Clara.pdf
-              </a>
+              </Link>
             </Typography>
           </Typography>
           <Box

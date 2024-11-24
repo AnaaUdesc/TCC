@@ -157,7 +157,10 @@ export const methods: MethodProps[] = [
       </Typography>
     ),
 
-    more: ["https://leanpub.com/ihc-ux"],
+    more: [
+      "https://leanpub.com/ihc-ux",
+      "https://www.researchgate.net/profile/Marco-Winckler-3/publication/228816116_Avaliacao_de_usabilidade_de_sites_Web/links/02bfe510a614de7879000000/Avaliacao-de-usabilidade-de-sites-Web.pdf",
+    ],
     relatedMethods: [],
     needANDReference: [
       {
@@ -209,42 +212,152 @@ export const methods: MethodProps[] = [
     image: teste_de_usabilidade,
     fullDescription: (
       <Typography variant="body1">
+        Teste usado para avaliar a qualidade de interação do usuário com o
+        sistema, medir impactos, identificar desconfortos observando o uso do
+        produto.
         <br />
-        Avaliar a qualidade de interação do usuário com o sistema, medir
-        impactos, identificar desconfortos observando o uso do produto.
+        <br />
+        Para realizar o teste, um grupo de usuários é convidado a realizar um
+        conjunto pré estabelecido de tarefas usando o sistema num ambiente
+        controlado.
         <br />
         <br />
-        Falar de remoto ou presencial, moderado e não moderado
+        Durante as experiências de uso observadas, são registrados vários dados
+        sobre o desempenho dos participantes na realização das tarefas e suas
+        opiniões e sentimentos decorrentes de suas experiências de uso.
+        Posteriormente, as dificuldades percebidas transformam-se em melhorias
+        no sistema.
+        <br />
+        <br />
+        A sessão de teste pode ser remota ou presencial.
+        <br />
+        <br />
+        O teste pode ser realizado em um sistemas de nível de fidelidade baixo,
+        médio ou alto.
         <br />
       </Typography>
     ),
     exemples: (
       <Typography variant="body1">
-        Descrição de um exemplo de Utilização/aplicação do método.
+        <b>Cenário: </b> Uma loja virtual quer melhorar sua página de checkout
+        para reduzir o abandono de carrinho.
+        <br />
+        <br />
+        Objetivo do Teste:
+        <ul>
+          <li>
+            Avaliar se os usuários conseguem finalizar uma compra facilmente;
+          </li>
+          <li>Identificar barreiras no fluxo;</li>
+          <li>Medir o tempo necessário para concluir a tarefa.</li>
+        </ul>
+        Preparação:
+        <ul>
+          <li>Convidar 5 participantes representando o público-alvo;</li>
+          <li>
+            Criar um cenário: "Imagine que você está comprando um presente e
+            precisa finalizar a compra rapidamente."
+          </li>
+          <li>Estipular tarefas claras para serem realizadas.</li>
+        </ul>
+        Execução:
+        <ul>
+          <li>
+            Os usuários são observados enquanto navegam e tentam concluir a
+            compra;
+          </li>
+          <li>
+            O avaliador coleta dados sobre dificuldades enfrentadas, tempo de
+            conclusão e comentários do participante;
+          </li>
+          <li>
+            Nesta etapa pode-se utilizar a técnica de Pensar em Voz Alta e/ou
+            Gravação e Análise;
+          </li>
+          <li>
+            Depois do uso do produto pode-se aplicar um questionário ou
+            entrevista indagando o usuário sobre a interação com o produto.
+          </li>
+        </ul>
+        Resultado:
+        <ul>
+          <li>
+            Um participante teve dificuldade em encontrar o botão "Finalizar
+            Compra";
+          </li>
+          <li>
+            Dois mencionaram que o campo de cupom de desconto era confuso.
+          </li>
+        </ul>
+        Ação:
+        <ul>
+          <li>Redesenhar o botão para maior visibilidade;</li>
+          <li>Melhorar as instruções no campo de cupom.</li>
+        </ul>
       </Typography>
     ),
     goodPractices: (
       <Typography variant="body1">
-        Estas serão as informações do tópicos 1. <br />
-        Estas serão as informações do tópicos 2. <br />
-        Este é o tópico 3.
+        <li>
+          O avaliador moderador do teste deve interagir o mínimo possível com o
+          participante.
+        </li>
+        <br />
+        <li>
+          Não deve-se sobrecarregar os participantes com tarefas excessivas.
+        </li>
+        <br />
+        <li>
+          Ao convidar os participantes, deve-se deixar claro que, no teste de
+          usabilidade, o objeto da avaliação é a interface e não o participante.
+        </li>
+        <br />
+        <li>
+          Recomenda-se apresentar ao participante, no início do teste, o Termo
+          de Consentimento Livre e Esclarecido, mesmo que de forma simplificada,
+          pois trata sobre a confidencialidade dos dados, entre outros pontos
+          importantes de uma pesquisa. Disponível em:{" "}
+          <a
+            href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.gov.br%2Febserh%2Fpt-br%2Fhospitais-universitarios%2Fregiao-nordeste%2Fhupes-ufba%2Fensino-e-pesquisa%2Fpesquisa-e-inovacao-tecnologica%2Fsubmissao-de-projetos-1%2Ftcle.doc&psig=AOvVaw1YNWk0ZpMGSNEcw0J6-FsR&ust=1732466041736000&source=images&cd=vfe&opi=89978449&ved=0CAQQn5wMahcKEwiImOemmfOJAxUAAAAAHQAAAAAQBA"
+            target="_blank"
+          >
+            Termo de Consentimento.
+          </a>
+        </li>
+        <br />
+        <li>
+          Recomenda-se realizar um teste piloto antes do início dos testes com
+          usuários do público alvo, este teste tem por objetivo verificar se as
+          tarefas estão claras e quanto tempo em média dura o teste todo. Assim,
+          o roteiro de tarefas pode ser ajustado conforme necessário.
+        </li>
       </Typography>
     ),
 
     attentionPoints: (
       <Typography variant="body1">
-        Estas informações estarão em tópicos, esse é o tópico 1<br />
-        Estas informações estarão em tópicos, esse é o tópico 2<br />
-        Estas informações estarão em tópicos, esse é o tópico 3<br />
-        Estas informações estarão em tópicos, esse é o tópico 4<br />
+        <br />
+        <li>
+          Se o nível de fidelidade do sistema usado for de baixa ou média
+          fidelidade é importante prestar atenção na distinção entre problemas
+          inerentes à baixa fidelidade do protótipo e questões de usabilidade.
+        </li>
+        <br />
       </Typography>
     ),
 
-    more: ["https://www.google.com"],
+    more: [
+      "https://www.nngroup.com/articles/usability-testing-101/",
+      "https://d1wqtxts1xzle7.cloudfront.net/68609415/MTODOS_DE_AVALIAO_DE_USABILIDADE_CARACTE20210804-9499-1ppz8h9.pdf?1628125973=&response-content-disposition=inline%3B+filename%3DMetodos_De_Avaliacao_De_Usabilidade_Cara.pdf&Expires=1732382846&Signature=ZC8Njbg-JPd5jLOrMyJZvponvdfl-qA8dxsfn~PT6rjuaWSYN9DgLdjY4m8l-eBoDQ2nT7-jfyjST5KS6caS-Y~o17tPB9Nacmx9u4AvPoZlr0VKoxdDIPjaxT-KkzVCswENkvW4LBz4sxPRIiwcHDvWM~Sb~MLbokoTSbhvVVHGSUKYjbJK96Uo4sE2mo0U3-86hfLoISOU4Uu7pS-lhkzzTDiHy4erJtNuQaBwa~~~x3i5nzh1YQuG4~eiFlzfxP~Qjq48DDMf1cI8B1GshB8wFE-BNMMVwLHDZVF1vj1E7-QOy68MeW8G413uS77U91sweUJlf6QknaEiWxM9qQ__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA",
+      "https://leanpub.com/ihc-ux",
+    ],
     relatedMethods: [
       "pensar_em_voz_alta",
       "gravacao_e_analise",
       "prototipacao_em_baixa_fidelidade",
+      "entrevista",
+      "questionarios",
+      "sus",
     ],
     needANDReference: [
       {
@@ -314,11 +427,15 @@ export const methods: MethodProps[] = [
     image: entrevista,
     fullDescription: (
       <Typography variant="body1">
-        A técnica de entrevista é uma abordagem qualitativa de coleta de dados
-        que permite explorar em profundidade as percepções, experiências e
-        opiniões dos participantes sobre o uso do produto, após usa-lo. Ela pode
-        ser estruturada, semiestruturada ou não estruturada, dependendo do nível
-        de flexibilidade desejado nas perguntas.
+        Conversa guiada entre avaliador e usuário com objetivo de obter
+        informações qualitativas sobre o sistema pós uso do sistema.
+        <br />
+        <br />
+        A entrevista é uma abordagem qualitativa de coleta de dados que permite
+        explorar em profundidade as percepções, experiências e opiniões dos
+        participantes sobre o uso do produto, após usa-lo. Ela pode ser
+        estruturada, semiestruturada ou não estruturada, dependendo do nível de
+        flexibilidade desejado nas perguntas.
         <br />
         <br />
         A estrutura da entrevista refere-se ao roteiro de perguntas, que pode
@@ -335,14 +452,103 @@ export const methods: MethodProps[] = [
     ),
     exemples: (
       <Typography variant="body1">
-        Descrição de um exemplo de Utilização/aplicação do método.
+        <b>Cenário:</b> Após o usuário testar um sistema de gerenciamento de
+        tarefas, o objetivo é entender sua percepção sobre a interface, a
+        facilidade de navegação e a eficiência ao realizar tarefas.
+        <ul>
+          <b>Preparação:</b>
+          <li>
+            <b>Objetivo da Entrevista:</b> Avaliar como o usuário percebeu a
+            interface do sistema, sua facilidade de navegação e a eficiência ao
+            realizar tarefas.
+          </li>
+          <li>
+            <b>Roteiro de Perguntas:</b>
+            <ul>
+              <li>
+                "Houve algum momento em que você sentiu dificuldade em entender
+                como prosseguir?"
+              </li>
+              <li>
+                "Existe algo que você mudaria no sistema para melhorar sua
+                experiência?"
+              </li>
+            </ul>
+          </li>
+          <li>
+            <b>Teste Piloto:</b> Realizar uma entrevista piloto para garantir
+            que as perguntas estão claras, verificar o tempo médio da entrevista
+            e ajustar a ordem das perguntas, se necessário.
+          </li>
+        </ul>
+        <br />
+        <b>Execução do Teste:</b>
+        <ul>
+          <li>
+            <b>Convidar os Participantes:</b> O avaliador convida 5-10
+            participantes para realizar a tarefa de gerenciar tarefas no
+            sistema.
+          </li>
+          <li>
+            <b>Realização das Perguntas:</b> Durante a entrevista, o avaliador
+            faz as perguntas estruturadas e também segue perguntas adicionais
+            com base nas respostas dos participantes.
+          </li>
+        </ul>
+        <br />
+        <b>Resultados Esperados:</b>
+        <ul>
+          <li>
+            <b>Análise de Dificuldades:</b> O participante pode relatar
+            dificuldades, como "não sabia onde clicar para adicionar uma
+            tarefa".
+          </li>
+          <li>
+            <b>Feedback para Melhoria:</b> O participante pode sugerir
+            melhorias, como "seria bom se as opções principais estivessem mais
+            destacadas".
+          </li>
+        </ul>
+        <br />
+        <b>Conclusão do Exemplo:</b>
+        <ul>
+          <li>
+            <b>Insight:</b> A dificuldade em encontrar a opção de adicionar
+            tarefas indicaria uma área crítica de melhoria.
+          </li>
+          <li>
+            <b>Recomendação:</b> Tornar as opções de criação de tarefas mais
+            visíveis na interface.
+          </li>
+        </ul>
       </Typography>
     ),
     goodPractices: (
       <Typography variant="body1">
-        Estas serão as informações do tópicos 1. <br />
-        Estas serão as informações do tópicos 2. <br />
-        Este é o tópico 3.
+        Informe os participantes sobre o propósito da entrevista, e mantenha uma
+        abordagem amigável e acolhedora. <br />
+        <br />
+        Recomenda-se apresentar ao participante, no início da entrevista, o
+        Termo de Consentimento Livre e Esclarecido, mesmo que de forma
+        simplificada, pois trata sobre a confidencialidade dos dados, entre
+        outros pontos importantes de uma pesquisa. Disponível em:{" "}
+        <a
+          href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.gov.br%2Febserh%2Fpt-br%2Fhospitais-universitarios%2Fregiao-nordeste%2Fhupes-ufba%2Fensino-e-pesquisa%2Fpesquisa-e-inovacao-tecnologica%2Fsubmissao-de-projetos-1%2Ftcle.doc&psig=AOvVaw1YNWk0ZpMGSNEcw0J6-FsR&ust=1732466041736000&source=images&cd=vfe&opi=89978449&ved=0CAQQn5wMahcKEwiImOemmfOJAxUAAAAAHQAAAAAQBA"
+          target="_blank"
+        >
+          Termo de Consentimento;
+        </a>
+        <br />
+        <br />
+        Utilize questões que incentivem os participantes a compartilhar suas
+        perspectivas e experiências detalhadas, evitando respostas de "sim" ou
+        "não".
+        <br />
+        <br />
+        Usar a técnica de gravação e análise pode ajudar a mitigar o problema da
+        atenção divida do avaliador entre prestar atenção ao participante e
+        anotar suas percepções e respostas, já que a gravação permite revisar as
+        falas diversas vezes, captando dados não observados em tempo real.
       </Typography>
     ),
 
@@ -353,13 +559,36 @@ export const methods: MethodProps[] = [
         de voz.
         <br />
         <br />
-        <br />
+        Entrevistas coletam dados relatados, não observados, e enfrentam as
+        seguintes limitações:
+        <ul>
+          <li>
+            <b>Memória falha:</b> Os participantes podem esquecer detalhes,
+            especialmente de eventos distantes.
+          </li>
+          <li>
+            <b>Detalhes ausentes:</b> Sem saber o que é relevante, podem omitir
+            informações importantes.
+          </li>
+          <li>
+            <b>Viés de desejabilidade social:</b> As pessoas podem ajustar
+            respostas para parecerem melhores ou mais aceitáveis socialmente.
+          </li>
+        </ul>
         <br />
       </Typography>
     ),
 
-    more: ["https://www.google.com"],
-    relatedMethods: ["gravacao_e_analise"],
+    more: [
+      "https://leanpub.com/ihc-ux",
+      "https://www.nngroup.com/articles/user-interviews/",
+    ],
+    relatedMethods: [
+      "gravacao_e_analise",
+      "teste_de_usabilidade",
+      "teste_de_usabilidade_competitivo",
+      "estudo_de_campo",
+    ],
     needANDReference: [
       {
         requirement: "objetivos_da_avaliacao",
@@ -501,6 +730,7 @@ export const methods: MethodProps[] = [
       "https://dl.acm.org/doi/abs/10.1145/97243.97281",
       "https://www.ingenieriasimple.com/usabilidad/HeuristicEvaluation.pdf",
       "https://dl.acm.org/doi/abs/10.1145/142750.142834",
+      "https://www.researchgate.net/profile/Marco-Winckler-3/publication/228816116_Avaliacao_de_usabilidade_de_sites_Web/links/02bfe510a614de7879000000/Avaliacao-de-usabilidade-de-sites-Web.pdf",
     ],
     relatedMethods: [],
     needANDReference: [
@@ -1057,33 +1287,151 @@ export const methods: MethodProps[] = [
         preservando o contexto do trabalho.
         <br />
         <br />
+        Não exige a participação do avaliador durante o teste e guarda todas as
+        ações do usuário, o que é de difícil aquisição em outras técnicas.
         <br />
+        <br />
+        Atualmente existem ferramentas que auxiliam na captura e análise destes
+        logs, onde podem identificar padrões de comportamento, o caminho
+        percorrido pelos usuários, tempo das ações, analisar as palavras-chaves
+        informadas pelos usuários às ferramentas de busca, e erros de
+        solicitações.
       </Typography>
     ),
     exemples: (
       <Typography variant="body1">
-        Descrição de um exemplo de Utilização/aplicação do método.
+        <b>Contexto: </b>
+        Uma equipe de pesquisa deseja avaliar a eficiência de um novo recurso em
+        uma ferramenta de edição colaborativa:{" "}
+        <b>"Sugestões Inteligentes de Texto"</b>. O objetivo é entender como os
+        usuários interagem com o recurso em um ambiente controlado.
+        <br />
+        <br />
+        <b>Setup do Estudo:</b>
+        <br />
+        <ol>
+          <li>
+            <b>Cenário Controlado:</b>
+            <br />
+            - Convide 10 participantes para realizar tarefas pré-definidas em um
+            laboratório, como criar e editar um documento em grupo.
+            <br />
+            - Instrua os participantes a utilizar as "Sugestões Inteligentes de
+            Texto" quando relevante.
+            <br />
+          </li>
+          <br />
+          <li>
+            <b>Configuração dos Logs:</b>
+            <br />
+            - Registre eventos específicos, como:
+            <br />
+            <ul>
+              <li>
+                A quantidade de vezes que o recurso de sugestão é ativado.
+              </li>
+              <li>Quantas sugestões são aceitas, rejeitadas ou ignoradas.</li>
+              <li>
+                Tempo médio entre a aparição de uma sugestão e a ação do
+                usuário.
+              </li>
+              <li>
+                Sequência de interações (ex.: alternância entre edição manual e
+                uso da sugestão).
+              </li>
+            </ul>
+          </li>
+          <br />
+          <li>
+            <b>Coleta de Dados:</b>
+            <br />
+            Todos os dados de interação são registrados por meio de logs
+            configurados no software, complementados com gravação de tela para
+            validação posterior.
+            <br />
+          </li>
+        </ol>
+        <br />
+        <b>Análise dos Logs:</b>
+        <br />
+        <ul>
+          <li>
+            <b>Quantitativa:</b>
+            <br />
+            - 60% das sugestões foram aceitas.
+            <br />
+            - Em média, os usuários levaram 4 segundos para decidir aceitar ou
+            rejeitar uma sugestão.
+            <br />
+            - O recurso foi ativado 15 vezes por tarefa, em média.
+            <br />
+          </li>
+          <br />
+          <li>
+            <b>Qualitativa:</b>
+            <br />
+            - Observando a sequência de eventos, nota-se que os usuários
+            frequentemente editam manualmente após aceitar uma sugestão,
+            indicando ajustes finos.
+            <br />
+            - Combinar com comentários dos participantes revela que algumas
+            sugestões são úteis, mas falta personalização em contextos
+            específicos.
+            <br />
+          </li>
+        </ul>
+        <br />
+        <b>Resultados e Ações:</b>
+        <br />
+        <ul>
+          <li>
+            Ajustar o algoritmo de sugestão para oferecer opções mais
+            personalizadas com base no contexto.
+          </li>
+          <li>
+            Melhorar a interface para permitir a edição direta da sugestão antes
+            de inseri-la no texto.
+          </li>
+        </ul>
       </Typography>
     ),
     goodPractices: (
       <Typography variant="body1">
-        Estas serão as informações do tópicos 1. <br />
-        Estas serão as informações do tópicos 2. <br />
-        Este é o tópico 3.
+        <br />
+        <li>
+          Quanto mais participantes na avaliação, mais precisos serão os dados
+          gerados.
+        </li>
+        <br />
       </Typography>
     ),
 
     attentionPoints: (
       <Typography variant="body1">
-        Estas informações estarão em tópicos, esse é o tópico 1<br />
-        Estas informações estarão em tópicos, esse é o tópico 2<br />
-        Estas informações estarão em tópicos, esse é o tópico 3<br />
-        Estas informações estarão em tópicos, esse é o tópico 4<br />
+        <li>
+          Arquivos de logs não contém informação que permitem responder com
+          certeza se o usuário encontrou a informação que procurava. Por isso,
+          recomenda-se utiliza-lo junto com outros métodos capazes de coletar
+          esse tipo de informação, como questionário e entrevista.
+        </li>
+
+        <br />
+        <br />
+        <li>
+          Informe os usuários e obtenha consentimento para coleta de dados,
+          respeitando regulamentos como a LGPD.
+        </li>
+
+        <br />
       </Typography>
     ),
 
-    more: ["https://www.google.com"],
-    relatedMethods: ["", ""],
+    more: [
+      "https://www.researchgate.net/profile/Marco-Winckler-3/publication/228816116_Avaliacao_de_usabilidade_de_sites_Web/links/02bfe510a614de7879000000/Avaliacao-de-usabilidade-de-sites-Web.pdf",
+      "https://www.teses.usp.br/teses/disponiveis/100/100131/tde-06032013-161410/publico/MarcusCerratoDissertacaoCorrigida.pdf",
+      "https://www.nngroup.com/articles/search-log-analysis/",
+    ],
+    relatedMethods: ["gravacao_e_analise", "entrevista", "questionarios"],
 
     needANDReference: [
       {
@@ -1421,8 +1769,7 @@ export const methods: MethodProps[] = [
     image: avaliacao_semiotica,
     fullDescription: (
       <Typography variant="body1">
-        <br />
-        avalia a comunicabilidade de uma solução. O objetivo da inspeção
+        Avalia a comunicabilidade de uma solução. O objetivo da inspeção
         semiótica é avaliar a qualidade da emissão da metacomunicação do
         designer codificada na interface.
         <br />
@@ -1437,23 +1784,34 @@ export const methods: MethodProps[] = [
     ),
     goodPractices: (
       <Typography variant="body1">
-        Estas serão as informações do tópicos 1. <br />
-        Estas serão as informações do tópicos 2. <br />
-        Este é o tópico 3.
+        <li>
+          Se houver mais de um avaliador, eles devem trabalhar em conjunto em
+          todas as atividades.
+        </li>
+        <br />
+        <br />
+        <li>
+          Caso o sistema avaliado possua mais de um perfil de usuário, cada
+          avaliador pode ficar responsável por inspecionar a interface sob o
+          ponto de vista de um dos perfis.
+        </li>
       </Typography>
     ),
 
     attentionPoints: (
       <Typography variant="body1">
-        Estas informações estarão em tópicos, esse é o tópico 1<br />
-        Estas informações estarão em tópicos, esse é o tópico 2<br />
-        Estas informações estarão em tópicos, esse é o tópico 3<br />
-        Estas informações estarão em tópicos, esse é o tópico 4<br />
+        <li>
+          O método exige experiência do avaliador em semiologia e engenharia
+          semiótica.
+        </li>
+        <br />
+        <br />
+        <br />
       </Typography>
     ),
 
-    more: ["https://www.google.com"],
-    relatedMethods: ["", ""],
+    more: ["https://leanpub.com/ihc-ux"],
+    relatedMethods: [],
     needANDReference: [
       {
         requirement: "objetivos_da_avaliacao",
@@ -1767,43 +2125,169 @@ export const methods: MethodProps[] = [
       </Tooltip>,
     ],
     description:
-      "Tipo de Teste de Usabilidade cujo objetivo é comparar duas alternativas de design entre sistemas semelhantes, sejam eles sistemas concorrentes ou apenas versões diferentes no mesmo sistema.",
+      "Tipo de Teste de Usabilidade cujo objetivo é comparar sistemas semelhantes, sejam eles sistemas concorrentes ou apenas versões diferentes no mesmo sistema.",
     image: teste_de_usabilidade_competitivo,
     fullDescription: (
       <Typography variant="body1">
         <br />
-        Tipo de Teste de Usabilidade cujo objetivo é comparar duas alternativas
-        de design entre sistemas semelhantes, sejam eles sistemas concorrentes
-        ou apenas versões diferentes no mesmo sistema.
+        Tipo de Teste de Usabilidade cujo objetivo é comparar sistemas
+        semelhantes, sejam eles sistemas concorrentes ou apenas versões
+        diferentes no mesmo sistema.
         <br />
+        <br />
+        Para realizar o teste, um grupo de usuários é convidado a realizar um
+        conjunto pré estabelecido de tarefas usando os dois sistemas em
+        sequência num ambiente controlado.
+        <br />
+        <br />
+        Foque em tarefas que podem ser concluídas em todos os produtos
+        comparados, bem como em tarefas em que os produtos oferecem diferentes
+        abordagens para informações, funcionalidade ou design.
+        <br />
+        <br /> A sessão de teste pode ser remota ou presencial.
+        <br />
+        <br />
+        O teste pode ser realizado em um sistemas de nível de fidelidade baixo,
+        médio ou alto.
         <br />
         <br />
       </Typography>
     ),
     exemples: (
       <Typography variant="body1">
-        Descrição de um exemplo de Utilização/aplicação do método.
+        <b>Cenário:</b> <br />
+        Você está desenvolvendo um sistema de sorteio de letras para jogos como
+        Stop. Um concorrente também oferece uma ferramenta similar. O objetivo é
+        comparar a usabilidade entre o seu sistema e o do concorrente para ver
+        qual oferece a melhor experiência ao usuário. <br />
+        <br />
+        <b>Objetivo do Teste:</b> <br />
+        Comparar os dois sistemas em termos de rapidez, facilidade de uso e
+        satisfação do usuário ao realizar o sorteio de letras. <br />
+        <br />
+        <b>Preparação:</b>
+        <ul>
+          <li>Convidar 6 participantes representando jogadores de Stop.</li>
+          <li>
+            Definir uma tarefa: "Sorteie 3 letras para o jogo, sem personalizar
+            configurações."
+          </li>
+        </ul>
+        <b>Execução:</b>
+        <ul>
+          <li>
+            Os participantes interagem com ambos os sistemas, realizando a
+            tarefa de sorteio.
+          </li>
+          <li>
+            Dados coletados: <br />
+            - Tempo para completar o sorteio. <br />
+            - Número de cliques. <br />
+            - Erros cometidos. <br />- Feedback verbal.
+          </li>
+        </ul>
+        <b>Resultados:</b>
+        <ul>
+          <li>
+            <b>Seu Sistema:</b> Conclusão média em 15 segundos, fácil acesso ao
+            botão de sorteio, mas falta de opções de personalização.
+          </li>
+          <li>
+            <b>Sistema Concorrente:</b> Conclusão média em 12 segundos, mais
+            opções de personalização, mas com confusão no layout.
+          </li>
+        </ul>
+        <b>Ação:</b>
+        <ul>
+          <li>
+            Embora o sistema concorrente tenha sido ligeiramente mais rápido, os
+            usuários preferiram a simplicidade e clareza do seu sistema.
+          </li>
+          <li>
+            A recomendação foi melhorar as opções de personalização sem
+            comprometer a simplicidade.
+          </li>
+        </ul>
       </Typography>
     ),
     goodPractices: (
       <Typography variant="body1">
-        Estas serão as informações do tópicos 1. <br />
-        Estas serão as informações do tópicos 2. <br />
-        Este é o tópico 3.
+        <li>
+          O avaliador moderador do teste deve interagir o mínimo possível com o
+          participante;
+        </li>
+        <br />
+        <li>
+          Não deve-se sobrecarregar os participantes com tarefas excessivas,
+          especialmente porque o participante realizará cada tarefa duas ou três
+          vezes, dependendo da quantidade de produtos comparados;
+        </li>
+        <br />
+        <li>
+          Ao convidar os participantes, deve-se deixar claro que, no teste de
+          usabilidade, o objeto da avaliação são as interfaces e não o
+          participante;
+        </li>
+        <br />
+        <li>
+          Recomenda-se apresentar ao participante, no início do teste, o Termo
+          de Consentimento Livre e Esclarecido, mesmo que de forma simplificada,
+          pois trata sobre a confidencialidade dos dados, entre outros pontos
+          importantes de uma pesquisa. Disponível em:{" "}
+          <a
+            href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.gov.br%2Febserh%2Fpt-br%2Fhospitais-universitarios%2Fregiao-nordeste%2Fhupes-ufba%2Fensino-e-pesquisa%2Fpesquisa-e-inovacao-tecnologica%2Fsubmissao-de-projetos-1%2Ftcle.doc&psig=AOvVaw1YNWk0ZpMGSNEcw0J6-FsR&ust=1732466041736000&source=images&cd=vfe&opi=89978449&ved=0CAQQn5wMahcKEwiImOemmfOJAxUAAAAAHQAAAAAQBA"
+            target="_blank"
+          >
+            Termo de Consentimento;
+          </a>
+        </li>
+        <br />
+        <li>
+          Recomenda-se realizar um teste piloto antes do início dos testes com
+          usuários do público alvo, este teste tem por objetivo verificar se as
+          tarefas estão claras e quanto tempo em média dura o teste todo. Assim,
+          o roteiro de tarefas pode ser ajustado conforme necessário;
+        </li>
+        <br />
+        <li>
+          Embora você queira observar o que os usuários fazem, em vez de apenas
+          pedir a opinião deles , será benéfico pedir aos participantes no final
+          da sessão para comparar os sites que eles usaram. Comparar os dois
+          designs pode ajudar os usuários a verbalizar o que estava claro ou
+          confuso em cada design e pode ajudar você a obter mais insights sobre
+          os pontos fortes e fracos. Para isso pode-se realizar uma entrevista
+          ou um questionário;
+        </li>
+        <br />
+        <li>
+          Alterne qual produto é testado primeiro para cada usuário. Isso ajuda
+          a evitar que enviesam os resultados do seu estudo.
+        </li>
       </Typography>
     ),
 
     attentionPoints: (
       <Typography variant="body1">
-        Estas informações estarão em tópicos, esse é o tópico 1<br />
-        Estas informações estarão em tópicos, esse é o tópico 2<br />
-        Estas informações estarão em tópicos, esse é o tópico 3<br />
-        Estas informações estarão em tópicos, esse é o tópico 4<br />
+        <li>
+          Se o nível de fidelidade dos sistemas usados for de baixa ou média
+          fidelidade é importante prestar atenção na distinção entre problemas
+          inerentes à baixa fidelidade do protótipo e questões de usabilidade.
+        </li>
+        <br />
       </Typography>
     ),
 
-    more: ["https://www.google.com"],
-    relatedMethods: ["pensar_em_voz_alta", "gravacao_e_analise"],
+    more: [
+      "https://www.nngroup.com/articles/competitive-usability-evaluations/",
+      "https://www.nngroup.com/articles/usability-testing-101/",
+    ],
+    relatedMethods: [
+      "teste_de_usabilidade",
+      "pensar_em_voz_alta",
+      "gravacao_e_analise",
+      "entrevista",
+      "questionarios",
+    ],
     needANDReference: [
       {
         requirement: "objetivos_da_avaliacao",
