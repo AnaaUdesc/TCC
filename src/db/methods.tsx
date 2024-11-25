@@ -1896,8 +1896,8 @@ export const methods: MethodProps[] = [
       </Typography>
     ),
 
-    more: ["https://www.google.com"],
-    relatedMethods: ["", ""],
+    more: ["https://www.nngroup.com/articles/field-studies/"],
+    relatedMethods: [],
     needANDReference: [
       {
         requirement: "objetivos_da_avaliacao",

@@ -205,7 +205,7 @@ export default function Card({
             Ver detalhes
           </Link>
         </Box>
-        {!isTechnique && (
+        {!isATechnique && (
           <>
             <Divider orientation="vertical" flexItem />
             <Box
