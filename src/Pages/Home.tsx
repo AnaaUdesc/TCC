@@ -21,7 +21,7 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import Card from "../Componentes/Card";
 import Footer from "../Componentes/Footer";
@@ -184,6 +184,11 @@ export default function HomePage() {
     handleCloseMethodsMenu();
   };
 
+  useEffect(() => {
+    // scroll to top
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Box
       sx={{
@@ -209,15 +214,24 @@ export default function HomePage() {
             flexGrow: 1,
             marginBottom: -2,
             display: "flex",
-            flexDirection: "row",
-            paddingX: 12,
+            flexDirection: {
+              xs: "column",
+              sm: "row",
+            },
+            paddingX: {
+              xs: 4,
+              sm: 12,
+            },
             paddingY: 4,
           }}
         >
           {selectedType === "method" && <Menu />}
           <Box
             sx={{
-              marginX: 4,
+              marginX: {
+                xs: 0,
+                sm: 4,
+              },
               display: "flex", // Para que o conteúdo dentro seja flexível
               flexDirection: "column",
               gap: 2,
@@ -230,6 +244,10 @@ export default function HomePage() {
                 // alignItems: "center",
                 justifyContent: "space-between",
                 position: "relative",
+                mt: {
+                  xs: 2,
+                  sm: 0,
+                },
               }}
             >
               <TextField

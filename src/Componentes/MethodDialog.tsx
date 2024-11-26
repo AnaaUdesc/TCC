@@ -196,7 +196,10 @@ export default function MethodDialog({
       PaperProps={{
         sx: {
           borderRadius: 2,
-          paddingBottom: 20,
+          paddingBottom: {
+            xs: 0,
+            sm: 20,
+          },
         },
       }}
     >
@@ -230,7 +233,10 @@ export default function MethodDialog({
             backgroundImage: `url(${image})`,
             width: "100%",
             minWidth: "100px",
-            minHeight: "600px",
+            minHeight: {
+              xs: "200px",
+              sm: "600px",
+            },
             height: "auto",
             borderRadius: 2,
             backgroundPosition: "center", // Para centralizar a imagem
@@ -242,19 +248,35 @@ export default function MethodDialog({
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            padding: 6,
+            padding: {
+              xs: 2,
+              sm: 6,
+            },
             paddingBottom: 0,
           }}
         >
           <Box
             sx={{
               display: "flex",
+              flexDirection: {
+                xs: "column",
+                sm: "row",
+              },
               gap: 1,
-              alignItems: "center",
-              maxWidth: isTechnique ? "1000px" : "100%",
+              // px: 2,
+              alignItems: {
+                xs: "flex-start",
+                sm: "center",
+              },
+              maxWidth: isTechnique
+                ? {
+                    xs: "80%",
+                    sm: "1000px",
+                  }
+                : "100%",
             }}
           >
-            <Typography variant="h4" noWrap fontWeight={600}>
+            <Typography variant="h4" fontWeight={600}>
               {title}
             </Typography>
 
@@ -291,10 +313,26 @@ export default function MethodDialog({
         <Box
           sx={{
             display: "flex",
+            flexDirection: {
+              xs: "column-reverse",
+              md: "row",
+            },
             width: "100%",
           }}
         >
-          <Box sx={{ padding: 6, paddingTop: 4, width: "2200px" }}>
+          <Box
+            sx={{
+              padding: {
+                xs: 4,
+                sm: 6,
+              },
+              // paddingTop: 4,
+              width: {
+                xs: "100%",
+                sm: "2200px",
+              },
+            }}
+          >
             <Typography
               sx={{
                 marginTop: 1,
@@ -394,7 +432,7 @@ export default function MethodDialog({
                   }}
                 >
                   {more?.map((link, index) => (
-                    <Typography key={index} sx={{ marginBottom: 2 }}>
+                    <Typography noWrap key={index} sx={{ marginBottom: 2 }}>
                       <Link
                         href={link}
                         target="_blank"
@@ -436,7 +474,10 @@ export default function MethodDialog({
                         sx={{
                           backgroundColor: "#E7EFF0",
                           width: 350,
-                          height: 450,
+                          height: {
+                            xs: "auto",
+                            sm: 450,
+                          },
                           borderRadius: 2,
                           paddingTop: 0,
                           cursor: "pointer",
@@ -482,7 +523,16 @@ export default function MethodDialog({
                             </Typography>
                           </Box>
 
-                          <Box sx={{ display: "flex", gap: 1 }}>
+                          <Box
+                            sx={{
+                              display: "flex",
+                              gap: 1,
+                              mt: {
+                                xs: 2,
+                                sm: 0,
+                              },
+                            }}
+                          >
                             {related?.classificationIcons.map((icon, index) => (
                               <Box
                                 sx={{
@@ -513,8 +563,14 @@ export default function MethodDialog({
             <>
               <Divider
                 sx={{
-                  mt: 6,
-                  height: "700px",
+                  mt: {
+                    xs: 0,
+                    sm: 6,
+                  },
+                  height: {
+                    xs: 2,
+                    sm: "700px",
+                  },
                 }}
                 orientation="vertical"
                 flexItem
@@ -522,8 +578,10 @@ export default function MethodDialog({
               <Box
                 sx={{
                   p: 6,
-
-                  width: "800px",
+                  width: {
+                    xs: "100%",
+                    sm: "800px",
+                  },
                 }}
               >
                 <Typography variant="h5" fontWeight={600}>

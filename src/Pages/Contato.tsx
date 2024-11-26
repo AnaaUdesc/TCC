@@ -2,8 +2,14 @@ import { Construction } from "@mui/icons-material";
 import { Box, Button, Typography } from "@mui/material";
 import Footer from "../Componentes/Footer";
 import Header from "../Componentes/Header";
+import { useEffect } from "react";
 
 export default function ContatoPage() {
+  useEffect(() => {
+    // scroll to top
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Box>
       <Header />

@@ -15,6 +15,7 @@ import {
   styled,
   Tooltip,
   Typography,
+  useTheme,
 } from "@mui/material";
 import { useState } from "react";
 import { GoGoal } from "react-icons/go";
@@ -87,6 +88,9 @@ export default function Card({
     setOpen(false);
   };
 
+  const theme = useTheme();
+  const isDownSm = theme.breakpoints.down("sm");
+
   const requirementsProps: RequirementProgressViewProps[] = [
     {
       children: (
@@ -145,13 +149,20 @@ export default function Card({
           backgroundColor: "#ffff",
           borderRadius: 2,
           display: "flex",
+          flexDirection: {
+            xs: "column",
+            sm: "row",
+          },
           padding: 2,
         }}
       >
         <Box
           sx={{
             backgroundImage: `url(${image})`,
-            width: 161,
+            width: {
+              xs: "100%",
+              sm: 161,
+            },
             height: 275,
             minWidth: 161,
             minHeight: 261,
@@ -168,8 +179,25 @@ export default function Card({
             paddingRight: 5,
           }}
         >
-          <Box sx={{ display: "flex", gap: 1, marginBottom: -3 }}>
-            <Typography variant="h5" noWrap fontWeight={600}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: {
+                xs: "column",
+                sm: "row",
+              },
+              gap: 1,
+              mt: {
+                xs: 2,
+                sm: 0,
+              },
+              marginBottom: {
+                xs: 2,
+                sm: -3,
+              },
+            }}
+          >
+            <Typography variant="h5" fontWeight={600}>
               {title}
             </Typography>
             <Box sx={{ display: "flex", gap: 1 }}>
@@ -193,7 +221,15 @@ export default function Card({
             </Box>
           </Box>
           <Typography
-            sx={{ color: "#7A7A7A", fontStyle: "italic", fontWeight: 300 }}
+            sx={{
+              color: "#7A7A7A",
+              fontStyle: "italic",
+              fontWeight: 300,
+              mb: {
+                xs: 2,
+                sm: 0,
+              },
+            }}
           >
             {description}
           </Typography>
@@ -207,7 +243,16 @@ export default function Card({
         </Box>
         {!isATechnique && (
           <>
-            <Divider orientation="vertical" flexItem />
+            <Divider
+              orientation={isDownSm ? "horizontal" : "vertical"}
+              flexItem
+              sx={{
+                mt: {
+                  xs: 2,
+                  sm: 0,
+                },
+              }}
+            />
             <Box
               sx={{
                 display: "flex",

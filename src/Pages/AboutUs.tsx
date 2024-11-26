@@ -1,8 +1,14 @@
-import { Box, Container, Typography, Link } from "@mui/material";
-import Header from "../Componentes/Header";
+import { Box, Container, Link, Typography } from "@mui/material";
+import { useEffect } from "react";
 import Footer from "../Componentes/Footer";
+import Header from "../Componentes/Header";
 import logo_cct from "../assets/logo_cct.jpg";
 export default function AboutUsPage() {
+  useEffect(() => {
+    // scroll to top
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Box
       sx={{
